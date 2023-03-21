@@ -1,0 +1,158 @@
+<script>
+import { formToJSON } from 'axios';
+
+const { VITE_API, VITE_PATH } = import.meta.env;
+export default {
+    data(){
+        return {
+            data: {
+                user: {}
+            }
+        }
+    },
+    methods: {
+        placeOrder(){
+            this.$http.post(`${VITE_API}api/${VITE_PATH}/order`, {data:this.data})
+            .then(res => {
+                alert("已送出訂單")
+                this.data = {
+                user: {}
+            }
+            })
+            .catch(()=> {
+                confirm("無法送出訂單")
+            })
+
+            // console.log(this.data);
+        }
+    }
+}
+</script>
+<template>
+    <v-form class="container" @submit="placeOrder">
+        <h2 class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary
+                md:mb-10">
+            結賬
+        </h2>
+
+        <!-- <div class="mb-3 col-span-1">
+                                <label for="productUnit" class="mb-2 block"></label>
+                                <v-field type="text" id=''
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary"
+                                    placeholder="請輸入"  name="" rules="required"></v-field>
+                                <v-error-message name="" class="text-highlight"></v-error-message>
+                            </div> -->
+
+        <div class="grid grid-cols-12 mb-8 md:mb-10">
+            <div class="col-start-3 col-span-8">
+                <h3 class="text-4.5 mb-6"> 請填寫訂單資料</h3>
+                <div class="grid grid-cols-2 gap-y-4 md:gap-x-4 md:gap-y-8">
+                    <div class=" col-span-2 md:col-span-1">
+                        
+                        <label for="recipient" class="mb-2 block">收貨人：</label>
+                        <v-field type="text" id='recipient'
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+                                    placeholder="請輸入收貨人姓名"  name="收貨人姓名" rules="required" v-model="data.user.name"></v-field>
+                                <v-error-message name="收貨人姓名" class="text-highlight"></v-error-message>
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label for="recipientPhone" class="mb-2 block">收貨人電話：</label>
+                        <v-field type="tel" id='recipientPhone'
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+                                    placeholder="請輸入收貨人電話"  name="收貨人電話" rules="required" v-model="data.user.tel"></v-field>
+                                <v-error-message name="收貨人電話" class="text-highlight"></v-error-message>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="receipientAddr" class="mb-2 block">收貨人地址：</label>
+                        <v-field type="text" id='receipientAddr'
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+                                    placeholder="請輸入收貨人地址"  name="收貨人地址" rules="required" v-model="data.user.address"></v-field>
+                                <v-error-message name="收貨人地址" class="text-highlight"></v-error-message>
+                        <!-- <input type="text" class="w-full" rows="2"> -->
+                    </div>
+                    <div class="col-span-2">
+                        <label for="receipientMail" class="mb-2 block">電郵：</label>
+                        <v-field type="email" id='receipientMail'
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+                                    placeholder="請輸入電郵"  name="電郵" rules="required" v-model="data.user.email"></v-field>
+                                <v-error-message name="電郵" class="text-highlight"></v-error-message>
+                        <!-- <input type="text" class="w-full" rows="2"> -->
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label for="payment" class="mb-2 block">付款方法：</label>
+                        <select  id='payment'
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent" v-model="data.message">
+                                    <option value="銀行轉賬" selected>銀行轉賬</option>
+                                    <option value="貨到付款" >貨到付款</option>
+                                </select>
+                                <!-- <v-error-message name="" class="text-highlight"></v-error-message> -->
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label for="couponNum" class="mb-2 block">優惠碼：</label>
+                        <input type="text" id='couponNum'
+                                    class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+                                    placeholder="請輸入優惠碼"  />
+                                <!-- <v-error-message name="" class="text-highlight"></v-error-message> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-8 px-13 mb-8  bg-white rounded-2.5xl shadow-lg2 md:pb-11 md:px-8 md:mb-10">
+            <table class="w-full  text-center mb-6">
+                <thead>
+                    <tr class="font-extrabold text-4.5">
+                        <th></th>
+                        <th>產品</th>
+                        <th>價錢</th>
+                        <th>數量</th>
+                        <th>小計</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class=" lg:w-24 lg:h-24">
+                            <img src="sdf" alt="">
+                        </td>
+                        <td>
+                            加厚黃金圖案珊瑚絨毛毯
+                        </td>
+                        <td class="text-xs">NT $ 500</td>
+                        <td class="text-xs">
+                            1
+
+                        </td>
+
+                        <td class="text-xs">NT $ 500</td>
+                    </tr>
+                </tbody>
+                <tfoot class="border-t border-t-fog-500 border-spacing-1">
+                    <tr class="">
+                        <!-- <td></td>
+                        <td></td> -->
+                        <td colspan="3" class="text-end ">
+                            <p class="inline-block px-2 bg-fog-200 ">已達免運費門檻</p>
+                        </td>
+                        <td class="">總計:</td>
+                        <td>NT$1600</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <button class="btn flex items-center text-sm mx-auto
+                                                                        md:text-h6 lg:btn-md xl:btn-lg">
+            <span class="pl-1 xl:pl-2">碓認送出訂單</span>
+            <span class="material-symbols-outlined ml-3 text-base
+                                                                            lg:text-2xl">
+                chevron_right
+            </span>
+        </button>
+        <button class="flex items-center text-4.5 ">
+            <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
+                chevron_left
+            </span>
+            <span class="pl-1 lg:pl-2">回到購物車</span>
+
+        </button>
+
+    </v-form>
+</template>
