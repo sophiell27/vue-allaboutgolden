@@ -17,7 +17,6 @@ export default {
         HeroComponent,
         NewProductsComponent
     },
-
     methods: {
         // gsapanimate() {
         //     console.log(this.$refs.catList);
@@ -74,8 +73,8 @@ export default {
         // })
 
 
-        this.$aos.init();
-        console.log(this.windowWidth);
+        // this.$aos.init();
+        // console.log(this.windowWidth);
     },
 
 
@@ -91,42 +90,52 @@ export default {
             <h2 class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary
                                                                 md:mb-10">
                 產品類別</h2>
+                <!--path: "products/category/:category" -->
             <div class="px-6">
-                <ul class="catList grid grid-cols-6 gap-y-6 md:mb-15 " ref="catList">
-                    <li class="col-span-2 md:col-span-1 mx-auto">
-                        <a href="">
+                <ul class="catList grid grid-cols-6 md:mb-15 " ref="catList">
+                    <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+                        <RouterLink to="products/category/配件配飾">
                             <img src="../../assets/images/category-img/cat-asseccary.svg" alt="" class="categoryImg"
                                 data-aos="fade-up">
                             <!-- data-aos="fade-up" -->
-                            <h3 class="tesx-4.5">配件配飾</h3>
-                        </a>
+                            <h3 class="text-4.5">配件配飾</h3>
+                        </RouterLink>
                     </li>
-                    <li class="col-span-2 md:col-span-1 mx-auto">
+                    <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+                        <RouterLink to="products/category/居家配件">
                         <img src="../../assets/images/category-img/cat-homeDecro.svg" alt="" class="categoryImg"
                             data-aos="fade-up">
-                        <h3 class="tesx-4.5">居家配件</h3>
+                        <h3 class="text-4.5">居家配件</h3>
+                    </RouterLink>
                     </li>
-                    <li class="col-span-2 md:col-span-1 mx-auto">
+                    <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+                        <RouterLink to="products/category/床上用品">
                         <img src="../../assets/images/category-img/cat-bedding.svg" alt="" class="categoryImg"
                             data-aos="fade-up">
-                        <h3 class="tesx-4.5">床上用品</h3>
+                        <h3 class="text-4.5">床上用品</h3>
+                    </RouterLink>
                     </li>
-                    <li class="col-span-2 md:col-span-1 mx-auto">
+                    <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+                        <RouterLink to="products/category/科技配件">
+
                         <img src="../../assets/images/category-img/cat-tech.svg" alt="" class="categoryImg"
                             data-aos="fade-up">
-                        <h3 class="tesx-4.5">科技配件</h3>
+                        <h3 class="text-4.5">科技配件</h3>
+                    </RouterLink>
                     </li>
-                    <li class="col-span-2 md:col-span-1 mx-auto">
-                        <img src="../../assets/images/category-img//cat-clothing.svg" alt="" class="categoryImg"
+                    <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+                        <RouterLink to="products/category/衣物大全">
+                        <img src="../../assets/images/category-img/cat-clothing.svg" alt="" class="categoryImg"
                             data-aos="fade-up">
-                        <h3 class="tesx-4.5">衣物大全</h3>
+                        <h3 class="text-4.5">衣物大全</h3>
+                    </RouterLink>
                     </li>
-                    <li class="col-span-2 md:col-span-1 mx-auto">
-                        <a href="" class="">
+                    <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+                            <RouterLink to="products/category/有狗亂入">
                             <img src="../../assets/images/category-img/cat-petstuff.svg" alt="" class="categoryImg"
                                 data-aos="fade-up">
                             <h3 class="tesx-4.5">有狗亂入</h3>
-                        </a>
+                        </RouterLink>
                     </li>
                 </ul>
             </div>
@@ -192,76 +201,76 @@ export default {
             <h2 class="text-h4 text-center pb-4 mb-5 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary
                                                         md:mb-7">
                 顧客好評推薦</h2>
-            <ul class="flex flex-col gap-y-4 md:flex-row md:flex-wrap md:justify-center md:gap-6">
-                <li class="bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 md:w-[48%] md:px-4 md:flex">
+            <ul class="grid grid-cols-2 gap-4 md:gap-6">
+                <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
                     <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
-                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0">
+                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
                     <div>
-                        <h2 class="text-4.5 flex items-center justify-center mb-2"><span
+                        <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
                                 class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
-                                class="text-fog-400 text-h6 ml-4">玩具破壞王</span></h2>
+                                class="text-fog-400 text-h6 ml-4">柚木底座黃金頭像刻畫</span></h2>
                         <p class="text-sm text-dark">
-                            阿金很喜歡玩具，但是有些玩具卻很容易被破壞，讓我很困擾。現在有些新買的玩具，經過了嚴格的品質檢測，使用的材料也更加堅固耐用，不怕被狗狗破壞。
+                            非常滿意！雕刻技術非常精湛，顏色也非常漂亮。整體來說，這是一件非常精美的藝術品，值得收藏～實物比圖片更有質感！感覺值了～
                         </p>
                     </div>
                 </li>
-                <li class="bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 md:w-[48%] md:px-4 md:flex">
-                    <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
-                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0">
+                <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
+                    <img src="../../assets/images/recommend-img/recomImg2.svg" alt=""
+                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
                     <div>
-                        <h2 class="text-4.5 flex items-center justify-center mb-2"><span
-                                class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
-                                class="text-fog-400 text-h6 ml-4">玩具破壞王</span></h2>
+                        <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                                class="pr-4 border-r-2 border-r-fog-200 font-bold">旺財媽媽</span> <span
+                                class="text-fog-400 text-h6 ml-4">藝術風 iPhone 14 pro 手機殼</span></h2>
                         <p class="text-sm text-dark">
-                            阿金很喜歡玩具，但是有些玩具卻很容易被破壞，讓我很困擾。現在有些新買的玩具，經過了嚴格的品質檢測，使用的材料也更加堅固耐用，不怕被狗狗破壞。
+                            對於藝術風iPhone 14 Pro手機殼給予高度評價。手機殼的設計非常獨特，充滿藝術感，而且質感也很好。此外，手機殼的保護性能也非常出色，可以有效保護手機不受損。
                         </p>
                     </div>
                 </li>
-                <li class="bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 md:w-[48%] md:px-4 md:flex">
-                    <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
-                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0">
+                <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
+                    <img src="../../assets/images/recommend-img/recomImg3.svg" alt=""
+                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
                     <div>
-                        <h2 class="text-4.5 flex items-center justify-center mb-2"><span
-                                class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
-                                class="text-fog-400 text-h6 ml-4">玩具破壞王</span></h2>
+                        <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                                class="pr-4 border-r-2 border-r-fog-200 font-bold">麻糬爸爸</span> <span
+                                class="text-fog-400 text-h6 ml-4">全人手繪畫黃金油畫</span></h2>
                         <p class="text-sm text-dark">
-                            阿金很喜歡玩具，但是有些玩具卻很容易被破壞，讓我很困擾。現在有些新買的玩具，經過了嚴格的品質檢測，使用的材料也更加堅固耐用，不怕被狗狗破壞。
+                            油畫非常精美，色彩鮮豔，繪畫技巧精湛，能夠看出畫家花了很多時間和精力。這不僅僅是一件藝術品，更是一個擁有深刻意義的作品。雖然油畫沒有連框，但是絲毫不影響畫作的美感，非常滿意。
                         </p>
                     </div>
                 </li>
-                <li class="bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 md:w-[48%] md:px-4 md:flex">
-                    <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
-                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0">
+                <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
+                    <img src="../../assets/images/recommend-img/recomImg4.svg" alt=""
+                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
                     <div>
-                        <h2 class="text-4.5 flex items-center justify-center mb-2"><span
-                                class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
-                                class="text-fog-400 text-h6 ml-4">玩具破壞王</span></h2>
+                        <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                                class="pr-4 border-r-2 border-r-fog-200 font-bold">QQQ</span> <span
+                                class="text-fog-400 text-h6 ml-4">簡約水彩黃金圖案購物袋</span></h2>
                         <p class="text-sm text-dark">
-                            阿金很喜歡玩具，但是有些玩具卻很容易被破壞，讓我很困擾。現在有些新買的玩具，經過了嚴格的品質檢測，使用的材料也更加堅固耐用，不怕被狗狗破壞。
+                            讚讚讚，什麼都很好買欸。
                         </p>
                     </div>
                 </li>
-                <li class="bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 md:w-[48%] md:px-4 md:flex">
-                    <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
-                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0">
+                <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
+                    <img src="../../assets/images/recommend-img/recomImg5.svg" alt=""
+                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
                     <div>
-                        <h2 class="text-4.5 flex items-center justify-center mb-2"><span
-                                class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
-                                class="text-fog-400 text-h6 ml-4">玩具破壞王</span></h2>
+                        <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                                class="pr-4 border-r-2 border-r-fog-200 font-bold">索菲亞</span> <span
+                                class="text-fog-400 text-h6 ml-4">華麗風格 iPhone 14 pro 手機殼</span></h2>
                         <p class="text-sm text-dark">
-                            阿金很喜歡玩具，但是有些玩具卻很容易被破壞，讓我很困擾。現在有些新買的玩具，經過了嚴格的品質檢測，使用的材料也更加堅固耐用，不怕被狗狗破壞。
+                            還沒有養狗，但能夠擁有可愛黃金的產品也好滿足！
                         </p>
                     </div>
                 </li>
-                <li class="bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 md:w-[48%] md:px-4 md:flex">
-                    <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
-                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0">
+                <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
+                    <img src="../../assets/images/recommend-img/recomImg6.svg" alt=""
+                        class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
                     <div>
-                        <h2 class="text-4.5 flex items-center justify-center mb-2"><span
-                                class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
-                                class="text-fog-400 text-h6 ml-4">玩具破壞王</span></h2>
+                        <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                                class="pr-4 border-r-2 border-r-fog-200 font-bold">胖子</span> <span
+                                class="text-fog-400 text-h6 ml-4">單一尺吋簡潔黃金全身T shirt</span></h2>
                         <p class="text-sm text-dark">
-                            阿金很喜歡玩具，但是有些玩具卻很容易被破壞，讓我很困擾。現在有些新買的玩具，經過了嚴格的品質檢測，使用的材料也更加堅固耐用，不怕被狗狗破壞。
+                            感謝網站提供專業的意見，T shirt穿上好合適，讚
                         </p>
                     </div>
                 </li>

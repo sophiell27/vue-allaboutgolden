@@ -1,6 +1,7 @@
 <script>
-import FrontStore from '../../stores/FrontStore.js';
+import frontStore from '../../stores/frontStore.js';
 import { mapState, mapActions } from 'pinia';
+import BreadrumbComponent from '../../components/BreadrumbComponent.vue';
 export default {
     data(){
         return {
@@ -8,11 +9,14 @@ export default {
             tempQty:1
         }
     },
+    components: {
+        BreadrumbComponent
+    },
     computed: {
-        ...mapState(FrontStore, ["products", "tempProduct"])
+        ...mapState(frontStore, ["products", "tempProduct"])
     },
     methods: {
-        ...mapActions(FrontStore, ["getSingleProduct", "addCart"])
+        ...mapActions(frontStore, ["getSingleProduct", "addCart"])
     },
     mounted(){
         this.getSingleProduct(this.$route.params.productid);
@@ -22,21 +26,7 @@ export default {
 
 <template>
     <div class="container">
-        <div class="mb-6 flex items-center">
-            <RouterLink to="/products" class="flex items-center text-4.5 ">
-                <span class="pl-1 lg:pl-2">全部商品</span>
-                <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
-                    chevron_right
-                </span>
-            </RouterLink>
-            <button class="flex items-center text-4.5 ">
-                <span class="pl-1 lg:pl-2">{{ tempProduct.category}}</span>
-                <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
-                    chevron_right
-                </span>
-            </button>
-            <p class="text-4.5 pl-2">{{ tempProduct.title}}</p>
-        </div>
+        <BreadrumbComponent :tempProduct="tempProduct"></BreadrumbComponent>
         <div class="grid grid-cols-12 gap-x-6">
             <img :src="tempProduct.imageUrl" :alt="tempProduct.title" class="col-span-12  mb-6 rounded-lg2 shadow-lg2 md:col-span-4 md:mb-0">
             <div class="col-span-12 md:col-span-8 ">

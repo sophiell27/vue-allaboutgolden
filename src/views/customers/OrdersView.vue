@@ -34,7 +34,8 @@ export default {
         }
     },
     mounted(){
-        this.getOrders();
+        this.getOrders(this.$route.params.orderid);
+
     }
 }
 </script>
@@ -46,7 +47,7 @@ export default {
             <thead class="border-b border-b-secondary">
                 <tr>
                     <th>日期</th>
-                    <th>訂單編號</th>
+                    <th class="hidden md:block">訂單編號</th>
                     <th>訂單內容</th>
                     <th>總計</th>
                     <th>付款狀態</th>
@@ -54,16 +55,16 @@ export default {
                 </tr>
             </thead>
             <tbody class="text-center mb-2">
-                <tr v-for="order in orders" :key="order.create_at">
-                    <td>{{ getFormatDate(order.create_at) }}</td>
-                    <td>{{ order.id }}</td>
+                <tr v-for="order in orders" :key="order.create_at" class="hover:bg-fog-200">
+                    <td class="text-xs">{{ getFormatDate(order.create_at) }}</td>
+                    <td class="hidden text-xs md:block">{{ order.id }}</td>
                     <td>
                         <template v-for="item in order.products " :key="`item${item.id}`">
                            <p> {{ `${item.product.title} x ${item.qty}` }}</p>
 
                         </template>
                         </td>
-                    <td>NT$ {{ order.total }}</td>
+                    <td class="text-xs">NT$ {{ order.total }}</td>
                     <td  :class="{'text-highlight border-b-highlight': !order.is_paid}">
                     <!-- <button  class="border-b border-b-secondary hover:text-highlight hover:border-b-highlight">
                        

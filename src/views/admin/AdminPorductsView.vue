@@ -46,8 +46,7 @@ export default {
         ...mapState(adminStore, ["products", "productsPagination"])
     },
     mounted() {
-        this.getProducts();
-        
+        this.getProducts(this.$route.params.productpage)
     }
 }
 </script>

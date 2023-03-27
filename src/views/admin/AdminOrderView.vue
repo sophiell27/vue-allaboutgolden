@@ -1,45 +1,59 @@
 <script>
+import adminStore from '../../stores/adminStore.js';
+import { mapActions, mapState } from 'pinia';
 import PaginationComponent from '../../components/PaginationComponent.vue';
+import OrderComponent from '../../components/OrderComponent.vue';
+import MyLoader from '../../components/MyLoader.vue';
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
     data() {
         return {
-            orders: [],
-            orderPagination: {},
+            // orders: [],
+            // orderPagination: {},
         }
     },
+    computed: {
+        ...mapState(adminStore, ["orders", "orderPagination"])
+    },
     components:{
-        PaginationComponent
+        PaginationComponent,
+        OrderComponent,
+        MyLoader
     },
     methods: {
-        getOrders(page=1) {
-            this.$http.get(`${VITE_API}api/${VITE_PATH}/admin/orders?page=${page}`)
-            .then(res => {
-                this.orders = res.data.orders
-                this.orderPagination = res.data.pagination
-                // console.log(this.orders);
-            })
-            .catch(err => {
-                console.log("無法取得訂單列表");
-            })
-
-        },
+        ...mapActions(adminStore, ["getOrders"]),
         getFormatDate(stamp){
             const newStamp =  new Date(stamp *1000)
             return `${newStamp.getDate()}/${newStamp.getMonth()}/${newStamp.getFullYear()}`
         },
-        getOrderPorduct(){
-
+        openOrderModal(order){
+            // .openProductModal();
+            this.$refs.orderModal.openOrderModal(order);
+        },
+        delOrder(orderId){
+            if (confirm("是否確定刪除訂單？")){
+                this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
+            .then(()=> {
+                this.getOrders();
+                alert("已成功刪除一筆訂單");
+            })
+            .catch(()=> {
+                alert("無法刪除一筆訂單");
+            })
+            }
+            
+           
         }
     },
     mounted(){
-        this.getOrders();
+        this.getOrders(this.$route.params.orderpage);
     }
 }
 </script>
 
 <template>
-    <div class="container flex flex-col h-full">
+    <div class="container flex flex-col h-full" v-if="orders">
+        <OrderComponent ref="orderModal"></OrderComponent>
         <h1 class="text-h4 text-center mb-8">訂單列表</h1>
         <table class="w-full mb-auto" v-if="orders">
             <thead class="border-b border-b-secondary">
@@ -74,10 +88,10 @@ export default {
                     {{ order.is_paid? "已付款" : "未付款" }}
                 </td>
                     <td class="py-2">
-                        <button type="button" class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight">
+                        <button type="button" class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight" @click="openOrderModal(order)">
                             編輯
                         </button> / 
-                        <button class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight">
+                        <button  type="button"  class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight" @click="delOrder(order.id)">
                             刪除
                         </button>
                     </td>

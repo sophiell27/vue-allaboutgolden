@@ -1,6 +1,7 @@
 <script>
-import { formToJSON } from 'axios';
-
+import frontStore from '../../stores/frontStore.js';
+import { mapState, mapActions } from 'pinia';
+import CartsComponent from '../../components/CartsComponent.vue';
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
     data(){
@@ -10,14 +11,30 @@ export default {
             }
         }
     },
+    components: {
+        CartsComponent
+    },
+    computed: {
+        ...mapState(frontStore, ["carts"])
+
+    },
     methods: {
+        // ...mapActions(frontStore, ["emptyCart"]),
+        ...mapActions(frontStore, ["getCarts"]),
         placeOrder(){
+            if (!this.carts.length){
+                confirm("購物車沒有內容，無法送出訂單");
+                return;
+            }
+            console.log("gg");
             this.$http.post(`${VITE_API}api/${VITE_PATH}/order`, {data:this.data})
             .then(res => {
                 alert("已送出訂單")
                 this.data = {
                 user: {}
-            }
+            };
+            this.getCarts();
+            this.$router.push("/orders")
             })
             .catch(()=> {
                 confirm("無法送出訂單")
@@ -97,56 +114,19 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="py-8 px-13 mb-8  bg-white rounded-2.5xl shadow-lg2 md:pb-11 md:px-8 md:mb-10">
-            <table class="w-full  text-center mb-6">
-                <thead>
-                    <tr class="font-extrabold text-4.5">
-                        <th></th>
-                        <th>產品</th>
-                        <th>價錢</th>
-                        <th>數量</th>
-                        <th>小計</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class=" lg:w-24 lg:h-24">
-                            <img src="sdf" alt="">
-                        </td>
-                        <td>
-                            加厚黃金圖案珊瑚絨毛毯
-                        </td>
-                        <td class="text-xs">NT $ 500</td>
-                        <td class="text-xs">
-                            1
-
-                        </td>
-
-                        <td class="text-xs">NT $ 500</td>
-                    </tr>
-                </tbody>
-                <tfoot class="border-t border-t-fog-500 border-spacing-1">
-                    <tr class="">
-                        <!-- <td></td>
-                        <td></td> -->
-                        <td colspan="3" class="text-end ">
-                            <p class="inline-block px-2 bg-fog-200 ">已達免運費門檻</p>
-                        </td>
-                        <td class="">總計:</td>
-                        <td>NT$1600</td>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="py-8 px-13 mb-8  bg-white rounded-2.5xl shadow-lg2 md:pb-11 md:px-8 md:mb-10" v-if="carts">
+            <CartsComponent></CartsComponent>
         </div>
         <button class="btn flex items-center text-sm mx-auto
-                                                                        md:text-h6 lg:btn-md xl:btn-lg">
+                                                                        md:text-h6 lg:btn-md xl:btn-lg" :class="{'disabled opacity-50 cursor-default': !carts.length}">
             <span class="pl-1 xl:pl-2">碓認送出訂單</span>
             <span class="material-symbols-outlined ml-3 text-base
                                                                             lg:text-2xl">
                 chevron_right
             </span>
         </button>
-        <button class="flex items-center text-4.5 ">
+        <RouterLink to="/carts">
+            <button class="flex items-center text-4.5 ">
             <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
                 chevron_left
             </span>
@@ -154,5 +134,7 @@ export default {
 
         </button>
 
+        </RouterLink>
+       
     </v-form>
 </template>

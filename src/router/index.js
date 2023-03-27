@@ -2,8 +2,13 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  linkActiveClass: "opacity-70  px-2 rounded-lg  shadow-lg2",
-  // linkExactActiveClass: "router-active-underline",
+  linkActiveClass: "text-highlight",
+  // opacity-70  rounded-lg  shadow-lg2
+  linkExactActiveClass: "text-highlight",
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top:0 }
+  },
   routes: [
     {
       path: "/",
@@ -16,9 +21,27 @@ const router = createRouter({
         {
           path: "products",
           component: () => import("../views/customers/ProductsView.vue"),
+          children: [
+            // {
+            //   path: "",
+            //   component: () => import("../components/ProductListComponent.vue"),
+            // },
+             //unfilter product list 
+            {
+              path: "",
+              component: () => import("../views/customers/AllProductlistView.vue"),
+            },
+           
+            //filter product list 
+            {
+              path: "category/:category",
+              component: () => import("../views/customers/FilteredeProductlistView.vue"),
+            }
+          ]
         },
+         // single product page
         {
-          path: "/products/product/:productid",
+          path: "/products/category/:category/product/:productid",
           component: () =>
             import("../views/customers/SingleProductView.vue"),
         },
@@ -51,18 +74,27 @@ const router = createRouter({
     {
       path: "/admin",
       component: ()=>import("../views/admin/AdminDashBoard.vue"),
+     
       children: [
         {
           path: "",
-        component: ()=>import("../views/admin/AdminOrderView.vue")
+          redirect: "/admin/orders/1",
+        // component: ()=>import("../views/admin/AdminOrderView.vue")
         },
         {
           path: "orders",
-        component: ()=>import("../views/admin/AdminOrderView.vue")
+        component: ()=>import("../views/admin/AdminOrderView.vue"),
         },
         {
-          path: "orders/:id",
-        component: ()=>import("../views/admin/AdminOrderView.vue")
+          path: "orders/:orderpage",
+        component: ()=>import("../views/admin/AdminOrderView.vue"),
+        // children: [
+        //   {
+        //     path: ":pathMatch(.*)*",
+        //     component:()=>("../views/NotFound.vue")
+        //   },
+        // ]
+        
         },
         {
           path: "products",
@@ -72,13 +104,25 @@ const router = createRouter({
         {
           path: "products/:productpage",
           component: ()=>import("../views/admin/AdminPorductsView.vue")
-        }
+        },
+        
       ]
     },
     {
       path: "/admin/login",
       component: ()=>import("../views/admin/AdminLogin.vue")
-    }
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      // component: ()=> ("../views/NotFound.vue"),
+      redirect: "/"
+    },
+    {
+      path: "/admin/:pathMatch(.*)*",
+      redirect: "/admin"
+      // component:()=>("../views/NotFound.vue")
+    },
+    
   ],
 });
 

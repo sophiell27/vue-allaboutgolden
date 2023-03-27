@@ -28,7 +28,8 @@ module.exports = {
       spacing: {
         "4.5": "18px",
         "13": "54px",
-        "15": "60px"
+        "15": "60px",
+        "21": "84px"
       },
       backgroundImage: {
         'hero-pattern-sm': "url('/src/assets/images/layout/mainBanner-sm.svg')",

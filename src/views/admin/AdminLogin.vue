@@ -2,12 +2,16 @@
 import adminStore from '../../stores/adminStore.js';
 import { mapActions } from 'pinia';
 const { VITE_API, VITE_PATH } = import.meta.env;
+// import MyloaderComponent from '../../components/MyloaderComponent.vue';
 
 export default {
     data() {
         return {
 
         }
+    },
+    components: {
+        // MyloaderComponent
     },
     methods: {
         ...mapActions(adminStore, ["checkLogin"]),
@@ -16,6 +20,7 @@ export default {
                 username: value.帳戶名稱,
                 password: value.登入密碼
             }
+            this.$loading.show();
             this.$http.post(`${VITE_API}/admin/signin`, data)
                 .then(res => {
                     const { token, expired } = res.data;
@@ -32,6 +37,13 @@ export default {
     },
     mounted() {
         this.checkLogin();
+    },
+    watch: {
+        // $loading(n){
+        //     setTimeout(()=> {
+        //         this.$loading.hide();
+        //     },1000)
+        // }
     }
 }
 
@@ -43,6 +55,7 @@ export default {
 </script>
 
 <template>
+    
     <nav class="bg-primary py-6">
         <ul class="container flex items-center justify-start text-dark">
             <li class="">
@@ -54,24 +67,17 @@ export default {
                 </RouterLink>
 
             </li>
-            <!-- <li>
-                    <RouterLink></RouterLink>
-                </li>
-                <li>
-                    <RouterLink></RouterLink>
-                </li>
-                <li>
-                    <RouterLink></RouterLink>
-                </li> -->
         </ul>
     </nav>
+    <!-- <MyloaderComponent></MyloaderComponent> -->
     <div class="container flex flex-col items-center justify-center mt-20">
-
+        <!-- <VLoadingComponent></VLoadingComponent> -->
+        <!-- <MyloaderComponent></MyloaderComponent> -->
         <v-form class="" @submit="login">
             <RouterLink to="/">
                 <img src="../../assets/images/Logo.svg" alt="logo" class="mb-8">
             </RouterLink>
-            <h2 class="text-2xl mb-4 text-center">管理員登入</h2>
+            <h1 class="text-2xl mb-4 text-center">管理員登入</h1>
             <div class="mb-4">
                 <label for="adminLoginName" class="block mb-2">帳戶名稱</label>
                 <v-field name="帳戶名稱" type="email" id="adminLoginName"

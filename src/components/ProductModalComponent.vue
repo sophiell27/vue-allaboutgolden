@@ -2,6 +2,7 @@
 import adminStore from '../stores/adminStore.js';
 import { mapActions } from 'pinia';
 import { Modal } from 'flowbite';
+import _ from 'lodash';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
@@ -18,7 +19,7 @@ export default {
         openProductModal(product = {
             imagesUrl: [""]
         }) {
-            this.temp = { ...product }
+            this.temp =_.cloneDeep(product);
             console.log(this.temp);
             this.productModal.show();
         },
