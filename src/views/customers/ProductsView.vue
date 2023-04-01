@@ -72,11 +72,6 @@ export default {
         // console.log(this.getExpandMenuRef);
 
     },
-    // provide() {
-    //     return {
-    //         getExpandMenuRef: ()=>this.$refs.expandMenu
-    //     }
-    // },
     inject: ["getMainNavRef"]
 }
 </script>

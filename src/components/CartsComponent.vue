@@ -47,7 +47,7 @@ export default {
         <table class="w-full table-fixed text-center mb-6">
 
                 <thead>
-                    <tr class="font-extrabold text-4.5">
+                    <tr class="font-extrabold text-4.5 ">
                         <th></th>
                         <th>產品</th>
                         <th>價錢</th>
@@ -58,7 +58,7 @@ export default {
                 </thead>
                 <tbody>
                     
-                    <tr v-for="item in carts">
+                    <tr v-for="item in carts" class="hover:bg-fog-200">
                         <td class=" lg:w-24 lg:h-24">
                             <img :src="item.product.imageUrl" :alt="item.product.title" class="w-20">
                         </td>
@@ -68,7 +68,7 @@ export default {
                         <td class="text-xs">NT $ {{ item.product.price }}</td>
                         <td class="text-xs">
                             <!-- <button type="button" class="px-1 py-1 rounded-md md:px-2  md:bg-fog-200 "> - </button> -->
-                            <input type="number" min="1" :value="item.qty" class="w-full text-xs ml-2 text-center border-none bg-fog-100  rounded-md 
+                            <input type="number" min="1" :value="item.qty" class="w-full text-xs ml-2 text-center border-none   rounded-md bg-transparent
                                 md:mx-1 md:py-1 md:w-20 md:pl-2  md:bg-fog-200 " @change="(evt) => changeQty(item.id, evt)">
                             <!-- <button type="button" class="px-1 py-1 rounded-md md:px-2  md:bg-fog-200 "> + </button> -->
 

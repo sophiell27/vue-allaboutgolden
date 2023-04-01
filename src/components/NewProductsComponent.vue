@@ -30,7 +30,7 @@ export default {
     <!-- 上架product  -->
 <ul class="newArrival grid grid-cols-12 md:gap-x-14 md:mb-6">
     <!-- 87% 91% 98% 100% -->
-    <li class="col-span-12 mb-6 text-center overflow-hidden group hover:shadow-lg2 rounded-tl-[7%] rounded-tr-[15%] rounded-bl-[5%] rounded-br-[10%] odd:rounded-br-[7%] odd:rounded-bl-[15%] odd:rounded-tr-[5%] odd:rounded-tl-[10%] md:col-span-6 lg:col-span-4" data-aos="fade-left"
+    <li class="col-span-12 mb-6 text-center overflow-hidden group hover:shadow-lg2 rounded-tl-[7%] rounded-tr-[15%] rounded-bl-[5%] rounded-br-[10%] odd:rounded-br-[7%] odd:rounded-bl-[15%] odd:rounded-tr-[5%] odd:rounded-tl-[10%] md:col-span-6 lg:col-span-4 " data-aos="fade-left"
             v-for=" product in products.slice(products.length - 3)">
             <!-- path: "/products/category/:category/product/:productid", -->
            <RouterLink :to="`/products/category/${product.category}/product/${product.id}`">

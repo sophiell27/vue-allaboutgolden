@@ -14,36 +14,32 @@ export default {
         // MyloaderComponent
     },
     methods: {
-        ...mapActions(adminStore, ["checkLogin"]),
+        ...mapActions(adminStore, ["checkLogin", "alertMessage"]),
         login(value) {
+
             const data = {
                 username: value.帳戶名稱,
                 password: value.登入密碼
             }
-            this.$loading.show();
+            const loader = this.$loading.show();
             this.$http.post(`${VITE_API}/admin/signin`, data)
                 .then(res => {
                     const { token, expired } = res.data;
                     document.cookie = `goldenToken=${token};expires=${new Date(expired)}`
-                    console.log(res);
                     this.$router.push("/admin")
+                    loader.hide();
                 })
                 .catch(err => {
-                    alert("請重新輸入");
+                    loader.hide();
+                    alertMessage("登入錯誤，請重新輸入")
                 })
+               
         }
 
 
     },
     mounted() {
         this.checkLogin();
-    },
-    watch: {
-        // $loading(n){
-        //     setTimeout(()=> {
-        //         this.$loading.hide();
-        //     },1000)
-        // }
     }
 }
 
@@ -55,7 +51,6 @@ export default {
 </script>
 
 <template>
-    
     <nav class="bg-primary py-6">
         <ul class="container flex items-center justify-start text-dark">
             <li class="">

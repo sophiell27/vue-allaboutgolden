@@ -13,7 +13,7 @@ export default {
         ...mapState(frontStore, ["carts", "cartTotal"])
     },
     methods: {
-        ...mapActions(frontStore, ["getCarts"]),
+        ...mapActions(frontStore, ["getCarts", "alertMessage"]),
         changeQty(product_id, evt) {
             console.log(evt.target.value);
             const data = {
@@ -36,7 +36,8 @@ export default {
                 this.getCarts();
             })
             .catch(()=> {
-                alert("無法刪除購物車內容")
+                this.alertMessage("無法刪除購物車內容")
+                // alert("無法刪除購物車內容")
             })
         }
     },

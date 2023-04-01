@@ -52,6 +52,7 @@ export default {
 </script>
 
 <template>
+
     <div class="container flex flex-col h-full" v-if="orders">
         <OrderComponent ref="orderModal"></OrderComponent>
         <h1 class="text-h4 text-center mb-8">訂單列表</h1>

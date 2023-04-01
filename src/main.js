@@ -9,6 +9,9 @@ import router from "./router";
 import axios from "axios";
 import VueAxios from "vue-axios";
 
+// css 
+import "./assets/index.css";
+
 // vee-validate
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { defineRule, configure } from "vee-validate";
@@ -44,9 +47,7 @@ initFlowbite();
 
 // loading effect
 import { h } from "vue";
-
-// import Loading from 'vue-loading-overlay';
-import {useLoading,LoadingPlugin,component } from 'vue-loading-overlay';
+import { LoadingPlugin } from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import MyLoader from "./components/MyLoader.vue"
 
@@ -54,7 +55,6 @@ import MyLoader from "./components/MyLoader.vue"
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-import "./assets/index.css";
 
 const app = createApp(App);
 
@@ -63,10 +63,6 @@ app.component("VField", Field);
 app.component("VErrorMessage", ErrorMessage);
 app.component("MyLoader", MyLoader);
 const pinia = createPinia();
-// pinia.use(({ store }) => {
-//   store.router = markRaw(router);
-//   // store.loading = markRaw(LoadingPlugin)
-// });
 
 app.use(pinia);
 app.use(router);
@@ -82,7 +78,8 @@ app.use(
 app.use(VueAxios, axios);
 app.use(VueSweetalert2);
 pinia.use(({ store }) => {
-    store.router = markRaw(router)
+    store.router = markRaw(router);
+    store.Swal = markRaw(VueSweetalert2)
     })
 
 

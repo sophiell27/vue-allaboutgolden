@@ -64,24 +64,13 @@ export default {
             this.ballWidth = this.resizeDogWidth * 0.28
             // console.log(this.windowWidth, "w", this.ballLeft);
         },
-        async dogAnimate() {
+        dogAnimate() {
             const tl = this.$gsap.timeline({
-                // ScrollTrigger: {
-                //     trigger: this.$refs.heroDoggie,
-                //     start: 'top top',
-                //     end: 'bottom center',
-                //     scrub: true,
-                //     onEnter: () => this.tl.restart(),
-                //     onLeaveBack: () => tl.reverse()
-                // },
-
                 repeat: -1,
                 repeatDelay:2
 
             });
             tl.set(".ball, .heroDoggie, .bannerLogo ", { opacity: 0 })
-                // .set(".heroDoggie", {x:-200}, "<")
-                // y: -400,
                 .from(".bannerLogo", { opacity:"random(0.5, 1.5)",    duration:1}, )
                 .fromTo(".heroDoggie", {
                     x: -200,
@@ -99,19 +88,13 @@ export default {
         }
 
     },
-    created() {
-        // this.tl = this.$gsap.timeline();
-    },
     mounted() {
         window.addEventListener('resize', this.handleResize);
-        // window.addEventListener('scroll', ScrollTrigger.update);
-        let ratio;
-        this.windowWidth < 768 ? ratio = 0.96 : ratio = 2.4
-        this.resizeHeight = this.windowWidth / ratio
+        // let ratio;
+        // this.windowWidth < 768 ? ratio = 0.96 : ratio = 2.4
+        // this.resizeHeight = this.windowWidth / ratio
         this.resizeImg();
-        (async () => {
-            await this.dogAnimate();
-        })()
+        this.$nextTick(this.dogAnimate())
 
 
     },
@@ -127,21 +110,16 @@ export default {
     <div class="hero z-20 relative bg-hero-pattern-sm -mt-[72px] md:-mt-[108px] md:bg-banner-lg mb-6 bg-no-repeat bg-cover max-h-[100vh-36px]  md:static md:bg-contain md:mb-12  overflow-hidden"
         :style="{ 'min-height': `${resizeHeight}px` }" >
 
-        <!--  <div class="hero -z-20 relative bg-hero-pattern-sm -mt-[84px] md:-mt-[160px] md:bg-banner-lg mb-6 bg-no-repeat bg-cover max-h-[100vh-36px]  md:static md:bg-contain md:mb-12 xl:-mt-[204px] overflow-hidden"
-                                    :style="{ 'min-height': `${resizeHeight}px` }"> -->
 
         <div class=" relative w-full">
 
             <img src="../assets/images/dog.svg" alt="" class="heroDoggie absolute "
                 :style="{ 'width': `${resizeDogWidth}px`, 'height': `${resizeDogHeight}px`, 'top': `${dogTop}px`, 'right': `${dogRight}px` }"
                 ref="heroDoggie">
-            <!-- :class="top-[`${resizeDogHeight}px`]" :style="{ 'width': `${resizeDogWidth}px`, 'height': `${resizeDogHeight}px`, 'top': `${dogTop}px`, 'left': `${dogRight}px`}" -->
             <img src="../assets/images/dogBall.svg" alt="" class="ball absolute "
                 :style="{ 'width': `${ballWidth}px`, 'height': `${ballWidth}px`, 'top': `${ballTop}px`, 'left': `${ballLeft}px` }">
         </div>
-        <!-- top-[0.28%] left-[0.223%]  w-[0.535%] h-[1.28%] -->
         <!-- banner  -->
-        <!-- pt-[96px] md:pt-[172px] xl:pt-[216px]  -->
         <div class=" container pt-[188px] md:pt-[280px] relative ">
             <img src="../assets/images/layout/All-About-Golden-Retrievers-text.svg" alt=""
                 class="bannerLogo h-14 w-auto mb-4 lg:h-24">

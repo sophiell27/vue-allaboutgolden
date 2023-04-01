@@ -16,17 +16,25 @@ export default {
     },
     computed: {
         ...mapState(frontStore, ["carts"])
+        
 
     },
     methods: {
         // ...mapActions(frontStore, ["emptyCart"]),
-        ...mapActions(frontStore, ["getCarts"]),
+        ...mapActions(frontStore, ["getCarts", "alertMessage"]),
         placeOrder(){
             if (!this.carts.length){
-                confirm("購物車沒有內容，無法送出訂單");
+                this.$swal.fire({
+                    text: "購物車沒有內容，無法送出訂單",
+                    confirmButtonText: "確定",
+                    
+                }).then((result) => {
+                        return result.isConfirmed
+                })
+            
+                // confirm("購物車沒有內容，無法送出訂單");
                 return;
             }
-            console.log("gg");
             this.$http.post(`${VITE_API}api/${VITE_PATH}/order`, {data:this.data})
             .then(res => {
                 alert("已送出訂單")
@@ -37,11 +45,12 @@ export default {
             this.$router.push("/orders")
             })
             .catch(()=> {
-                confirm("無法送出訂單")
+                alertMessage("無法送出訂單")
             })
-
-            // console.log(this.data);
         }
+    },
+    mounted(){
+       
     }
 }
 </script>
