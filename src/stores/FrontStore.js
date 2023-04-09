@@ -39,7 +39,6 @@ export default defineStore('frontStore', {
       return await result();
       
     },
-
     getSingleProduct(productId) {
       axios
         .get(`${VITE_API}api/${VITE_PATH}/product/${productId}`)
@@ -55,9 +54,11 @@ export default defineStore('frontStore', {
       axios
         .get(`${VITE_API}api/${VITE_PATH}/cart`)
         .then((res) => {
+          this.isLoading = false;
           this.carts = res.data.data.carts;
         })
         .catch(() => {
+          this.isLoading = false;
           this.alertMessage('無法取得購物車列表!');
         });
     },
@@ -98,9 +99,6 @@ export default defineStore('frontStore', {
           // alert("無法清空購物車")
         });
     },
-    // async fetchFilterPorducts(catergory){
-    //     await this.getProducts();
-    // }
     async filterProductList(category = '') {
       // console.log("products", this.products);
       if (!this.products?.length) {

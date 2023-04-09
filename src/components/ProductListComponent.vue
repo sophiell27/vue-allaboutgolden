@@ -2,26 +2,16 @@
 import frontStore from '../stores/frontStore.js';
 import { mapActions, mapState } from 'pinia';
 import NewProductsComponent from './NewProductsComponent.vue';
-
 export default {
-    data() {
-        return {
-        }
-    },
     props: ["products"],
     components: {
         NewProductsComponent
     },
-    computed: {
-    },
     methods: {
     ...mapActions(frontStore, ["getProducts", "addCart"]),
     },
-    mounted() {
-    },
 }
 </script>
-
 <template>
     <div class="sm:px-8">
         <div class="" v-if="!products.length">
@@ -31,7 +21,6 @@ export default {
                     <button type="button" class="text-4.5 text-center mb-6 hover:opacity-70 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto  after:h-1 after:bg-primary 
             md:after:right-auto ">先看看其他商品</button>
                 </RouterLink>
-              
                 <NewProductsComponent></NewProductsComponent>
             </div>
         </div>
@@ -49,13 +38,6 @@ export default {
                 </div>
                 <p class="text-highlight text-sm font-extrabold">NT$ {{ product.price }}</p>
                 </RouterLink>
-                <!-- <input type="radio" name="size" class="squareBtn text-xs bg-transparent outline outline-secondary mr-2" value="S"> -->
-                <!-- <div class="mb-1">
-                    <button class="squareBtn text-xs bg-transparent outline outline-secondary mr-2" @click=""> S
-                    </button>
-                    <button class="squareBtn text-xs bg-transparent outline outline-secondary mr-2"> M </button>
-                    <button class="squareBtn text-xs bg-transparent outline outline-secondary">L </button>
-                </div> -->
                 <button type="button" class="btn rounded-[5px] flex items-center justify-center mx-auto mb-4" @click="addCart(product)">
                     <span class="material-symbols-outlined leading-none ">
                         shopping_cart
@@ -63,6 +45,5 @@ export default {
                 </button>
                 </li>
             </ul>
-            <!-- <PaginationComponent :pagination="productsPagination"></PaginationComponent> -->
         </div>
 </template>
