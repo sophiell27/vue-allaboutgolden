@@ -79,12 +79,10 @@ export default defineStore('frontStore', {
       axios[method](url, { data })
         .then((res) => {
           this.toastMessge('已加入購物車！');
-          // alert()
           this.getCarts();
         })
         .catch((err) => {
           this.alertMessage('加入購物車發生錯誤');
-          // alert("加入購物車發生錯誤")
         });
     },
     emptyCart() {
@@ -92,7 +90,6 @@ export default defineStore('frontStore', {
         .delete(`${VITE_API}api/${VITE_PATH}/carts`)
         .then((res) => {
           this.toastMessge('已加入購物車！');
-          // console.dir(res)
           this.getCarts();
         })
         .catch((err) => {
@@ -102,12 +99,11 @@ export default defineStore('frontStore', {
     async filterProductList(category = '') {
       await this.getProducts();
       const filterItems = this.products.filter((item) => {
-        if (item.category == category) {
+        if (item.category === category) {
           return item;
         }
       });
       this.filterProducts = filterItems;
-      return filterItems;
     },
 
     alertMessage(msg) {

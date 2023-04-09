@@ -14,7 +14,6 @@ export default {
   components: {
     BreadrumbComponent,
     RelatedProductsComponent,
-
   },
   computed: {
     ...mapState(frontStore, ["products", "tempProduct", "filterProducts", "isLoading", "fullPage"])
@@ -28,8 +27,13 @@ export default {
   },
   watch: {
     $route(n, o) {
-      n.params.productid != o.params.productid ?
+      const { productid } = n.params
+      if (!productid) {
+        return
+      } else {
+        n.params.productid != o.params.productid ?
         this.getSingleProduct(n.params.productid) : "";
+      }
     },
   },
 };

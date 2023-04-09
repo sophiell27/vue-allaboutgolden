@@ -31,7 +31,6 @@ const router = createRouter({
               path: "",
               component: () => import("../views/customers/AllProductlistView.vue"),
             },
-           
             //filter product list 
             {
               path: "category/:category",
