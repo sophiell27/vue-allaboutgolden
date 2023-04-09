@@ -28,10 +28,12 @@ export default {
                     document.cookie = `goldenToken=${token};expires=${new Date(expired)}`
                     this.$router.push("/admin")
                     loader.hide();
+                    console.log("login", document.cookie);
                 })
                 .catch(err => {
                     loader.hide();
-                    alertMessage("登入錯誤，請重新輸入")
+                    this.alertMessage("登入錯誤，請重新輸入")
+                    console.log("fail", document.cookie);
                 })
                
         }
@@ -39,6 +41,7 @@ export default {
 
     },
     mounted() {
+        console.log("mouned", document.cookie);
         this.checkLogin();
     }
 }

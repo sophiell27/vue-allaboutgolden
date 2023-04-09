@@ -3,11 +3,9 @@ import frontStore from '../stores/frontStore.js';
 import { mapActions, mapState } from 'pinia';
 import NewProductsComponent from './NewProductsComponent.vue';
 
-// import PaginationComponent from '../../components/PaginationComponent.vue';
 export default {
     data() {
         return {
-            // size: ""
         }
     },
     props: ["products"],
@@ -15,25 +13,11 @@ export default {
         NewProductsComponent
     },
     computed: {
-        // ...mapState(frontStore, ["products"])
     },
     methods: {
-    //    ...mapActions(frontStore, ["translateCat"])
     ...mapActions(frontStore, ["getProducts", "addCart"]),
     },
-    // methods: {
-       
-    //     // toggleMenu(){
-    //     //     const nav = this.$refs.expendMenu
-    //     //     const attr = "hidden"
-    //     //     nav.classList.contains(attr) ?
-    //     //         nav.classList.remove(attr) :
-    //     //         nav.classList.add(attr)
-            
-    //     // }
-    // },
     mounted() {
-        // this.getProducts();
     },
 }
 </script>
@@ -42,11 +26,6 @@ export default {
     <div class="sm:px-8">
         <div class="" v-if="!products.length">
             <p class="text-center text-highlight">正在努力上架新品了～</p>
-            
-            <!-- <div class="flex justify-between "> -->
-                <!-- <RouterLink to="/products" class="py-2 px-12 bg-secondary rounded-lg2 text-white">繼續購物</RouterLink> -->
-                
-            <!-- </div> -->
             <div class=" mt-14 lg:mt-20">
                 <RouterLink to="/products">
                     <button type="button" class="text-4.5 text-center mb-6 hover:opacity-70 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto  after:h-1 after:bg-primary 

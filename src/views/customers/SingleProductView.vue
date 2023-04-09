@@ -2,6 +2,7 @@
 import frontStore from '../../stores/frontStore.js';
 import { mapState, mapActions } from 'pinia';
 import BreadrumbComponent from '../../components/BreadrumbComponent.vue';
+import RelatedProductsComponent from '../../components/RelatedProductsComponent.vue';
 export default {
     data(){
         return {
@@ -10,16 +11,25 @@ export default {
         }
     },
     components: {
-        BreadrumbComponent
+        BreadrumbComponent,
+        RelatedProductsComponent
+
     },
     computed: {
-        ...mapState(frontStore, ["products", "tempProduct"])
+        ...mapState(frontStore, ["products", "tempProduct", "filterProducts"])
     },
     methods: {
-        ...mapActions(frontStore, ["getSingleProduct", "addCart"])
+        ...mapActions(frontStore, ["getSingleProduct", "addCart", "filterProductList"])
     },
     mounted(){
+        this.filterProductList(this.$route.params.category)
         this.getSingleProduct(this.$route.params.productid);
+    },
+    watch: {
+        $route(n, o ){
+            n.params.productid != o.params.productid? 
+            this.getSingleProduct(n.params.productid) : ""
+        }
     }
 }
 </script>
@@ -76,6 +86,11 @@ export default {
             </div>
 
         </div>
-
+        <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
+                <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary 
+            md:after:right-auto">相關產品</p>
+                <RelatedProductsComponent :products="filterProducts"></RelatedProductsComponent>
+            </div>
+            
     </div>
 </template>

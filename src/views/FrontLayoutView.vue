@@ -215,7 +215,7 @@ export default {
                                         search
                                     </span>
                                 </button>
-                                <div class="absolute bottom-0 right-0 translate-y-full translate-x-1/3 hidden  bg-fog-100 w-[200px] "
+                                <div class="absolute bottom-0 right-0 translate-y-full translate-x-1/3 hidden  bg-white p-6 "
                                     id="searchBox">
                                     <div class="flex items-center">
                                         <input type="text"

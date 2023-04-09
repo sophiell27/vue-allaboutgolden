@@ -15,7 +15,7 @@ export default {
         ...mapState(frontStore, ["products", "filterProducts"])
     },
     methods: {
-        ...mapActions(frontStore, ["filterProductList"]),
+        // ...mapActions(frontStore, ["filterProductList"]),
         ...mapActions(frontStore, ["getProducts","filterProductList", "fetchData"]),
         // async filterProductList(category = "") {
 

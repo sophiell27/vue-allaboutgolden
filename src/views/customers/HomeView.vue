@@ -4,9 +4,10 @@ import { gsap, Power2 } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 // import { AOS } from 'aos';
-
+import frontStore from '../../stores/frontStore';
+import { mapActions, mapState } from 'pinia';
 import HeroComponent from '../../components/HeroComponent.vue';
-import NewProductsComponent from '../../components/NewProductsComponent.vue';
+import RelatedProductsComponent from '../../components/RelatedProductsComponent.vue';
 export default {
     data() {
         return {
@@ -15,66 +16,16 @@ export default {
     },
     components: {
         HeroComponent,
-        NewProductsComponent
+        RelatedProductsComponent
     },
     methods: {
-        // gsapanimate() {
-        //     console.log(this.$refs.catList);
-        //     this.act1 = this.$gsap.from(".categoryImg", { y: -50, opacity: 0, stagger: 0.3, delay: 2 });
-
-        //     // const act2 = this.$gsap.from(".dog", { x:200});
-
-        //     ScrollTrigger.batch([".catList"], {
-        //         start: "top 80%",
-        //         once: false,
-        //         // end:"bottom",
-        //         onEnter: batch => {
-        //             // 分別對應不同的 tween
-        //             batch.forEach((el, i) => {
-        //                 switch (i) {
-        //                     case 0:
-        //                         this.act1.play();
-        //                         break;
-        //                     // case 1:
-        //                     //     act2.play();
-        //                     //     break;
-        //                 }
-        //             });
-        //         },
-        //     })
-        // }
+        ...mapActions(frontStore, ["getProducts"])
+    },
+    computed: {
+        ...mapState(frontStore, ["products"])
     },
     mounted() {
-        // window.addEventListener('scroll', ScrollTrigger.update);
-        // this.gsapanimate();
-        // ScrollTrigger.refresh()
-
-        // this.act1 = this.$gsap.from(".categoryImg", { y: -50, opacity: 0, stagger: 0.3, delay: 2 });
-
-        // const act2 = this.$gsap.from(".dog", { x:200});
-
-        // ScrollTrigger.batch([".catList"], {
-        //     start: "top 80%",
-        //     once: false,
-        //     // end:"bottom",
-        //     onEnter: batch => {
-        //         // 分別對應不同的 tween
-        //         batch.forEach((el, i) => {
-        //             switch (i) {
-        //                 case 0:
-        //                     this.act1.play();
-        //                     break;
-        //                 // case 1:
-        //                 //     act2.play();
-        //                 //     break;
-        //             }
-        //         });
-        //     },
-        // })
-
-
-        // this.$aos.init();
-        // console.log(this.windowWidth);
+        this.getProducts();
     },
 
 
@@ -153,7 +104,7 @@ export default {
             <h2 class="text-h4 text-center pb-4 mb-5 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary
                                                                     md:mb-7">
                 最新上架</h2>
-            <NewProductsComponent></NewProductsComponent>
+            <RelatedProductsComponent :products="products"></RelatedProductsComponent>
         </div>
 
     </div>
