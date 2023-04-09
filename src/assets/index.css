@@ -8,7 +8,6 @@
 
 body{
   font-family: "cwTeXYen", 微軟正黑體,sans-serif;
-  /* word-spacing: 0.05em; */
   letter-spacing: 0.05em;
   @apply bg-fog-100 text-secondary;
   overflow-x: hidden;
@@ -36,12 +35,10 @@ img{
         @apply bg-secondary;
         border-radius: 5px;
         padding: 2px 4px;
-
     }
     .highlightBtn{
         @apply bg-highlight;
         border-radius: 10px;
-        /* padding: 2px 2px; */
     }
 }
 
@@ -53,7 +50,4 @@ img{
        @apply text-secondary;
        font-weight: 800;
     }
-    /* .router-active-opacity{
-        border-bottom: 1px solid black;
-    } */
 }

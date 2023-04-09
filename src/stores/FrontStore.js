@@ -37,15 +37,17 @@ export default defineStore('frontStore', {
         }
       };
       return await result();
-      
     },
     getSingleProduct(productId) {
+      this.isLoading = true;
       axios
         .get(`${VITE_API}api/${VITE_PATH}/product/${productId}`)
         .then((res) => {
+          this.isLoading = false;
           this.tempProduct = res.data.product;
         })
         .catch((err) => {
+          this.isLoading = false;
           this.alertMessage('取得商品資訊發生錯誤!');
           this.router.push('/products');
         });
@@ -74,7 +76,6 @@ export default defineStore('frontStore', {
         product_id: product.id,
         qty,
       };
-
       axios[method](url, { data })
         .then((res) => {
           this.toastMessge('已加入購物車！');
@@ -96,24 +97,17 @@ export default defineStore('frontStore', {
         })
         .catch((err) => {
           this.this.alertMessage('無法清空購物車');
-          // alert("無法清空購物車")
         });
     },
     async filterProductList(category = '') {
-      // console.log("products", this.products);
-      if (!this.products?.length) {
-        await this.getProducts();
-      }
+      await this.getProducts();
       const filterItems = this.products.filter((item) => {
         if (item.category == category) {
           return item;
         }
       });
       this.filterProducts = filterItems;
-      // console.log("filterProductList", this.filterProducts);
       return filterItems;
-
-      // return aa
     },
 
     alertMessage(msg) {
@@ -130,7 +124,6 @@ export default defineStore('frontStore', {
         title: msg,
         showConfirmButton: false,
         timer: 1000,
-        height: 400,
       });
     },
   },
