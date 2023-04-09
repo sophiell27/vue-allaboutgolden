@@ -1,6 +1,6 @@
 <script>
 import adminStore from '../../stores/adminStore.js';
-import { mapActions } from 'pinia';
+import { mapActions,mapState } from 'pinia';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
@@ -9,6 +9,9 @@ export default {
       loginStatus: false,
       isActive: ""
     };
+  },
+  computed: {
+    ...mapState(adminStore, ["isLoading", "fullPage"]),
   },
   methods: {
     ...mapActions(adminStore, ["checkLogin", "toastMessge", "alertMessage", "confirmMessage"]),
@@ -34,6 +37,7 @@ export default {
 };
 </script>
 <template>
+  <loading v-model:active="isLoading" :is-full-page="fullPage" />
   <div class="min-h-screen">
     <div class="bg-primary mb-6">
       <div class="container">

@@ -14,7 +14,7 @@ export default defineStore('adminStore', {
   }),
 
   actions: {
-    changeLoading(status){
+    changeLoading(status) {
       this.isLoading = status;
     },
     async checkLogin(path = '/admin') {
@@ -23,7 +23,6 @@ export default defineStore('adminStore', {
         '$1'
       );
       axios.defaults.headers.common['Authorization'] = token;
-
       const result = async () => {
         try {
           const res = await axios.post(`${VITE_API}api/user/check`);
@@ -35,25 +34,9 @@ export default defineStore('adminStore', {
         }
       };
       return await result();
-
-      // await axios.post(`${VITE_API}api/user/check`)
-      // .then(res => {
-      //     result= true
-      // })
-      // .catch(err => {
-      //     result  = false
-      // })
-      // console.log(result);
-      // return result
-      // return rr
-      // try {
-      //     const res = await axios.post(`${VITE_API}api/user/check`);
-      //     this.router.push("/admin");
-      // } catch (res_1) {
-      //     this.router.push("/admin/login");
-      // }
     },
     async getProducts(page = 1) {
+      this.isLoading = true;
       await axios
         .get(`${VITE_API}api/${VITE_PATH}/admin/products?page=${page}`)
         .then((res) => {
@@ -62,25 +45,26 @@ export default defineStore('adminStore', {
           this.router.push(
             `/admin/products/${res.data.pagination.current_page}`
           );
+          this.isLoading = false;
         })
         .catch((err) => {
-          // console.dir(err)
+          this.isLoading = false;
           alert('取得產品列表發生錯誤');
         });
     },
     getOrders(page = 1) {
+      this.isLoading = true;
       axios
         .get(`${VITE_API}api/${VITE_PATH}/admin/orders?page=${page}`)
         .then((res) => {
           this.orders = res.data.orders;
           this.orderPagination = res.data.pagination;
           this.router.push(`/admin/orders/${res.data.pagination.current_page}`);
-          // this.loader.hide();
+          this.isLoading = false;
         })
         .catch((err) => {
-          console.log('無法取得訂單列表');
-          console.log(err);
-          // this.loader.hide();
+          this.isLoading = false;
+          alertMessage('無法取得訂單列表');
         });
     },
     async confirmMessage(msg) {
