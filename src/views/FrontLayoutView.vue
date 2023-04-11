@@ -1,114 +1,97 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router';
-import HeroComponent from '../components/HeroComponent.vue';
-import frontStore from '../stores/frontStore.js';
+import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-// import debounce from 'lodash';
 import _ from 'lodash';
+
 export default {
   data() {
     return {
-      currentRoute: "",
+      currentRoute: '',
       innerWidth: Number,
-      searchValue: "",
-      filteredValue: []
-
-    }
-  },
-  components: {
-    HeroComponent,
+      searchValue: '',
+      filteredValue: [],
+    };
   },
   computed: {
-    ...mapState(frontStore, ["carts", "cartlength", 'products']),
+    ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage']),
   },
   methods: {
-    ...mapActions(frontStore, ["getCarts", "getProducts"]),
+    ...mapActions(frontStore, ['getCarts', 'getProducts']),
     toggleMenu() {
-      if (this.$route.path === "/products") {
-        document.getElementById("expandMenu").classList.add("hidden")
+      if (this.$route.path === '/products') {
+        document.getElementById('expandMenu').classList.add('hidden');
       }
-      const nav = this.$refs.mainNav
-      const attr = "-translate-x-[200%]"
-      nav.classList.contains(attr) ?
-        nav.classList.remove(attr) :
-        nav.classList.add(attr)
+      const nav = this.$refs.mainNav;
+      const attr = '-translate-x-[200%]';
+      nav.classList.toggle(attr);
     },
     changeNavbg() {
-      const headerTop = this.$refs.headerTop;
-      const header = this.$refs.header;
-      const logo = this.$refs.mainLogo;
-      const searchBox = this.$refs.searchBox;
-      let headerClass = "bg-transparent"
-      let newHeaderClass = "bg-fog-100"
-      let addClass = "add"
-      let removeClass = "remove"
-      let scrollTop = 200
-      this.$route.fullPath != "/" ? scrollTop = 50 : "";
-      if (window.pageYOffset < scrollTop) {
-        addClass = "remove"
-        removeClass = "add"
+      const {
+        headerTop, header, mainLogo,
+      } = this.$refs;
+      let addClass = 'add';
+      let removeClass = 'remove';
+      let scrollTop = 200;
+      if (this.$route.fullPath !== '/') {
+        scrollTop = 50;
       }
-      headerTop.classList[addClass]("bg-fog-100");
-      header.classList[removeClass]("bg-transparent");
-      header.classList[addClass]("h-9", "-mt-1", "md:h-12", "md:-mt-3");
-      header.classList[removeClass]("md:h-auto", "md:-mt-0");
-      // searchBox.classList[addClass]("pt-1", "md:pt-3")
-      // searchBox.classList[removeClass]("mt-0")
-      logo.classList[addClass]("h-10", "md:h-14", "flex", "mt-auto")
-      logo.classList[removeClass]("h-12", "md:h-21", "flex-none")
+      if (window.pageYOffset < scrollTop) {
+        addClass = 'remove';
+        removeClass = 'add';
+      }
+      headerTop.classList[addClass]('bg-fog-100');
+      header.classList[removeClass]('bg-transparent');
+      header.classList[addClass]('h-9', '-mt-1', 'md:h-12', 'md:-mt-3');
+      header.classList[removeClass]('md:h-auto', 'md:-mt-0');
+      mainLogo.classList[addClass]('h-10', 'md:h-14', 'flex', 'mt-auto');
+      mainLogo.classList[removeClass]('h-12', 'md:h-21', 'flex-none');
     },
     toggleSearchBox(e) {
-      const btn = document.getElementById("searchButton")
-      const box = document.getElementById("searchBox")
+      const btn = document.getElementById('searchButton');
+      const box = document.getElementById('searchBox');
       if (e.target === btn) {
-        box.classList.contains("hidden") ? box.classList.remove("hidden") : box.classList.add("hidden");
-      } else if (e.target.parentNode.parentNode === box) {
-        return
+        box.classList.toggle('hidden');
+      } else if (!box.contains(e.target)) {
+        box.classList.add('hidden');
       }
-      else {
-        box.classList.add("hidden");
-        this.searchValue = "";
-        this.filteredValue = [];
-      }
+      this.searchValue = '';
+      this.filteredValue = [];
     },
-    searchFilter: _.debounce(function () {
+    searchFilter: _.debounce(function filterSearch() {
       const value = this.searchValue;
       (async () => {
         await this.getProducts();
       })();
-      this.filteredValue = this.products.filter((item, index) => {
-        return item.title.includes(value)
-      });
-
-    }, 500)
-
+      this.filteredValue = this.products.filter((item) => item.title.includes(value));
+    }, 500),
   },
   watch: {
-    $route(n, o) {
+    $route(n) {
       this.$router.push(n.fullPath);
+      if (n.fullPath !== '/') {
+        this.$refs.mainNav.classList.add('-translate-x-[200%]');
+      }
     },
-
   },
   provide() {
     return {
-      getMainNavRef: () => this.$refs.mainNav
-    }
+      getMainNavRef: () => this.$refs.mainNav,
+    };
   },
   mounted() {
     this.getCarts();
     window.addEventListener('scroll', this.changeNavbg);
     this.innerWidth = window.innerWidth;
-    window.addEventListener("click", this.toggleSearchBox)
-
+    window.addEventListener('click', this.toggleSearchBox);
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.changeNavbg);
-    window.removeEventListener("click", this.toggleSearchBox)
-  }
-}
+    window.removeEventListener('click', this.toggleSearchBox);
+  },
+};
 </script>
-
 <template>
+  <LoadingComponent></LoadingComponent>
   <div class="relative ">
     <!-- top news  -->
     <div class="bg-primary py-1 fixed top-0 left-0 right-0 z-30">
@@ -123,7 +106,6 @@ export default {
           </a>
         </div>
       </RouterLink>
-
     </div>
     <!-- header  -->
     <div class="z-40 fixed top-0 left-0 right-0 mt-9" ref="headerTop">
@@ -175,7 +157,7 @@ export default {
                     </a>
                   </li>
                   <li class="md:px-4 lg:px-9 ">
-                    <RouterLink to="/orders" class=" flex flex-col items-center hover:opacity-70 py-8  md:py-2"
+                    <RouterLink to="/orders/1" class=" flex flex-col items-center hover:opacity-70 py-8  md:py-2"
                       @click="toggleMenu">
                       查詢訂單
                     </RouterLink>
@@ -218,7 +200,7 @@ export default {
                 </div>
               </li>
               <li class="hidden md:block ">
-                <RouterLink to="/admin/login" class="flex items-center md:px-2  hover:opacity-70">
+                <RouterLink to="/login" class="flex items-center md:px-2  hover:opacity-70">
                   <span class="material-symbols-outlined leading-none">
                     person
                   </span>
@@ -265,7 +247,7 @@ export default {
     <div class="bg-fog-200 px-11 pt-8 pb-4">
       <ul class="text-h6 flex flex-col gap-y-6 items-center mb-6 md:flex-row md:justify-center md:gap-0">
         <li>
-          <RouterLink to="aboutUs" class="md:pr-6 md:border-r-2 md:border-r-fog-300">關於我們</RouterLink>
+          <RouterLink to="/aboutUs" class="md:pr-6 md:border-r-2 md:border-r-fog-300">關於我們</RouterLink>
         </li>
         <li>
           <RouterLink to="/contactUs" class="md:px-6 md:border-r-2 md:border-r-fog-300">聯絡我們</RouterLink>

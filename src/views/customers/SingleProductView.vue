@@ -1,8 +1,8 @@
 <script>
-import frontStore from '../../stores/frontStore.js';
+import frontStore from '@/stores/frontStore';
 import { mapState, mapActions } from 'pinia';
-import BreadrumbComponent from '../../components/BreadrumbComponent.vue';
-import RelatedProductsComponent from '../../components/RelatedProductsComponent.vue';
+import BreadrumbComponent from '@/components/BreadrumbComponent.vue';
+import RelatedProductsComponent from '@/components/RelatedProductsComponent.vue';
 
 export default {
   data() {
@@ -16,23 +16,22 @@ export default {
     RelatedProductsComponent,
   },
   computed: {
-    ...mapState(frontStore, ["products", "tempProduct", "filterProducts", "isLoading", "fullPage"])
+    ...mapState(frontStore, ['products', 'tempProduct', 'filterProducts', 'isLoading', 'fullPage']),
   },
   methods: {
-    ...mapActions(frontStore, ["getSingleProduct", "addCart", "filterProductList"])
+    ...mapActions(frontStore, ['getSingleProduct', 'addCart', 'filterProductList']),
   },
   mounted() {
-    this.filterProductList(this.$route.params.category)
+    this.filterProductList(this.$route.params.category);
     this.getSingleProduct(this.$route.params.productid);
   },
   watch: {
     $route(n, o) {
-      const { productid } = n.params
-      if (!productid) {
-        return
-      } else {
-        n.params.productid != o.params.productid ?
-        this.getSingleProduct(n.params.productid) : "";
+      const { productid } = n.params;
+      if (productid) {
+        if (n.params.productid !== o.params.productid) {
+          this.getSingleProduct(n.params.productid);
+        }
       }
     },
   },
@@ -40,7 +39,7 @@ export default {
 </script>
 
 <template>
-  <loading v-model:active="isLoading" :is-full-page="fullPage" />
+  <LoadingComponent v-model:active="isLoading" :is-full-page="fullPage" />
   <div class="container">
     <BreadrumbComponent :tempProduct="tempProduct"></BreadrumbComponent>
     <div class="grid grid-cols-12 gap-x-6">
@@ -77,8 +76,7 @@ export default {
       </div>
     </div>
     <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
-      <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary 
-              md:after:right-auto">相關產品</p>
+      <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">相關產品</p>
       <RelatedProductsComponent :products="filterProducts"></RelatedProductsComponent>
     </div>
   </div>

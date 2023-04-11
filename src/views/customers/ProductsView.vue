@@ -1,47 +1,44 @@
 <script>
-import frontStore from '../../stores/frontStore.js';
+import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-import ProductListComponent from '../../components/ProductListComponent.vue';
-import BreadrumbComponent from '../../components/BreadrumbComponent.vue';
+import BreadrumbComponent from '@/components/BreadrumbComponent.vue';
+
 export default {
   data() {
     return {
       routeValue: this.$route.params,
-      category: "全部商品",
+      category: '全部商品',
       bread: {
-        category: "全部商品",
+        category: '全部商品',
       },
     };
   },
   components: {
-    ProductListComponent,
     BreadrumbComponent,
   },
   computed: {
-    ...mapState(frontStore, ["products", "isLoading", "fullPage"])
+    ...mapState(frontStore, ['products', 'isLoading', 'fullPage']),
   },
   methods: {
-    ...mapActions(frontStore, ["getProducts", "addCart", "filterProductList"]),
+    ...mapActions(frontStore, ['getProducts', 'addCart', 'filterProductList']),
     changeRoute(evt) {
-      this.$router.push(`/products/category/${evt.target.value}`)
+      this.$router.push(`/products/category/${evt.target.value}`);
     },
     toggleMenu() {
       this.closeMainMenu();
-      const nav = this.$refs.expandMenu
-      const attr = "hidden"
-      nav.classList.contains(attr) ?
-        nav.classList.remove(attr) :
-        nav.classList.add(attr)
+      this.$refs.expandMenu.classList.toggle('hidden');
     },
     closeMainMenu() {
-      this.getMainNavRef().classList.add("-translate-x-[200%]")
+      this.getMainNavRef().classList.add('-translate-x-[200%]');
     },
     getCategory(category) {
-      category ?
-        this.category = category :
-        this.category = "全部商品";
-      this.bread.category = this.category
-    }
+      if (category) {
+        this.category = category;
+      } else {
+        this.category = '全部商品';
+      }
+      this.bread.category = this.category;
+    },
   },
   watch: {
     $route(n) {
@@ -52,12 +49,12 @@ export default {
     this.getProducts();
     this.getCategory(this.$route.params.category);
   },
-  inject: ["getMainNavRef"],
-}
+  inject: ['getMainNavRef'],
+};
 </script>
 
 <template>
-  <loading v-model:active="isLoading" :is-full-page="fullPage" />
+  <LoadingComponent v-model:active="isLoading" :is-full-page="fullPage" />
   <div class="container flex justify-center relative top-0 md:hidden">
     <BreadrumbComponent :tempProduct="bread"></BreadrumbComponent>
   </div>
@@ -79,10 +76,8 @@ export default {
       <!-- bg-fog-100 mb-8 -->
       <!-- menu  -->
       <ul
-        class="hidden absolute bottom-0  z-10 p-4 text-fog-400 bg-fog-100 rounded-lg2 
-                                                                          md:flex md:justify-center md:pb-0 md:bg-transparent md:static md:-mt-8"
-        ref="expandMenu" id="expandMenu">
-        <li class="">
+        class="hidden absolute bottom-0  z-10 p-4 text-fog-400 bg-fog-100 rounded-lg2 md:flex md:justify-center md:pb-0 md:bg-transparent md:static md:-mt-8" ref="expandMenu" id="expandMenu">
+        <li>
           <!-- hidden md:block -->
           <RouterLink to="/products" class="py-2 pl-4 pr-2 flex items-center hover:text-highlight md:px-4 "
             @click="{ toggleMenu();category='全部商品' }">

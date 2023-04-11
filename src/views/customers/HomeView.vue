@@ -1,13 +1,12 @@
 <script>
-
-import { gsap, Power2 } from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-// import { AOS } from 'aos';
-import frontStore from '../../stores/frontStore';
+import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-import HeroComponent from '../../components/HeroComponent.vue';
-import RelatedProductsComponent from '../../components/RelatedProductsComponent.vue';
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import HeroComponent from '@/components/HeroComponent.vue';
+import RelatedProductsComponent from '@/components/RelatedProductsComponent.vue';
+
+gsap.registerPlugin(ScrollTrigger);
 export default {
   data() {
     return {
@@ -19,18 +18,15 @@ export default {
     RelatedProductsComponent,
   },
   methods: {
-    ...mapActions(frontStore, ["getProducts"])
+    ...mapActions(frontStore, ['getProducts']),
   },
   computed: {
-    ...mapState(frontStore, ["products"])
+    ...mapState(frontStore, ['products']),
   },
   mounted() {
     this.getProducts();
   },
-
-
-}
-
+};
 </script>
 
 <template>
@@ -46,39 +42,39 @@ export default {
         <ul class="catList grid grid-cols-6 md:mb-15 " ref="catList">
           <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
             <RouterLink to="products/category/配件配飾">
-              <img src="../../assets/images/category-img/cat-asseccary.svg" alt="" class="categoryImg" data-aos="fade-up">
+              <img src="@/assets/images/category-img/cat-asseccary.svg" alt="" class="categoryImg" data-aos="fade-up">
               <!-- data-aos="fade-up" -->
               <h3 class="text-4.5">配件配飾</h3>
             </RouterLink>
           </li>
           <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
             <RouterLink to="products/category/居家配件">
-              <img src="../../assets/images/category-img/cat-homeDecro.svg" alt="" class="categoryImg" data-aos="fade-up">
+              <img src="@/assets/images/category-img/cat-homeDecro.svg" alt="" class="categoryImg" data-aos="fade-up">
               <h3 class="text-4.5">居家配件</h3>
             </RouterLink>
           </li>
           <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
             <RouterLink to="products/category/床上用品">
-              <img src="../../assets/images/category-img/cat-bedding.svg" alt="" class="categoryImg" data-aos="fade-up">
+              <img src="@/assets/images/category-img/cat-bedding.svg" alt="" class="categoryImg" data-aos="fade-up">
               <h3 class="text-4.5">床上用品</h3>
             </RouterLink>
           </li>
           <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
             <RouterLink to="products/category/科技配件">
 
-              <img src="../../assets/images/category-img/cat-tech.svg" alt="" class="categoryImg" data-aos="fade-up">
+              <img src="@/assets/images/category-img/cat-tech.svg" alt="" class="categoryImg" data-aos="fade-up">
               <h3 class="text-4.5">科技配件</h3>
             </RouterLink>
           </li>
           <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
             <RouterLink to="products/category/衣物大全">
-              <img src="../../assets/images/category-img/cat-clothing.svg" alt="" class="categoryImg" data-aos="fade-up">
+              <img src="@/assets/images/category-img/cat-clothing.svg" alt="" class="categoryImg" data-aos="fade-up">
               <h3 class="text-4.5">衣物大全</h3>
             </RouterLink>
           </li>
           <li class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
             <RouterLink to="products/category/有狗亂入">
-              <img src="../../assets/images/category-img/cat-petstuff.svg" alt="" class="categoryImg" data-aos="fade-up">
+              <img src="@/assets/images/category-img/cat-petstuff.svg" alt="" class="categoryImg" data-aos="fade-up">
               <h3 class="tesx-4.5">有狗亂入</h3>
             </RouterLink>
           </li>
@@ -87,11 +83,11 @@ export default {
     </div>
     <!-- 最新消息 -->
     <div class="mb-6 md:mb-12">
-      <!-- <img :src="windowWidth>768? '../../assets/images/news/news-lg.svg' : '../../assets/images/news/news-sm.svg'" alt="" class="w-full"> -->
+      <!-- <img :src="windowWidth>768? '@/assets/images/news/news-lg.svg' : '@/assets/images/news/news-sm.svg'" alt="" class="w-full"> -->
       <template v-if="windowWidth < 768">
-        <img src="../../assets/images/news/news-lg.svg" alt="" class="w-full h-auto "></template>
+        <img src="@/assets/images/news/news-lg.svg" alt="" class="w-full h-auto "></template>
       <template v-else>
-        <img src="../../assets/images/news/news-sm.svg" alt="" class="w-full h-auto ">
+        <img src="@/assets/images/news/news-sm.svg" alt="" class="w-full h-auto ">
       </template>
     </div>
     <div class="mb-6 md:mb-12">
@@ -100,42 +96,35 @@ export default {
         最新上架</h2>
       <RelatedProductsComponent :products="products"></RelatedProductsComponent>
     </div>
-
   </div>
-
   <!-- 全寬圖 -->
-  <img src="../../assets/images/layout/dogAndHumanImg-sm.jpg" alt="" class="md:hidden mb-14 w-full">
-  <img src="../../assets/images/layout/dogAndHumanImg-lg.jpg" alt="" class="hidden md:block mb-14 w-full">
-
-
+  <img src="@/assets/images/layout/dogAndHumanImg-sm.jpg" alt="" class="md:hidden mb-14 w-full">
+  <img src="@/assets/images/layout/dogAndHumanImg-lg.jpg" alt="" class="hidden md:block mb-14 w-full">
   <div class="container">
     <!-- 我們願意承諾您 -->
     <div class="mb-12 md:mb-24">
-      <h2 class=" text-h4 text-center pb-4 mb-5 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary
-                                                          md:mb-7">
+      <h2 class=" text-h4 text-center pb-4 mb-5 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-7">
         我們願意承諾您</h2>
-      <ul class="py-8 px-13 bg-white rounded-2.5xl shadow-lg2 text-4.5 flex flex-col gap-y-9
-                                                      md:pb-11 md:px-8 md:flex-row md:gap-12 md:flex-wrap md:justify-center lg:px-40 
-                                                      xl:px-8 xl:flex-nowrap lg:gap-x-[88px]">
+      <ul class="py-8 px-13 bg-white rounded-2.5xl shadow-lg2 text-4.5 flex flex-col gap-y-9 md:pb-11 md:px-8 md:flex-row md:gap-12 md:flex-wrap md:justify-center lg:px-40 xl:px-8 xl:flex-nowrap lg:gap-x-[88px]">
         <li class="">
-          <img src="../../assets/images/promise-img/proImg1.svg" alt="" class="mx-auto">
+          <img src="@/assets/images/promise-img/proImg1.svg" alt="" class="mx-auto">
           <button type="button"
             class="py-2 px-12 bg-secondary rounded-lg2 text-white flex mx-auto -mt-6 z-10 relative">商品如實描述</button>
         </li>
         <li class="">
-          <img src="../../assets/images/promise-img/proImg2.svg" alt="" class="mx-auto">
+          <img src="@/assets/images/promise-img/proImg2.svg" alt="" class="mx-auto">
           <button type="button"
             class="py-2 px-12 bg-secondary rounded-lg2 text-white flex mx-auto -mt-6 z-10 relative items-baseline">滿
             <span class="font-['cwTeXYen'] font-bold px-1"> NT$
               900 </span> 免運</button>
         </li>
         <li class="">
-          <img src="../../assets/images/promise-img/proImg3.svg" alt="" class="mx-auto">
+          <img src="@/assets/images/promise-img/proImg3.svg" alt="" class="mx-auto">
           <button type="button"
             class="py-2 px-12 bg-secondary rounded-lg2 text-white flex mx-auto -mt-6 z-10 relative">售後無憂有保障</button>
         </li>
         <li class="">
-          <img src="../../assets/images/promise-img/proImg4.svg" alt="" class="mx-auto">
+          <img src="@/assets/images/promise-img/proImg4.svg" alt="" class="mx-auto">
           <button type="button"
             class="py-2 px-12 bg-secondary rounded-lg2 text-white flex mx-auto -mt-6 z-10 relative">分享生活實用好物</button>
         </li>
@@ -149,7 +138,7 @@ export default {
       <ul class="grid grid-cols-2 gap-4 md:gap-6">
         <li
           class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
-          <img src="../../assets/images/recommend-img/recomImg1.svg" alt=""
+          <img src="@/assets/images/recommend-img/recomImg1.svg" alt=""
             class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
           <div>
             <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
@@ -162,7 +151,7 @@ export default {
         </li>
         <li
           class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
-          <img src="../../assets/images/recommend-img/recomImg2.svg" alt=""
+          <img src="@/assets/images/recommend-img/recomImg2.svg" alt=""
             class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
           <div>
             <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
@@ -175,7 +164,7 @@ export default {
         </li>
         <li
           class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
-          <img src="../../assets/images/recommend-img/recomImg3.svg" alt=""
+          <img src="@/assets/images/recommend-img/recomImg3.svg" alt=""
             class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
           <div>
             <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
@@ -188,7 +177,7 @@ export default {
         </li>
         <li
           class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
-          <img src="../../assets/images/recommend-img/recomImg4.svg" alt=""
+          <img src="@/assets/images/recommend-img/recomImg4.svg" alt=""
             class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
           <div>
             <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
@@ -201,7 +190,7 @@ export default {
         </li>
         <li
           class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
-          <img src="../../assets/images/recommend-img/recomImg5.svg" alt=""
+          <img src="@/assets/images/recommend-img/recomImg5.svg" alt=""
             class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
           <div>
             <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
@@ -214,7 +203,7 @@ export default {
         </li>
         <li
           class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 md:flex md:justify-start">
-          <img src="../../assets/images/recommend-img/recomImg6.svg" alt=""
+          <img src="@/assets/images/recommend-img/recomImg6.svg" alt=""
             class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
           <div>
             <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
@@ -227,6 +216,5 @@ export default {
         </li>
       </ul>
     </div>
-
   </div>
 </template>

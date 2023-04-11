@@ -1,34 +1,35 @@
 <script>
-import adminStore from '../../stores/adminStore.js';
+import adminStore from '@/stores/adminStore';
 import { mapActions, mapState } from 'pinia';
-const { VITE_API, VITE_PATH } = import.meta.env;
+
+const { VITE_API } = import.meta.env;
 export default {
   data() {
     return {
     };
   },
   computed: {
-    ...mapState(adminStore, ['isLoading', "fullPage"]),
+    ...mapState(adminStore, ['isLoading', 'fullPage']),
   },
   methods: {
-    ...mapActions(adminStore, ["checkLogin", "alertMessage", "changeLoading"]),
+    ...mapActions(adminStore, ['checkLogin', 'alertMessage', 'changeLoading']),
     login(value) {
       this.changeLoading(true);
       const data = {
         username: value.帳戶名稱,
         password: value.登入密碼,
-      }
+      };
       this.$http.post(`${VITE_API}/admin/signin`, data)
-        .then(res => {
+        .then((res) => {
           this.changeLoading(false);
           const { token, expired } = res.data;
-          document.cookie = `goldenToken=${token};expires=${new Date(expired)}`
-          this.$router.push("/admin");
+          document.cookie = `goldenToken=${token};expires=${new Date(expired)}`;
+          this.$router.push('/admin');
         })
-        .catch(err => {
+        .catch(() => {
           this.changeLoading(false);
-          this.alertMessage("登入錯誤，請重新輸入");
-        })
+          this.alertMessage('登入錯誤，請重新輸入');
+        });
     },
   },
   mounted() {
@@ -37,7 +38,7 @@ export default {
 };
 </script>
 <template>
-  <loading v-model:active="isLoading" :is-full-page="fullPage" />
+  <LoadingComponent v-model:active="isLoading" :is-full-page="fullPage" />
   <nav class="bg-primary py-6">
     <ul class="container flex items-center justify-start text-dark">
       <li class="">

@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-const { VITE_API, VITE_PATH } = import.meta.env;
 import Swal from 'sweetalert2';
+
+const { VITE_API, VITE_PATH } = import.meta.env;
 export default defineStore('frontStore', {
   state: () => ({
     products: [],
@@ -12,12 +13,8 @@ export default defineStore('frontStore', {
     fullPage: true,
   }),
   getters: {
-    cartTotal: ({ carts }) => {
-      return carts.reduce((a, b) => a + b.final_total, 0);
-    },
-    cartlength: ({ carts }) => {
-      return carts.length;
-    },
+    cartTotal: ({ carts }) => carts.reduce((a, b) => a + b.final_total, 0),
+    cartlength: ({ carts }) => carts.length,
   },
   actions: {
     async getProducts() {
@@ -25,7 +22,7 @@ export default defineStore('frontStore', {
       const result = async () => {
         try {
           const res = await axios.get(
-            `${VITE_API}api/${VITE_PATH}/products/all`
+            `${VITE_API}api/${VITE_PATH}/products/all`,
           );
           this.products = res.data.products;
           this.isLoading = false;
@@ -36,7 +33,7 @@ export default defineStore('frontStore', {
           return false;
         }
       };
-      return await result();
+      return result();
     },
     getSingleProduct(productId) {
       this.isLoading = true;
@@ -46,7 +43,7 @@ export default defineStore('frontStore', {
           this.isLoading = false;
           this.tempProduct = res.data.product;
         })
-        .catch((err) => {
+        .catch(() => {
           this.isLoading = false;
           this.alertMessage('取得商品資訊發生錯誤!');
           this.router.push('/products');
@@ -64,7 +61,8 @@ export default defineStore('frontStore', {
           this.alertMessage('無法取得購物車列表!');
         });
     },
-    addCart(product, qty = 1) {
+    addCart(product, productQty = 1) {
+      let qty = productQty;
       let method = 'post';
       let url = `${VITE_API}api/${VITE_PATH}/cart`;
       if (product.qty) {
@@ -77,35 +75,30 @@ export default defineStore('frontStore', {
         qty,
       };
       axios[method](url, { data })
-        .then((res) => {
+        .then(() => {
           this.toastMessge('已加入購物車！');
           this.getCarts();
         })
-        .catch((err) => {
+        .catch(() => {
           this.alertMessage('加入購物車發生錯誤');
         });
     },
     emptyCart() {
       axios
         .delete(`${VITE_API}api/${VITE_PATH}/carts`)
-        .then((res) => {
+        .then(() => {
           this.toastMessge('已加入購物車！');
           this.getCarts();
         })
-        .catch((err) => {
+        .catch(() => {
           this.this.alertMessage('無法清空購物車');
         });
     },
     async filterProductList(category = '') {
       await this.getProducts();
-      const filterItems = this.products.filter((item) => {
-        if (item.category === category) {
-          return item;
-        }
-      });
+      const filterItems = this.products.filter((item) => item.category === category);
       this.filterProducts = filterItems;
     },
-
     alertMessage(msg) {
       Swal.fire({
         text: msg,

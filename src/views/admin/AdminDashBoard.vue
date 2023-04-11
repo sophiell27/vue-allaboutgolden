@@ -1,43 +1,42 @@
 <script>
-import adminStore from '../../stores/adminStore.js';
-import { mapActions,mapState } from 'pinia';
+import adminStore from '@/stores/adminStore';
+import { mapActions, mapState } from 'pinia';
 
-const { VITE_API, VITE_PATH } = import.meta.env;
+const { VITE_API } = import.meta.env;
 export default {
   data() {
     return {
       loginStatus: false,
-      isActive: ""
+      isActive: '',
     };
   },
   computed: {
-    ...mapState(adminStore, ["isLoading", "fullPage"]),
+    ...mapState(adminStore, ['isLoading', 'fullPage']),
   },
   methods: {
-    ...mapActions(adminStore, ["checkLogin", "toastMessge", "alertMessage", "confirmMessage"]),
+    ...mapActions(adminStore, ['checkLogin', 'toastMessge', 'alertMessage', 'confirmMessage']),
     logOut() {
       this.$http.post(`${VITE_API}logout`)
-        .then(res => {
-          console.log(res);
-          this.toastMessge("成功登出", "center");
+        .then(() => {
+          this.toastMessge('成功登出', 'center');
           this.loginStatus = false;
-          this.$router.push("/admin/login");
+          this.$router.push('/admin/login');
         })
-        .catch((err) => {
-          this.alertMessage("無法登出");
-        })
+        .catch(() => {
+          this.alertMessage('無法登出');
+        });
     },
   },
   mounted() {
-    this.checkLogin(this.$route.fullPath).then(result => {
+    this.checkLogin(this.$route.fullPath).then(() => {
       this.loginStatus = true;
-      this.toastMessge("Welcome Back!");
+      this.toastMessge('Welcome Back!');
     });
   },
 };
 </script>
 <template>
-  <loading v-model:active="isLoading" :is-full-page="fullPage" />
+  <LoadingComponent v-model:active="isLoading" :is-full-page="fullPage" />
   <div class="min-h-screen">
     <div class="bg-primary mb-6">
       <div class="container">

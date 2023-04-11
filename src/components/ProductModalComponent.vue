@@ -1,5 +1,5 @@
 <script>
-import adminStore from '../stores/adminStore.js';
+import adminStore from '@/stores/adminStore';
 import { mapActions } from 'pinia';
 import { Modal } from 'flowbite';
 import _ from 'lodash';
@@ -10,69 +10,64 @@ export default {
     return {
       productModal: {},
       temp: {
-        imagesUrl: [""]
+        imagesUrl: [''],
       },
     };
   },
   methods: {
-    ...mapActions(adminStore, ["getProducts", "alertMessage"]),
+    ...mapActions(adminStore, ['getProducts', 'alertMessage']),
     openProductModal(product = {
-      imagesUrl: [""]
+      imagesUrl: [''],
     }) {
       this.temp = _.cloneDeep(product);
-      console.log(this.temp);
       this.productModal.show();
     },
     closeProductModal() {
       this.productModal.hide();
       this.temp = {
-        imagesUrl: [""]
-      }
+        imagesUrl: [''],
+      };
     },
     delImg() {
-      if (confirm("是否確定刪除圖片？")) {
-        this.temp.imageUrl = "";
+      if (window.confirm('是否確定刪除圖片？')) {
+        this.temp.imageUrl = '';
       }
     },
     uploadFile(refindex) {
-      let file;
-      if (refindex === "filtINput") {
-        file = this.$refs[refindex].files[0];
-      } else {
-        file = this.$refs[refindex][0].files[0];
-      };
+      const [file] = refindex === 'filtINput'
+        ? this.$refs[refindex].files
+        : this.$refs[refindex][0].files;
       const formData = new FormData();
-      formData.append("file-to-upload", file);
-      if (confirm("是否確定上傳檔案？")) {
+      formData.append('file-to-upload', file);
+      if (window.confirm('是否確定上傳檔案？')) {
         this.$http
           .post(`${VITE_API}api/${VITE_PATH}/admin/upload`, formData)
           .then((res) => {
-            if ((refindex === "filtINput")) {
+            if ((refindex === 'filtINput')) {
               this.temp.imageUrl = res.data.imageUrl;
             } else {
-              this.temp.imagesUrl[this.temp.imagesUrl.length - 1] =
-                res.data.imageUrl;
+              this.temp.imagesUrl[this.temp.imagesUrl.length - 1] = res.data.imageUrl;
             }
           })
-          .catch((err) => {
-            this.alertMessage("更新圖片發生錯誤！");
-          })
+          .catch(() => {
+            this.alertMessage('更新圖片發生錯誤！');
+          });
       }
     },
     editProduct() {
-      let method = "post";
-      let url = `${VITE_API}api/${VITE_PATH}/admin/product`
+      let method = 'post';
+      let url = `${VITE_API}api/${VITE_PATH}/admin/product`;
       if (this.temp.id) {
-        method = "put";
-        url = `${VITE_API}api/${VITE_PATH}/admin/product/${this.temp.id}`
+        method = 'put';
+        url = `${VITE_API}api/${VITE_PATH}/admin/product/${this.temp.id}`;
       }
       this.$http[method](url, { data: this.temp })
-        .then(res => {
+        .then(() => {
           this.closeProductModal();
           this.getProducts();
         })
-        .catch(err => {
-          alert("無法編輯商品！");
+        .catch(() => {
+          // alert('無法編輯商品！');
           this.closeProductModal();
         });
     },
@@ -195,7 +190,7 @@ export default {
         <!-- Modal footer -->
         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
           <button data-modal-hide="defaultModal" type="button"
-            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
             @click="closeProductModal">取消</button>
           <button
             class="text-white bg-secondary hover:bg-primary hover:text-dark focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center ">確定</button>

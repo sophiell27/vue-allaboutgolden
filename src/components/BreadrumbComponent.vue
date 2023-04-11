@@ -2,9 +2,9 @@
 export default {
   data() {
     return {
-    }
+    };
   },
-  props: ["tempProduct"],
+  props: ['tempProduct'],
 };
 </script>
 <template>

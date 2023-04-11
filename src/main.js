@@ -1,52 +1,45 @@
 import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
-import App from './App.vue';
-import router from './router';
-//axios
-import axios from 'axios';
-import VueAxios from 'vue-axios';
-// css
-import './assets/index.css';
-// vee-validate
-import { Form, Field, ErrorMessage } from 'vee-validate';
-import { defineRule, configure } from 'vee-validate';
-// import customIcon from "@assets/images/customLoader.svg"
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import { initFlowbite } from 'flowbite';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  Form, Field, ErrorMessage, defineRule, configure,
+} from 'vee-validate';
+import AllRules from '@vee-validate/rules';
+import { localize, setLocale } from '@vee-validate/i18n';
+import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
-import AllRules from '@vee-validate/rules';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import router from './router';
+import App from './App.vue';
+import './assets/index.css';
 
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule]);
 });
-import { localize, setLocale } from '@vee-validate/i18n';
-import zh_TW from '@vee-validate/i18n/dist/locale/zh_TW.json';
-
-localize({ zh_TW });
+localize({ zh_TW: zhTW });
 configure({
   generateMessage: localize({
-    zh_TW,
+    zh_TW: zhTW,
   }),
 });
 setLocale('zh_TW');
-//gsap
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
-//aos
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 AOS.init();
-import { initFlowbite } from 'flowbite';
 initFlowbite();
-// sweet alert2
-import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
 
 const app = createApp(App);
 app.component('VForm', Form);
 app.component('VField', Field);
 app.component('VErrorMessage', ErrorMessage);
-app.component('loading', Loading);
+app.component('LoadingComponent', Loading);
 const pinia = createPinia();
 app.use(pinia);
 app.use(router);
@@ -54,8 +47,9 @@ app.use(gsap);
 app.use(VueAxios, axios);
 app.use(VueSweetalert2);
 pinia.use(({ store }) => {
-  store.router = markRaw(router);
-  store.Swal = markRaw(VueSweetalert2);
+  const newStore = store;
+  newStore.router = markRaw(router);
+  newStore.Swal = markRaw(VueSweetalert2);
 });
 app.config.globalProperties.$gsap = gsap;
 app.config.globalProperties.$ScrollTrigger = ScrollTrigger;

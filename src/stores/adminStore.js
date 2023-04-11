@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import router from '../router';
 import Swal from 'sweetalert2';
+
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default defineStore('adminStore', {
   state: () => ({
@@ -12,16 +12,16 @@ export default defineStore('adminStore', {
     isLoading: false,
     fullPage: true,
   }),
-
   actions: {
     changeLoading(status) {
       this.isLoading = status;
     },
     async checkLogin(path = '/admin') {
+      /* eslint-disable */
       const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)goldenToken\s*\=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      );
+        '$1', 
+      ); 
       axios.defaults.headers.common['Authorization'] = token;
       const result = async () => {
         try {
@@ -43,7 +43,7 @@ export default defineStore('adminStore', {
           this.products = res.data.products;
           this.productsPagination = res.data.pagination;
           this.router.push(
-            `/admin/products/${res.data.pagination.current_page}`
+            `/admin/products/${res.data.pagination.current_page}`,
           );
           this.isLoading = false;
         })
