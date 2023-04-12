@@ -53,9 +53,9 @@ export default {
       <button type="button" class="pillBtn">
       </button>
       <div class="w-full relative">
-        <img src="@/assets/images/dog.svg" alt="dog image" class="dogAni absolute -left-14 -top-20 w-[400px] overflow-hidden md:w-[500px] md:left-5 md:-top-32 lg:w-[600px] lg:left-48">
+        <img src="@/assets/images/dog.svg" alt="dog image" class="dogAni absolute -left-10 -top-20 w-[400px] overflow-hidden md:w-[500px] md:left-10 md:-top-32 lg:w-[600px] lg:left-52">
         <img src="@/assets/images/dogBall.svg" alt="football image"
-          class="ballAni absolute top-20 left-[250px] w-[135px] md:w-44 md:left-96 lg:left-[700px]">
+          class="ballAni absolute top-20 left-[300px] w-[135px] md:w-44 md:left-96 lg:left-[700px]">
       </div>
     </div>
   </section>
