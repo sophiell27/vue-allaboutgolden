@@ -16,7 +16,7 @@ export default {
     CartsComponent,
   },
   computed: {
-    ...mapState(frontStore, ['carts']),
+    ...mapState(frontStore, ['carts', 'loginStatus']),
   },
   methods: {
     ...mapActions(frontStore, ['getCarts', 'alertMessage', 'toastMessge']),
@@ -54,7 +54,8 @@ export default {
 </script>
 <template>
   <v-form class="container" @submit="placeOrder" @click="checkCart">
-    <h2 class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
+    <h2
+      class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
       結賬
     </h2>
     <div class="grid grid-cols-12 mb-8 md:mb-10">
@@ -94,7 +95,7 @@ export default {
             <select id='payment'
               class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               v-model="data.message">
-              <option value="銀行轉賬" selected>銀行轉賬</option>
+              <option value="銀行轉賬" select="selected">銀行轉賬</option>
               <option value="貨到付款">貨到付款</option>
             </select>
           </div>
@@ -102,7 +103,7 @@ export default {
             <label for="couponNum" class="mb-2 block">優惠碼：</label>
             <input type="text" id='couponNum'
               class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
-              placeholder="請輸入優惠碼" />
+              placeholder="請輸入優惠碼（非必填）" />
           </div>
         </div>
       </div>
@@ -111,7 +112,7 @@ export default {
       <CartsComponent></CartsComponent>
     </div>
     <button class="btn flex items-center text-sm mx-auto
-                                                                          md:text-h6 lg:btn-md xl:btn-lg"
+                                                                            md:text-h6 lg:btn-md xl:btn-lg"
       :class="{ 'disabled opacity-50 cursor-default': !carts.length }">
       <span class="pl-1 xl:pl-2">碓認送出訂單</span>
       <span class="material-symbols-outlined ml-3 text-base lg:text-2xl">

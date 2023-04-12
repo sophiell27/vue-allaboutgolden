@@ -153,7 +153,7 @@ export default {
                     </a>
                   </li>
                   <li class="md:px-4 lg:px-9" v-if="loginStatus">
-                    <RouterLink to="/orders/1" class="block over:opacity-70 py-8 md:py-2" @click="toggleMenu">
+                    <RouterLink to="/user/orders/1" class="block over:opacity-70 py-8 md:py-2" @click="toggleMenu">
                       查詢訂單
                     </RouterLink>
                   </li>
@@ -204,7 +204,7 @@ export default {
                 </RouterLink>
               </li>
               <li class="">
-                <RouterLink to="/carts" class="md:pl-2  hover:opacity-70">
+                <RouterLink to="/user/carts" class="md:pl-2  hover:opacity-70">
                   <span class="material-symbols-outlined leading-none relative">
                     shopping_cart
                     <div

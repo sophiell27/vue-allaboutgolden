@@ -41,12 +41,7 @@ export default {
     },
   },
   mounted() {
-    if (this.loginStatus) {
-      this.getCarts();
-    } else {
-      this.alertMessage('請先登入！');
-      this.$router.push('/login');
-    }
+    this.getCarts();
   },
 };
 </script>

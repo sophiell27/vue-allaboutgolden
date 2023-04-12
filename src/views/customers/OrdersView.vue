@@ -24,7 +24,7 @@ export default {
         .then((res) => {
           this.orders = res.data.orders;
           this.orderPagination = res.data.pagination;
-          this.$router.push(`/orders/${page}`);
+          this.$router.push(`/user/orders/${page}`);
         })
         .catch(() => {
           // alert("無法取得訂單列表");
@@ -36,12 +36,7 @@ export default {
     },
   },
   mounted() {
-    if (this.loginStatus) {
-      this.getOrders(this.$route.params.orderpage);
-    } else {
-      this.alertMessage('請先登入！');
-      this.$router.push('/login');
-    }
+    this.getOrders(this.$route.params.orderpage);
   },
 };
 </script>
@@ -51,12 +46,12 @@ export default {
     <h1 class="text-h4 text-center mb-8">訂單列表</h1>
     <table class="w-full mb-auto" v-if="orders">
       <thead class="border-b border-b-secondary">
-      <tr>
-        <th>日期</th>
+        <tr>
+          <th>日期</th>
           <th class="hidden md:block">訂單編號</th>
           <th>訂單內容</th>
-        <th>總計</th>
-        <th>付款狀態</th>
+          <th>總計</th>
+          <th>付款狀態</th>
         </tr>
       </thead>
       <tbody class="text-center mb-2">
@@ -70,7 +65,8 @@ export default {
           </td>
           <td class="text-xs">NT$ {{ order.total }}</td>
           <td :class="{ 'text-highlight border-b-highlight': !order.is_paid }"> {{ order.is_paid ? "已付款" : "未付款" }}
-          </td></tr>
+          </td>
+        </tr>
       </tbody>
     </table>
     <PaginationComponent :pagination="orderPagination" @getpage="getOrders"></PaginationComponent>

@@ -38,22 +38,6 @@ const router = createRouter({
           component: () => import('@/views/customers/SingleProductView.vue'),
         },
         {
-          path: 'carts',
-          component: () => import('@/views/customers/CartsView.vue'),
-        },
-        {
-          path: 'placeorder',
-          component: () => import('@/views/customers/PlaceOrderView.vue'),
-        },
-        {
-          path: 'orders/1',
-          component: () => import('@/views/customers/OrdersView.vue'),
-        },
-        {
-          path: 'orders/:orderpage',
-          component: () => import('@/views/customers/OrdersView.vue'),
-        },
-        {
           path: 'aboutUs',
           component: () => import('@/views/customers/AboutUsView.vue'),
         },
@@ -76,6 +60,28 @@ const router = createRouter({
         {
           path: 'login',
           component: () => import('@/views/customers/CustomerLogin.vue'),
+        },
+        {
+          path: 'user',
+          component: () => import('../views/customers/UserView.vue'),
+          children: [
+            {
+              path: 'carts',
+              component: () => import('@/views/customers/CartsView.vue'),
+            },
+            {
+              path: 'placeorder',
+              component: () => import('@/views/customers/PlaceOrderView.vue'),
+            },
+            {
+              path: 'orders/1',
+              component: () => import('@/views/customers/OrdersView.vue'),
+            },
+            {
+              path: 'orders/:orderpage',
+              component: () => import('@/views/customers/OrdersView.vue'),
+            },
+          ],
         },
       ],
     },
