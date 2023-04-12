@@ -19,7 +19,7 @@ export default {
     ...mapState(frontStore, ['carts']),
   },
   methods: {
-    ...mapActions(frontStore, ['getCarts', 'alertMessage']),
+    ...mapActions(frontStore, ['getCarts', 'alertMessage', 'toastMessge']),
     placeOrder() {
       if (!this.carts.length) {
         this.$swal.fire({
@@ -30,23 +30,30 @@ export default {
       }
       this.$http.post(`${VITE_API}api/${VITE_PATH}/order`, { data: this.data })
         .then(() => {
-          // alert('已送出訂單')
+          this.toastMessge('已送出訂單');
           this.data = {
             user: {},
           };
           this.getCarts();
-          console.log('sucee');
           this.$router.push('/orders/1');
         })
         .catch(() => {
-          // alertMessage('無法送出訂單')
+          this.alertMessage('無法送出訂單');
         });
+    },
+    checkCart() {
+      if (this.carts.length === 0) {
+        this.$swal.fire({
+          text: '購物車沒有內容，請先選擇商品',
+          confirmButtonText: '確定',
+        }).then(() => this.$router.push('/products'));
+      }
     },
   },
 };
 </script>
 <template>
-  <v-form class="container" @submit="placeOrder">
+  <v-form class="container" @submit="placeOrder" @click="checkCart">
     <h2 class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
       結賬
     </h2>
@@ -57,35 +64,35 @@ export default {
           <div class=" col-span-2 md:col-span-1">
             <label for="recipient" class="mb-2 block">收貨人：</label>
             <v-field type="text" id='recipient'
-              class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+              class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               placeholder="請輸入收貨人姓名" name="收貨人姓名" rules="required" v-model="data.user.name"></v-field>
             <v-error-message name="收貨人姓名" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2 md:col-span-1">
             <label for="recipientPhone" class="mb-2 block">收貨人電話：</label>
             <v-field type="tel" id='recipientPhone'
-              class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+              class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               placeholder="請輸入收貨人電話" name="收貨人電話" rules="required" v-model="data.user.tel"></v-field>
             <v-error-message name="收貨人電話" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2">
             <label for="receipientAddr" class="mb-2 block">收貨人地址：</label>
             <v-field type="text" id='receipientAddr'
-              class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+              class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               placeholder="請輸入收貨人地址" name="收貨人地址" rules="required" v-model="data.user.address"></v-field>
             <v-error-message name="收貨人地址" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2">
             <label for="receipientMail" class="mb-2 block">電郵：</label>
             <v-field type="email" id='receipientMail'
-              class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+              class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               placeholder="請輸入電郵" name="電郵" rules="required" v-model="data.user.email"></v-field>
             <v-error-message name="電郵" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2 md:col-span-1">
             <label for="payment" class="mb-2 block">付款方法：</label>
             <select id='payment'
-              class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+              class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               v-model="data.message">
               <option value="銀行轉賬" selected>銀行轉賬</option>
               <option value="貨到付款">貨到付款</option>
@@ -94,7 +101,7 @@ export default {
           <div class="col-span-2 md:col-span-1">
             <label for="couponNum" class="mb-2 block">優惠碼：</label>
             <input type="text" id='couponNum'
-              class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
+              class="w-full rounded-lg px-4 py-2 border-secondary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-secondary bg-transparent"
               placeholder="請輸入優惠碼" />
           </div>
         </div>
