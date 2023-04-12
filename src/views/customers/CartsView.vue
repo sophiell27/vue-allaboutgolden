@@ -11,7 +11,7 @@ export default {
     CartsComponent,
   },
   computed: {
-    ...mapState(frontStore, ['carts', 'cartTotal']),
+    ...mapState(frontStore, ['carts', 'cartTotal', 'loginStatus']),
   },
   methods: {
     ...mapActions(frontStore, ['getCarts', 'alertMessage']),
@@ -41,7 +41,12 @@ export default {
     },
   },
   mounted() {
-    this.getCarts();
+    if (this.loginStatus) {
+      this.getCarts();
+    } else {
+      this.alertMessage('請先登入！');
+      this.$router.push('/login');
+    }
   },
 };
 </script>
@@ -57,7 +62,9 @@ export default {
         <CartsComponent></CartsComponent>
       </template>
       <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
-        <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">繼續選購產品</p>
+        <p
+          class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">
+          繼續選購產品</p>
         <NewProductsComponent></NewProductsComponent>
       </div>
     </div>

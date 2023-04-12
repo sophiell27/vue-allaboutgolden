@@ -159,8 +159,8 @@ export default {
                     </RouterLink>
                   </li>
                   <li class="md:hidden">
-                    <RouterLink to="/" class="" v-if="loginStatus" @click="logout">登出</RouterLink>
-                    <RouterLink to="/login" class="block  hover:opacity-70 py-8  md:py-2" v-else>
+                    <RouterLink to="/" class="block over:opacity-70 py-8 md:py-2" v-if="loginStatus" @click="{logout();toggleMenu()}">登出</RouterLink>
+                    <RouterLink to="/login" class="block  hover:opacity-70 py-8  md:py-2" @click="toggleMenu" v-else>
                       登入/註冊
                     </RouterLink>
                   </li>
@@ -208,7 +208,7 @@ export default {
                   <span class="material-symbols-outlined leading-none relative">
                     shopping_cart
                     <div
-                      class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/2 w-6 h-6 bg-dark rounded-full text-white flex justify-center items-center">
+                      class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/2 w-6 h-6 bg-dark rounded-full text-white flex justify-center items-center" v-if="loginStatus">
                       <p class="text-[8px] font-inter">
                         {{ cartlength }}
                       </p>
