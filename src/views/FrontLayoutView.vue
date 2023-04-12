@@ -196,12 +196,22 @@ export default {
                 </div>
               </li>
               <li class="hidden md:block ">
-                <RouterLink to="/login" class="flex items-center md:px-2  hover:opacity-70">
+                <RouterLink to="/" class="flex items-center md:px-2  hover:opacity-70" v-if="loginStatus" @click="logout">
+                  <span class="material-symbols-outlined leading-none">
+                    person
+                  </span>
+                  <span class="font-bold texx-9xl">登出</span>
+                </RouterLink>
+                <RouterLink to="/login" class="flex items-center md:px-2  hover:opacity-70" v-else>
                   <span class="material-symbols-outlined leading-none">
                     person
                   </span>
                   <span class="font-bold texx-9xl">登入／註冊</span>
                 </RouterLink>
+                 <!-- <RouterLink to="/" class="block over:opacity-70 py-8 md:py-2" v-if="loginStatus" @click="{logout();toggleMenu()}"> 登出</RouterLink>
+                    <RouterLink to="/login" class="block  hover:opacity-70 py-8  md:py-2" @click="toggleMenu" v-else>
+                      登入/註冊
+                    </RouterLink> -->
               </li>
               <li class="">
                 <RouterLink to="/carts" class="md:pl-2  hover:opacity-70">
