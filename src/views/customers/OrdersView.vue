@@ -1,4 +1,6 @@
 <script>
+import frontStore from '@/stores/frontStore';
+import { mapState, mapActions } from 'pinia';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
@@ -9,10 +11,14 @@ export default {
       orderPagination: {},
     };
   },
+  computed: {
+    ...mapState(frontStore, ['loginStatus'])
+  },
   components: {
     PaginationComponent,
   },
   methods: {
+    ...mapActions(frontStore, ['alertMessage']),
     getOrders(page = 1) {
       this.$http.get(`${VITE_API}api/${VITE_PATH}/orders?page=${page}`)
         .then((res) => {
@@ -30,7 +36,12 @@ export default {
     },
   },
   mounted() {
-    this.getOrders(this.$route.params.orderpage);
+    if (loginStatus) {
+      this.getOrders(this.$route.params.orderpage);
+    } else {
+      this.alertMessage('請先登入！');
+      this.$router.push('/login');
+    }
   },
 };
 </script>

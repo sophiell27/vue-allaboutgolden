@@ -156,7 +156,7 @@ export default {
                       黃金專欄
                     </a>
                   </li>
-                  <li class="md:px-4 lg:px-9 ">
+                  <li class="md:px-4 lg:px-9" v-if="loginStatus">
                     <RouterLink to="/orders/1" class=" flex flex-col items-center hover:opacity-70 py-8  md:py-2"
                       @click="toggleMenu">
                       查詢訂單
