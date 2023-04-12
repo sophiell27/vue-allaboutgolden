@@ -12,7 +12,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(frontStore, ['loginStatus'])
+    ...mapState(frontStore, ['loginStatus']),
   },
   components: {
     PaginationComponent,
@@ -36,7 +36,7 @@ export default {
     },
   },
   mounted() {
-    if (loginStatus) {
+    if (this.loginStatus) {
       this.getOrders(this.$route.params.orderpage);
     } else {
       this.alertMessage('請先登入！');
