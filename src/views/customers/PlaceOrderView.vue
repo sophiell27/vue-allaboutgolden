@@ -58,8 +58,8 @@ export default {
       class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
       結賬
     </h2>
-    <div class="grid grid-cols-12 mb-8 md:mb-10">
-      <div class="col-start-3 col-span-8">
+    <div class="grid grid-cols-12 ">
+      <div class="col-span-12 md:col-start-2 md:col-span-9 mb-8 md:mb-10">
         <h3 class="text-4.5 mb-6"> 請填寫訂單資料</h3>
         <div class="grid grid-cols-2 gap-y-4 md:gap-x-4 md:gap-y-8">
           <div class=" col-span-2 md:col-span-1">
@@ -107,10 +107,12 @@ export default {
           </div>
         </div>
       </div>
+      <div class="col-span-12 md:col-start-2 md:col-span-9 py-8 mb-8  bg-white rounded-2.5xl shadow-lg2 md:pb-11 md:px-8 md:mb-10" v-if="carts">
+        <CartsComponent></CartsComponent>
+      </div>
     </div>
-    <div class="py-8 px-13 mb-8  bg-white rounded-2.5xl shadow-lg2 md:pb-11 md:px-8 md:mb-10" v-if="carts">
-      <CartsComponent></CartsComponent>
-    </div>
+    <!-- <div class="py-8 mb-8  bg-white rounded-2.5xl shadow-lg2 md:pb-11 md:px-8 md:mb-10" >
+    </div> -->
     <button class="btn flex items-center text-sm mx-auto
                                                                             md:text-h6 lg:btn-md xl:btn-lg"
       :class="{ 'disabled opacity-50 cursor-default': !carts.length }">

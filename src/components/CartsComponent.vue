@@ -83,7 +83,7 @@ export default {
         <td colspan="5" v-if="$route.fullPath != '/placeorder'">
           <RouterLink to="/placeorder">
             <button type="button"
-              class="py-2 px-12 bg-secondary rounded-lg2 text-white flex ml-auto mt-4 hover:bg-primary hover:text-dark ">結帳</button>
+              class="py-2 px-12 bg-secondary rounded-lg2 text-white flex ml-auto mt-4 hover:bg-primary hover:text-dark" v-if="$route.fullPath ==='/user/carts'">結帳</button>
           </RouterLink>
         </td>
       </tr>
