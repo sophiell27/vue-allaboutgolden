@@ -253,7 +253,7 @@ export default {
             <RouterLink to="/freight&refund" class="md:px-6 md:border-r-2 md:border-r-fog-300 hover:opacity-70">運費 / 退貨說明
             </RouterLink>
           </li>
-          <li><a href="" class="md:pl-6">私隱條款</a></li>
+          <li><RouterLink to="/privacy" class="md:pl-6 hover:opacity-70">私隱條款</RouterLink></li>
         </ul>
         <p class="text-fog-500 text-sm text-center">此網站僅做為前端 <span class="text-xs">Side
             Project</span> 作品練習，

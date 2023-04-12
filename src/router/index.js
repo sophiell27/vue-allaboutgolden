@@ -62,8 +62,12 @@ const router = createRouter({
           component: () => import('@/views/customers/FreightRefundView.vue'),
         },
         {
-          path: 'ContactUs',
+          path: 'contactUs',
           component: () => import('@/views/customers/ContactView.vue'),
+        },
+        {
+          path: '/privacy',
+          component: () => import('../views/customers/PrivacyView.vue'),
         },
         {
           path: 'register',
