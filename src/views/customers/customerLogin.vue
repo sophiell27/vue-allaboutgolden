@@ -1,13 +1,11 @@
 <script>
 import frontStore from '@/stores/frontStore';
-import { mapState } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import LoginFormComponent from '@/components/LoginFormComponent.vue';
 
 export default {
   data() {
-    return {
-      register: false,
-    };
+    return {};
   },
   components: {
     LoginFormComponent,
@@ -16,20 +14,7 @@ export default {
     ...mapState(frontStore, ['isLoading', 'fullPage']),
   },
   methods: {
-    // login(value) {
-    //   this.changeLoading(true);
-    //   const data = {
-    //     username: value.用戶名稱,
-    //     password: value.用戶密碼,
-    //   }
-    // },
-  },
-  mounted() {
-    if (this.$route.fullPath === '/register') {
-      this.register = true;
-    } else {
-      this.register = false;
-    }
+    ...mapActions(frontStore, ['login']),
   },
 };
 </script>

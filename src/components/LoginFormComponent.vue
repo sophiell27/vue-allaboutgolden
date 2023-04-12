@@ -14,7 +14,7 @@ export default {
 };
 </script>
 <template>
-  <loading v-model:active="isLoading" :is-full-page="fullPage" />
+  <LoadingComponent v-model:active="isLoading" :is-full-page="fullPage" />
   <div class="container flex flex-col items-center justify-center mt-20">
     <v-form class="" @submit="(value) => $emit('submit-form', value)">
       <h1 class="text-2xl mb-4 text-center">用戶{{ status }}</h1>

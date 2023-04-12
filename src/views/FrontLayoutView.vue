@@ -13,7 +13,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage']),
+    ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage', 'loginStatus']),
   },
   methods: {
     ...mapActions(frontStore, ['getCarts', 'getProducts']),
@@ -163,9 +163,9 @@ export default {
                     </RouterLink>
                   </li>
                   <li class="md:hidden">
-                    <RouterLink to="/admin/login" class=" flex flex-col items-center hover:opacity-70 py-8  md:py-2">
-                      登入/註冊
-                      <span class="text-sm text-fog-400 font-extrabold">Sign in</span>
+                    <RouterLink to="/login" class=" flex flex-col items-center hover:opacity-70 py-8  md:py-2">
+                      <span v-if="loginStatus">登出</span>
+                      <span>登入/註冊</span>
                     </RouterLink>
                   </li>
                 </ul>

@@ -11,12 +11,35 @@ export default defineStore('frontStore', {
     filterProducts: [],
     isLoading: false,
     fullPage: true,
+    loginStatus: false,
   }),
   getters: {
     cartTotal: ({ carts }) => carts.reduce((a, b) => a + b.final_total, 0),
     cartlength: ({ carts }) => carts.length,
   },
   actions: {
+    login(value) {
+      const localData = JSON.parse(localStorage.getItem('login'));
+      if (localData) {
+        const { username, password } = localData;
+        const data = {
+          username: value.登入名稱,
+          password: value.登入密碼,
+        };
+        if (username === data.username && password === data.password) {
+          this.loginStatus = true;
+          this.router.go(-1);
+          this.toastMessge('歡迎回來！');
+        }
+      } else {
+        this.alertMessage('不成功登入');
+        this.loginStatus = false;
+      }
+    },
+    logout() {
+      this.loginStatus = false;
+      this.router.replace('/');
+    },
     async getProducts() {
       this.isLoading = true;
       const result = async () => {
@@ -29,7 +52,7 @@ export default defineStore('frontStore', {
           return true;
         } catch {
           this.isLoading = false;
-          alert('取得產品列表發生錯誤');
+          this.alertMessage('取得產品列表發生錯誤');
           return false;
         }
       };
@@ -96,7 +119,9 @@ export default defineStore('frontStore', {
     },
     async filterProductList(category = '') {
       await this.getProducts();
-      const filterItems = this.products.filter((item) => item.category === category);
+      const filterItems = this.products.filter(
+        (item) => item.category === category,
+      );
       this.filterProducts = filterItems;
     },
     alertMessage(msg) {
