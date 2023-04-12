@@ -1,7 +1,7 @@
 <script>
 import FrontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-import PillBtnComponent from './PillBtnComponent.vue';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 export default {
   components: {

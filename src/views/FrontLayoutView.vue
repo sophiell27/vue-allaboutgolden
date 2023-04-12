@@ -2,6 +2,7 @@
 import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
 import _ from 'lodash';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 export default {
   data() {
@@ -11,6 +12,9 @@ export default {
       searchValue: '',
       filteredValue: [],
     };
+  },
+  components: {
+    PillBtnComponent,
   },
   computed: {
     ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage', 'loginStatus']),
@@ -231,12 +235,18 @@ export default {
   <footer class="mt-10 md:mt-20">
     <!-- 立即加入會員 -->
     <div
-      class="py-6 px-13 bg-footerCtaBg-sm bg-100 bg-center bg-dark flex flex-col items-center relative before:absolute before:content-[''] before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-dark/70                                md:bg-footerCtaBg-lg ">
+      class="py-6 px-13 bg-footerCtaBg-sm bg-100 bg-center bg-dark flex flex-col items-center">
       <div class="relative z-20">
         <h2 class="text-4.5 font-bold mb-6 text-white md:text-h2">
-          <span class="flex items-center mb-1"> 超過<span class="text-primary text-h2 md:text-h1">90%</span>的顧客都選擇我們</span>
+          超過<span class="text-primary text-h2 px-1 align-middle md:text-h1">90%</span>的顧客都選擇我們
+          <br>
           您也值得擁有最優質的購物體驗！
         </h2>
+        <div class="flex justify-center">
+          <PillBtnComponent :dynamicPath="'/register'">
+          立即加入會員
+        </PillBtnComponent>
+        </div>
       </div>
     </div>
     <!--  about / contact /  -->

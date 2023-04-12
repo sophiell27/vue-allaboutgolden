@@ -3,11 +3,16 @@ export default {
   data() {
     return {};
   },
+  props: {
+    dynamicPath: {
+      default: '/products',
+    },
+  },
 };
 </script>
 
 <template>
-  <RouterLink to="/products">
+  <RouterLink :to="dynamicPath">
     <button type="button" class="pillBtn lg:pillBtn-lg">
     <slot></slot>
     <span class="material-symbols-outlined">
