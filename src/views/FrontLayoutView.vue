@@ -47,12 +47,11 @@ export default {
       mainLogo.classList[removeClass]('h-12', 'md:h-21', 'flex-none');
     },
     toggleSearchBox(e) {
-      const btn = document.getElementById('searchButton');
-      const box = document.getElementById('searchBox');
-      if (e.target === btn) {
-        box.classList.toggle('hidden');
-      } else if (!box.contains(e.target)) {
-        box.classList.add('hidden');
+      const { searchButton, searchBox } = this.$refs;
+      if (e.target === searchButton) {
+        searchBox.classList.toggle('hidden');
+      } else if (!searchBox.contains(e.target)) {
+        searchBox.classList.add('hidden');
       }
       this.searchValue = '';
       this.filteredValue = [];
@@ -91,7 +90,7 @@ export default {
 };
 </script>
 <template>
-  <LoadingComponent></LoadingComponent>
+  <LoadingComponent />
   <div class="relative ">
     <!-- top news  -->
     <RouterLink to="/products" class="bg-primary py-1 fixed top-0 left-0 right-0 z-30 hover:opacity-60">
@@ -168,31 +167,27 @@ export default {
               </nav>
             </div>
             <ul class="flex items-start">
-              <li class="relative">
+              <li class="relative pr-4">
                 <button type="button" class="md:px-2 hover:opacity-70">
-                  <span class="material-symbols-outlined leading-none" id="searchButton">
+                  <span class="material-symbols-outlined leading-none" ref="searchButton">
                     search
                   </span>
                 </button>
-                <div class="absolute bottom-0 right-0 translate-y-full translate-x-1/3 hidden  bg-white p-6 "
-                  id="searchBox">
-                  <div class="flex items-center">
+                <div class="absolute bottom-0 right-0 translate-y-full hidden  bg-white py-6 "
+                  ref="searchBox">
                     <input type="text"
-                      class=" border-0 bg-transparent placeholder:text-secondary  focus:border-0 focus:ring-secondary focus:outline-0   "
+                      class="mx-6 border-0 text-fog-400 bg-fog-100  placeholder:text-secondary  focus:border-0 focus:ring-secondary focus:outline-0  mb-4"
                       placeholder="想找什麼？" v-model="searchValue" @keyup="searchFilter">
-                  </div>
                   <template v-if="filteredValue.length">
                     <!-- path: "/products/category/:category/product/:productid", -->
                     <ul>
-                      <li v-for="value in filteredValue" :key="value.id">
+                      <li v-for="value in filteredValue" :key="value.id" class="px-6 hover:text-highlight">
                         <RouterLink :to="`/products/category/${value.category}/product/${value.id}`"
-                          class="block hover:opacity-70 ">{{ value.title }}</RouterLink>
-                        <span class="material-symbols-outlined text-base lg:text-2xl md:hidden">
-                          chevron_right
-                        </span>
+                          class="block">{{ value.title }}</RouterLink>
                       </li>
                     </ul>
                   </template>
+                  <p class="v-else">對不起，找不到你要的商品哦！</p>
                 </div>
               </li>
               <li class="hidden md:block ">
@@ -208,10 +203,6 @@ export default {
                   </span>
                   <span class="font-bold texx-9xl">登入／註冊</span>
                 </RouterLink>
-                 <!-- <RouterLink to="/" class="block over:opacity-70 py-8 md:py-2" v-if="loginStatus" @click="{logout();toggleMenu()}"> 登出</RouterLink>
-                    <RouterLink to="/login" class="block  hover:opacity-70 py-8  md:py-2" @click="toggleMenu" v-else>
-                      登入/註冊
-                    </RouterLink> -->
               </li>
               <li class="">
                 <RouterLink to="/carts" class="md:pl-2  hover:opacity-70">
