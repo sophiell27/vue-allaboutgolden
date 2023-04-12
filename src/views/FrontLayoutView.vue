@@ -187,7 +187,6 @@ export default {
                       </li>
                     </ul>
                   </template>
-                  <p class="v-else">對不起，找不到你要的商品哦！</p>
                 </div>
               </li>
               <li class="hidden md:block ">

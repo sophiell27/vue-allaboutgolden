@@ -85,26 +85,31 @@ export default defineStore('frontStore', {
         });
     },
     addCart(product, productQty = 1) {
-      let qty = productQty;
-      let method = 'post';
-      let url = `${VITE_API}api/${VITE_PATH}/cart`;
-      if (product.qty) {
-        method = 'put';
-        url = `${VITE_API}api/${VITE_PATH}/cart/${product.id}`;
-        qty += product.qty;
+      if (this.loginStatus) {
+        let qty = productQty;
+        let method = 'post';
+        let url = `${VITE_API}api/${VITE_PATH}/cart`;
+        if (product.qty) {
+          method = 'put';
+          url = `${VITE_API}api/${VITE_PATH}/cart/${product.id}`;
+          qty += product.qty;
+        }
+        const data = {
+          product_id: product.id,
+          qty,
+        };
+        axios[method](url, { data })
+          .then(() => {
+            this.toastMessge('已加入購物車！');
+            this.getCarts();
+          })
+          .catch(() => {
+            this.alertMessage('加入購物車發生錯誤');
+          });
+      } else {
+        this.alertMessage('請先登入');
+        this.$router.push('/login');
       }
-      const data = {
-        product_id: product.id,
-        qty,
-      };
-      axios[method](url, { data })
-        .then(() => {
-          this.toastMessge('已加入購物車！');
-          this.getCarts();
-        })
-        .catch(() => {
-          this.alertMessage('加入購物車發生錯誤');
-        });
     },
     emptyCart() {
       axios
