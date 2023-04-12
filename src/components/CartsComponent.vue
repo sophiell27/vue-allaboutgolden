@@ -41,7 +41,7 @@ export default {
 </script>
 <template>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 ">
+    <table class="w-full text-sm text-left text-fog-500 ">
       <thead class="font-extrabold text-4.5 text-fog-500 bg-fog-200 whitespace-nowrap">
         <tr>
           <th scope="col" class="px-6 py-3 hidden md:block">
@@ -64,7 +64,7 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b hover:bg-gray-50 " v-for="item in carts" :key="item.id">
+        <tr class="bg-white border-b hover:bg-fog-100 " v-for="item in carts" :key="item.id">
           <td class="px-2 py-4 md:px-6 hidden md:block">
             <img :src="item.product.imageUrl" :alt="item.product.title" class="w-20">
           </td>
@@ -89,7 +89,7 @@ export default {
             </button>
           </td>
         </tr>
-        <tr class="bg-white border-b hover:bg-gray-50" v-if="cartTotal < 900">
+        <tr class="bg-white border-b hover:bg-fog-100" v-if="cartTotal < 900">
           <td class="px-2 py-4 md:px-6 hidden md:block"></td>
           <td class="px-2 py-4 md:px-6 hidden md:block"></td>
           <td class="px-2 py-4 md:px-6">運費</td>
@@ -100,7 +100,7 @@ export default {
         </tr>
       </tbody>
       <tfoot>
-        <tr class="font-semibold text-gray-900 dark:text-white">
+        <tr class="font-semibold text-dark dark:text-white">
           <td class="px-2 py-4 md:px-6 hidden md:block"></td>
           <td colspan="2"><span v-if="cartTotal >= 900">已達免運費門檻</span> <span v-else>未達免運費門檻</span></td>
           <!-- <td></td> -->
