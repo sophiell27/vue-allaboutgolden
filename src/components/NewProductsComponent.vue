@@ -1,8 +1,12 @@
 <script>
 import FrontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
+import PillBtnComponent from './PillBtnComponent.vue';
 
 export default {
+  components: {
+    PillBtnComponent,
+  },
   methods: {
     ...mapActions(FrontStore, ['getProducts']),
   },
@@ -17,7 +21,6 @@ export default {
 <template>
   <!-- 上架product  -->
   <ul class="newArrival grid grid-cols-12 md:gap-x-14 md:mb-6">
-    <!-- 87% 91% 98% 100% -->
     <li
       class="col-span-12 mb-6 text-center overflow-hidden group hover:shadow-lg2 rounded-lg2 md:last:hidden md:col-span-6 lg:col-span-4  lg:[&:nth-child(2)]:block"
       data-aos="fade-left" v-for=" product in products.slice(products.length - 3)" :key="product.id">
@@ -31,12 +34,9 @@ export default {
       </RouterLink>
     </li>
   </ul>
-  <RouterLink to="/products" class="flex justify-center">
-    <button type="button" class="btn  flex items-center text-sm md:text-h6 lg:btn-md xl:btn-lg">
-      <span class="pl-1 lg:pl-2">看更多產品</span>
-      <span class="material-symbols-outlined ml-3 text-base lg:text-2xl">
-        chevron_right
-      </span>
-    </button>
-  </RouterLink>
+  <div class="flex justify-center">
+    <PillBtnComponent>
+      看更多產品
+    </PillBtnComponent>
+  </div>
 </template>

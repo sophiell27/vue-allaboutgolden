@@ -1,5 +1,10 @@
 <script>
+import PillBtnComponent from './PillBtnComponent.vue';
+
 export default {
+  components: {
+    PillBtnComponent,
+  },
   props: ['products'],
 };
 </script>
@@ -15,16 +20,13 @@ export default {
         <div class="min-h-[54px] mb-1 text-4.5">
           <h2> {{ product.title }}</h2>
         </div>
-        <p class="text-highlight text-sm font-extrabold">NT$ 790</p>
-      </RouterLink>
-    </li>
-  </ul>
-  <RouterLink to="/products" class="flex justify-center">
-    <button type="button" class="btn  flex items-center text-sm md:text-h6 lg:btn-md xl:btn-lg">
-      <span class="pl-1 lg:pl-2">看更多產品</span>
-      <span class="material-symbols-outlined ml-3 text-base lg:text-2xl">
-        chevron_right
-      </span>
-    </button>
-  </RouterLink>
+      <p class="text-highlight text-sm font-extrabold">NT$ 790</p>
+    </RouterLink>
+  </li>
+</ul>
+  <div class="flex justify-center">
+    <PillBtnComponent>
+      看更多產品
+    </PillBtnComponent>
+  </div>
 </template>

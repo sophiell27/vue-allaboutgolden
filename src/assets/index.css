@@ -1,45 +1,68 @@
 @import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap');
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-  font-family: "cwTeXYen", 微軟正黑體,sans-serif;
-  letter-spacing: 0.05em;
-  @apply bg-fog-100 text-secondary;
-  overflow-x: hidden;
-}
-img{
-    vertical-align: middle;
+@layer base {
+  *,
+  *::before,
+  *::after{
+    box-sizing: border-box;
+  }
+  html {
+    font-family: 'cwTeXYen', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Roboto, Arial, sans-serif;
+    @apply text-secondary;
+    @apply bg-fog-100;
+  }
+  img{
     max-width: 100%;
     height: auto;
+    vertical-align: middle;
+  }
 }
 
-@layer components{
-    .btn{
-        @apply bg-secondary;
-        border-radius: 50px;
-        color: white;
-        padding: 8px 16px;
-    }
-    .btn-md {
-        padding: 12px 24px;
-    }
-    .btn-lg{
-        padding: 16px 32px;
-    }
-    .squareBtn{
-        @apply bg-secondary;
-        border-radius: 5px;
-        padding: 2px 4px;
-    }
-    .highlightBtn{
-        @apply bg-highlight;
-        border-radius: 10px;
-    }
+@layer components {
+  .pillBtn {
+    padding: 8px 8px 8px 16px;
+    border-radius: 50px;
+    color: #fff;
+    display: flex;
+    justify-items: center;
+    @apply bg-secondary text-sm;
+  }
+  .pillBtn .material-symbols-outlined {
+    margin-left: 4px;
+    @apply text-sm;
+  }
+  .pillBtn:hover {
+    @apply text-dark bg-primary;
+  }
+  .pillBtn-lg {
+    padding: 16px 16px 16px 32px;
+    @apply text-base;
+  }
+  .pillBtn-lg .material-symbols-outlined {
+    margin-left: 12px;
+    @apply text-base;
+  }
+  .titleDash{
+    position: relative;
+    z-index: -1;
+  }
+  .titleDash::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 4px;
+    width: 32px;
+    @apply bg-primary;
+  }
 }
 
 @layer utilities {

@@ -1,7 +1,11 @@
 <script>
 import { gsap, Back, Bounce } from 'gsap';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 export default {
+  components: {
+    PillBtnComponent,
+  },
   methods: {
     dogAnimate() {
       const tl = gsap.timeline({
@@ -35,7 +39,8 @@ export default {
 };
 </script>
 <template>
-  <section class="bg-[url('@/assets/images/layout/mainBanner-sm.svg')] bg-cover -mt-24  pb-[184px] mb-6 overflow-hidden md:-mt-[108px] md:bg-[url('@/assets/images/layout/mainBanner-lg.svg')]">
+  <section
+    class="bg-[url('@/assets/images/layout/mainBanner-sm.svg')] bg-cover -mt-24  pb-[184px] mb-6 overflow-hidden md:-mt-[108px] md:bg-[url('@/assets/images/layout/mainBanner-lg.svg')]">
     <div class="container pt-48">
       <img src="../assets/images/layout/All-About-Golden-Retrievers-text.svg" alt="All about golden retrievers"
         class="w-[200px] mb-4 lg:w-[340px] lg:mb-8">
@@ -44,16 +49,16 @@ export default {
         <br class="mb-2">
         享受免運優惠！
       </h3>
-      <RouterLink to="/products" >
-        大家都買什麼
-        <span class="material-symbols-outlined">
-          chevron_right
-        </span>
-      </RouterLink>
-      <button type="button" class="pillBtn">
-      </button>
+      <!-- <RouterLink to="/products"> -->
+        <div class="relative z-10">
+          <PillBtnComponent>
+          大家都買什麼
+        </PillBtnComponent>
+        </div>
+      <!-- </RouterLink> -->
       <div class="w-full relative">
-        <img src="@/assets/images/dog.svg" alt="dog image" class="dogAni absolute -left-10 -top-20 w-[400px] overflow-hidden md:w-[500px] md:left-10 md:-top-32 lg:w-[600px] lg:left-52">
+        <img src="@/assets/images/dog.svg" alt="dog image"
+          class="dogAni absolute -left-10 -top-20 w-[400px] overflow-hidden md:w-[500px] md:left-10 md:-top-32 lg:w-[600px] lg:left-52">
         <img src="@/assets/images/dogBall.svg" alt="football image"
           class="ballAni absolute top-20 left-[300px] w-[135px] md:w-44 md:left-96 lg:left-[700px]">
       </div>
