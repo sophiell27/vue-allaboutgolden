@@ -18,23 +18,9 @@ const router = createRouter({
           path: '',
           component: () => import('@/views/customers/HomeView.vue'),
         },
-        // {
-        //   path: 'products',
-        //   component: () => import('@/views/customers/ProductsView.vue'),
-        //   children: [
-        //     {
-        //       path: '',
-        //       component: () => import('@/views/customers/AllProductlistView.vue'),
-        //     },
-        //     {
-        //       path: 'category/:category',
-        //       component: () => import('@/views/customers/FilteredeProductlistView.vue'),
-        //     },
-        //   ],
-        // },
         {
           path: 'products',
-          component: () => import('@/views/customers/ProductsView2.vue'),
+          component: () => import('@/views/customers/ProductsView.vue'),
           children: [
             {
               path: '',
@@ -42,7 +28,7 @@ const router = createRouter({
             },
             {
               path: 'category/:category',
-              component: () => import('@/views/customers/ProductsDisplayView.vue'),
+              component: () => import('../views/customers/ProductlistFilteredeView.vue'),
             },
           ],
         },

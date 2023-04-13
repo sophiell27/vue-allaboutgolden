@@ -25,15 +25,10 @@ export default {
     ...mapActions(frontStore, ['getProducts']),
   },
   mounted() {
-    const { category } = this.$route.params;
-    if (category) {
-      this.getProducts(category);
-    } else {
-      this.getProducts();
-    }
+    this.getProducts();
   },
 };
 </script>
 <template>
-  <ProductListComponent :products="currentCategory === '全部商品'? products:filteredProducts" ></ProductListComponent>
+  <ProductListComponent :products="products"></ProductListComponent>
 </template>
