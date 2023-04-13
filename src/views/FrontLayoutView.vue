@@ -172,7 +172,7 @@ export default {
             </div>
             <ul class="flex items-start">
               <li class="relative pr-4">
-                <button type="button" class="md:px-2 hover:opacity-70">
+                <button type="button" class="md:px-2 hover:opacity-70" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal">
                   <span class="material-symbols-outlined leading-none" ref="searchButton">
                     search
                   </span>

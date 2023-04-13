@@ -1,46 +1,30 @@
 <script>
 import frontStore from '@/stores/frontStore';
 import { mapActions } from 'pinia';
-import NewProductsComponent from '@/components/NewProductsComponent.vue';
 
 export default {
-  props: ['products'],
-  components: {
-    NewProductsComponent,
+  data() {
+    return {};
   },
+  props: ['products'],
   methods: {
-    ...mapActions(frontStore, ['getProducts', 'addCart']),
+    ...mapActions(frontStore, ['addCart']),
   },
 };
 </script>
 <template>
-  <div class="sm:px-8">
-    <div class="" v-if="!products.length">
-      <p class="text-center text-highlight">正在努力上架新品了～</p>
-      <div class=" mt-14 lg:mt-20">
-        <RouterLink to="/products">
-          <button type="button" class="text-4.5 text-center mb-6 hover:opacity-70 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto  after:h-1 after:bg-primary md:after:right-auto ">先看看其他商品</button>
-        </RouterLink>
-        <NewProductsComponent></NewProductsComponent>
-      </div>
-    </div>
-    <ul class="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 xl:grid-cols-4" v-else>
-      <li class="text-center rounded-lg2 hover:shadow-lg2" v-for="product in products" :key="`filter${product.id}`">
-        <!-- "/products/category/:category/product/:productid" -->
-        <RouterLink :to="`/products/category/${product.category}/product/${product.id}`" class="">
-          <img :src="product.imageUrl" alt="" class="mb-2 h-[250px] md:h-[280px] w-full  object-cover rounded-t-lg">
-          <div class="min-h-[54px] mb-1 text-4.5">
-            <h2>{{ product.title }}</h2>
-          </div>
-          <p class="text-highlight text-sm font-extrabold">NT$ {{ product.price }}</p>
-        </RouterLink>
-        <button type="button" class="btn rounded-[5px] flex items-center justify-center mx-auto mb-4"
-          @click="addCart(product)">
-          <span class="material-symbols-outlined leading-none ">
-            shopping_cart
-          </span>
-        </button>
-      </li>
-    </ul>
+  <div class="container">
+    <ul class="grid grid-cols-6 gap-4 mb-4" v-if="products?.length">
+    <li class="col-span-6 rounded-lg2 mb-4 group hover:shadow-lg2 hover:rounded-lg2 hover:bg-primary hover:text-dark md:col-span-3 lg:col-span-2" v-for="product in products" :key="product.id">
+      <RouterLink :to="`/products/category/${product.category}/product/${product.id}`" class="flex flex-col justify-between mb-1">
+        <div>
+          <img :src="product.imageUrl" alt="product image" class="block rounded-t-lg2 w-full h-[360px] object-cover object-top mb-2 ">
+          <h4 class="text-lg text-center mb-1">{{ product.title }}</h4>
+        </div>
+        <p class="text-sm font-extrabold text-center text-highlight">NT$ 350</p>
+      </RouterLink>
+      <button type="button" class="material-symbols-outlined mb-1 flex mx-auto" @click="addCart(product.id)">shopping_cart</button>
+    </li>
+  </ul>
   </div>
 </template>

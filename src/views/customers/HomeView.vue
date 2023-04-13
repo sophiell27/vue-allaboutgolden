@@ -4,7 +4,8 @@ import { mapActions, mapState } from 'pinia';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import HeroComponent from '@/components/HeroComponent.vue';
-import RelatedProductsComponent from '@/components/RelatedProductsComponent.vue';
+// import RelatedProductsComponent from '@/components/RelatedProductsComponent.vue';
+import ProductListComponent from '@/components/ProductListComponent.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 export default {
@@ -15,13 +16,13 @@ export default {
   },
   components: {
     HeroComponent,
-    RelatedProductsComponent,
+    ProductListComponent,
   },
   methods: {
     ...mapActions(frontStore, ['getProducts']),
   },
   computed: {
-    ...mapState(frontStore, ['products']),
+    ...mapState(frontStore, ['products', 'getNewProducts']),
   },
   mounted() {
     this.getProducts();
@@ -96,10 +97,10 @@ export default {
       <img src="@/assets/images/news/news-sm.svg" alt="news image" class="block mb-6 md:mb-12 md:hidden">
     </RouterLink>
     <div class="mb-6 md:mb-12">
-      <h2 class="text-h4 text-center pb-4 mb-5 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary
-                                                                                md:mb-7">
+      <h2 class="text-h4 text-center pb-4 mb-5 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-7">
         最新上架</h2>
-      <RelatedProductsComponent :products="products"></RelatedProductsComponent>
+        <ProductListComponent :products="getNewProducts"></ProductListComponent>
+      <!-- <RelatedProductsComponent :products="products"></RelatedProductsComponent> -->
     </div>
   </div>
   <!-- 全寬圖 -->

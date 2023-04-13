@@ -5,6 +5,16 @@ import Swal from 'sweetalert2';
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default defineStore('frontStore', {
   state: () => ({
+    categories: [
+      '全部商品',
+      '配件配飾',
+      '居家配件',
+      '床上用品',
+      '科技配件',
+      '衣物大全',
+      '有狗亂入',
+    ],
+    currentCategory: '',
     products: [],
     tempProduct: {},
     carts: [],
@@ -16,6 +26,10 @@ export default defineStore('frontStore', {
   getters: {
     cartTotal: ({ carts }) => carts.reduce((a, b) => a + b.final_total, 0),
     cartlength: ({ carts }) => carts.length,
+    getNewProducts: ({ products }) => products.slice(-3),
+    /* eslint-disable implicit-arrow-linebreak */
+    getFilterCategoryProducts: ({ filteredProducts }) =>
+      filteredProducts.slice(-3),
   },
   actions: {
     login(value) {
@@ -40,23 +54,30 @@ export default defineStore('frontStore', {
       this.loginStatus = false;
       this.router.replace('/');
     },
-    async getProducts() {
+    async getProducts(category = '') {
       this.isLoading = true;
-      const result = async () => {
-        try {
-          const res = await axios.get(
-            `${VITE_API}api/${VITE_PATH}/products/all`,
-          );
-          this.products = res.data.products;
-          this.isLoading = false;
+      const url = `${VITE_API}api/${VITE_PATH}/products/all`;
+      await axios
+        .get(url)
+        .then((res) => {
+          const { products } = res.data;
+          if (category) {
+            this.currentCategory = category;
+            const newProducts = products.filter(
+              (item) => item.category === category,
+            );
+            this.filteredProducts = newProducts;
+          } else {
+            this.currentCategory = '全部商品';
+            this.products = products;
+          }
           return true;
-        } catch {
+        })
+        .catch(() => {
           this.isLoading = false;
           this.alertMessage('取得產品列表發生錯誤');
           return false;
-        }
-      };
-      return result();
+        });
     },
     getSingleProduct(productId) {
       this.isLoading = true;

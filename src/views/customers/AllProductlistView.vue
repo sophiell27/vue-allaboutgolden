@@ -1,7 +1,7 @@
 <script>
 import frontStore from '@/stores/frontStore';
 import { mapState, mapActions } from 'pinia';
-import ProductListComponent from '@/components/ProductListComponent.vue';
+import ProductListComponent from '../../components/ProductListComponent.vue';
 
 export default {
   data() {
