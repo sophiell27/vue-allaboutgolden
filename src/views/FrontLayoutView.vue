@@ -1,7 +1,7 @@
 <script>
 import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-import _ from 'lodash';
+// import _ from 'lodash';
 import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 export default {
@@ -50,23 +50,6 @@ export default {
       mainLogo.classList[addClass]('h-10', 'md:h-14', 'flex', 'mt-auto');
       mainLogo.classList[removeClass]('h-12', 'md:h-21', 'flex-none');
     },
-    toggleSearchBox(e) {
-      const { searchButton, searchBox } = this.$refs;
-      if (e.target === searchButton) {
-        searchBox.classList.toggle('hidden');
-      } else if (!searchBox.contains(e.target)) {
-        searchBox.classList.add('hidden');
-      }
-      this.searchValue = '';
-      this.filteredValue = [];
-    },
-    searchFilter: _.debounce(function filterSearch() {
-      const value = this.searchValue;
-      (async () => {
-        await this.getProducts();
-      })();
-      this.filteredValue = this.products.filter((item) => item.title.includes(value));
-    }, 500),
   },
   watch: {
     $route(n) {
