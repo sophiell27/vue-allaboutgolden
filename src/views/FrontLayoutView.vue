@@ -81,7 +81,7 @@ export default {
 };
 </script>
 <template>
-  <LoadingComponent />
+  <LoadingComponent  v-model:active="isLoading" :can-cancel="true" :is-full-page="fullPage" />
   <SearchModal ref="searchModal"/>
   <div class="relative ">
     <!-- top news  -->

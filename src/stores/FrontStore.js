@@ -28,8 +28,11 @@ export default defineStore('frontStore', {
     cartlength: ({ carts }) => carts.length,
     getNewProducts: ({ products }) => products.slice(-3),
     /* eslint-disable implicit-arrow-linebreak */
-    getFilterCategoryProducts: ({ filteredProducts }) =>
-      filteredProducts.slice(-3),
+    getFilterCategoryProducts: ({ filteredProducts }) => {
+      if (filteredProducts.length) {
+        filteredProducts.slice(-3);
+      }
+    },
   },
   actions: {
     login(value) {
@@ -60,6 +63,7 @@ export default defineStore('frontStore', {
       await axios
         .get(url)
         .then((res) => {
+          this.isLoading = false;
           const { products } = res.data;
           if (category) {
             this.currentCategory = category;

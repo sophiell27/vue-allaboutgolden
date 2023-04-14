@@ -2,7 +2,7 @@
 import frontStore from '@/stores/frontStore';
 import { mapState, mapActions } from 'pinia';
 import BreadrumbComponent from '@/components/BreadrumbComponent.vue';
-import RelatedProductsComponent from '@/components/RelatedProductsComponent.vue';
+import ProductListComponent from '@/components/ProductListComponent.vue';
 
 export default {
   data() {
@@ -13,16 +13,16 @@ export default {
   },
   components: {
     BreadrumbComponent,
-    RelatedProductsComponent,
+    ProductListComponent,
   },
   computed: {
-    ...mapState(frontStore, ['products', 'tempProduct', 'filterProducts', 'isLoading', 'fullPage']),
+    ...mapState(frontStore, ['products', 'tempProduct', 'getFilterCategoryProducts']),
   },
   methods: {
-    ...mapActions(frontStore, ['getSingleProduct', 'addCart', 'filterProductList']),
+    ...mapActions(frontStore, ['getSingleProduct', 'addCart', 'getProducts']),
   },
   mounted() {
-    this.filterProductList(this.$route.params.category);
+    this.getProducts(this.$route.params.category);
     this.getSingleProduct(this.$route.params.productid);
   },
   watch: {
@@ -39,8 +39,7 @@ export default {
 </script>
 
 <template>
-  <LoadingComponent v-model:active="isLoading" :is-full-page="fullPage" />
-  <div class="container">
+  <div class="container" data-aos="zoom-in">
     <BreadrumbComponent :tempProduct="tempProduct"></BreadrumbComponent>
     <div class="grid grid-cols-12 gap-x-6">
       <img :src="tempProduct.imageUrl" :alt="tempProduct.title"
@@ -77,7 +76,7 @@ export default {
     </div>
     <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
       <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">相關產品</p>
-      <RelatedProductsComponent :products="filterProducts"></RelatedProductsComponent>
+      <ProductListComponent :products="getFilterCategoryProducts"></ProductListComponent>
     </div>
   </div>
 </template>
