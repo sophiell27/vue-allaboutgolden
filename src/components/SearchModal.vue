@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     ...mapActions(frontStore, ['getProducts']),
-    toggleSearch() {
+    showSearchModal() {
       this.searchValue = '';
       this.filteredValue = [];
       this.searchModal.show();

@@ -1,8 +1,8 @@
 <script>
 import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-// import _ from 'lodash';
 import PillBtnComponent from '@/components/PillBtnComponent.vue';
+import SearchModal from '@/components/SearchModal.vue';
 
 export default {
   data() {
@@ -15,6 +15,7 @@ export default {
   },
   components: {
     PillBtnComponent,
+    SearchModal,
   },
   computed: {
     ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage', 'loginStatus']),
@@ -50,6 +51,9 @@ export default {
       mainLogo.classList[addClass]('h-10', 'md:h-14', 'flex', 'mt-auto');
       mainLogo.classList[removeClass]('h-12', 'md:h-21', 'flex-none');
     },
+    showSearchModal() {
+      this.$refs.searchModal.showSearchModal();
+    },
   },
   watch: {
     $route(n) {
@@ -78,6 +82,7 @@ export default {
 </script>
 <template>
   <LoadingComponent />
+  <SearchModal ref="searchModal"/>
   <div class="relative ">
     <!-- top news  -->
     <RouterLink to="/products" class="bg-primary py-1 fixed top-0 left-0 right-0 z-30 hover:opacity-60">
@@ -155,26 +160,9 @@ export default {
             </div>
             <ul class="flex items-start">
               <li class="relative pr-4">
-                <button type="button" class="md:px-2 hover:opacity-70" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal">
-                  <span class="material-symbols-outlined leading-none" ref="searchButton">
+                <button type="button" class="md:px-2 hover:opacity-70 material-symbols-outlined" ref="searchButton" @click="showSearchModal">
                     search
-                  </span>
                 </button>
-                <div class="absolute bottom-0 right-0 translate-y-full hidden  bg-white py-6 "
-                  ref="searchBox">
-                    <input type="text"
-                      class="mx-6 border-0 text-fog-400 bg-fog-100  placeholder:text-secondary  focus:border-0 focus:ring-secondary focus:outline-0  mb-4"
-                      placeholder="想找什麼？" v-model="searchValue" @keyup="searchFilter">
-                  <template v-if="filteredValue.length">
-                    <!-- path: "/products/category/:category/product/:productid", -->
-                    <ul>
-                      <li v-for="value in filteredValue" :key="value.id" class="px-6 hover:text-highlight">
-                        <RouterLink :to="`/products/category/${value.category}/product/${value.id}`"
-                          class="block">{{ value.title }}</RouterLink>
-                      </li>
-                    </ul>
-                  </template>
-                </div>
               </li>
               <li class="hidden md:block ">
                 <RouterLink to="/" class="flex items-center md:px-2  hover:opacity-70" v-if="loginStatus" @click="logout">
