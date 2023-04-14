@@ -42,33 +42,53 @@ export default {
 </script>
 
 <template>
-  <div class="container flex flex-col h-full">
-    <h1 class="text-h4 text-center mb-8">訂單列表</h1>
-    <table class="w-full mb-auto" v-if="orders">
-      <thead class="border-b border-b-secondary">
-        <tr>
-          <th>日期</th>
-          <th class="hidden md:block">訂單編號</th>
-          <th>訂單內容</th>
-          <th>總計</th>
-          <th>付款狀態</th>
-        </tr>
-      </thead>
-      <tbody class="text-center mb-2">
-        <tr v-for="order in orders" :key="order.create_at" class="hover:bg-fog-200">
-          <td class="text-xs">{{ getFormatDate(order.create_at) }}</td>
-          <td class="hidden text-xs md:block">{{ order.id }}</td>
-          <td>
-            <template v-for="item in order.products " :key="`item${item.id}`">
-              <p> {{ `${item.product.title} x ${item.qty}` }}</p>
-            </template>
-          </td>
-          <td class="text-xs">NT$ {{ order.total }}</td>
-          <td :class="{ 'text-highlight border-b-highlight': !order.is_paid }"> {{ order.is_paid ? "已付款" : "未付款" }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <PaginationComponent :pagination="orderPagination" @getpage="getOrders"></PaginationComponent>
+  <div class="container">
+    <h1 class="titleDash text-h4 text-center mb-8">訂單列表</h1>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-fog-500 ">
+        <thead class="font-extrabold text-4.5 text-fog-500 bg-fog-200 whitespace-nowrap">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              日期
+            </th>
+            <th scope="col" class="px-6 py-3">
+              訂單編號
+            </th>
+            <th scope="col" class="px-6 py-3">
+              訂單內容
+            </th>
+            <th scope="col" class="px-6 py-3">
+              總計
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="hidden md:block">付款狀態</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b hover:bg-fog-100 " v-for="order in orders" :key="order.create_at">
+            <td class="px-2 py-4 md:px-6">
+              {{ getFormatDate(order.create_at) }}
+            </td>
+            <td class="px-2 py-4 md:px-6  text-xs">
+              {{ order.id }}
+            </td>
+            <td class="px-2 py-4 text-xs md:px-6 ">
+              <template v-for="item in order.products " :key="`item${item.id}`">
+                <p> {{ `${item.product.title} x ${item.qty}` }}</p>
+              </template>
+            </td>
+            <td class="px-2 py-4 md:px-6 text-xs">
+              NT $ {{ order.total }}
+            </td>
+            <td class="px-2 py-4 md:px-6" :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
+              {{ order.is_paid ? "已付款" : "未付款" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+  <PaginationComponent :pagination="orderPagination" @getpage="getOrders"></PaginationComponent>
 </template>

@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <nav class="mb-8 border-t border-t-secondary pt-4" v-if="pagination">
+  <nav class="mb-8 border-t-secondary pt-4" v-if="pagination">
     <ul class="flex justify-center items-center">
       <li class="">
         <a :href="`/admin/products/${pagination.current_page - 1}`"
