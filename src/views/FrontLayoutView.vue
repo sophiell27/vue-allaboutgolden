@@ -138,12 +138,12 @@ export default {
                       產品一覽
                     </RouterLink>
                   </li>
-                  <li
+                  <!-- <li
                     class="md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full  md:px-4 lg:px-9">
                     <a href="#" class="block  hover:opacity-70 pt-6 pb-8 md:py-2">
                       黃金專欄
                     </a>
-                  </li>
+                  </li> -->
                   <li class="md:px-4 lg:px-9" v-if="loginStatus">
                     <RouterLink to="/user/orders/1" class="block over:opacity-70 py-8 md:py-2" @click="toggleMenu">
                       查詢訂單

@@ -43,7 +43,7 @@ export default {
 
 <template>
   <div class="container">
-    <h1 class="titleDash text-h4 text-center mb-8">訂單列表</h1>
+    <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-7">訂單列表</h2>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-fog-500 ">
         <thead class="font-extrabold text-4.5 text-fog-500 bg-fog-200 whitespace-nowrap">
