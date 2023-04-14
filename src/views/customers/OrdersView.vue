@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container pt-10 md:pt-16">
     <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-7">訂單列表</h2>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-fog-500 ">

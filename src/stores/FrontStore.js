@@ -67,6 +67,7 @@ export default defineStore('frontStore', {
         .then((res) => {
           this.isLoading = false;
           const { products } = res.data;
+          this.products = products;
           if (category) {
             this.currentCategory = category;
             const newProducts = products.filter(
@@ -75,7 +76,6 @@ export default defineStore('frontStore', {
             this.filteredProducts = newProducts;
           } else {
             this.currentCategory = '全部商品';
-            this.products = products;
           }
           return true;
         })

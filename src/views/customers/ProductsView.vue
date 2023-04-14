@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <main class="relative">
+  <main class="container pt-10 md:pt-16 relative">
     <NavCategoryComponent></NavCategoryComponent>
     <div class="pt-12">
       <RouterView />

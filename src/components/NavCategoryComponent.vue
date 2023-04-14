@@ -29,7 +29,7 @@ export default {
 </script>
 <template>
   <button type="button"
-    class="w-full flex items-center justify-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:text-highlight"
+    class="w-full flex items-center justify-center p-2  text-fog-500 rounded-lg lg:hidden hover:text-highlight"
     ref="categoryBtn" @click="toggleCategoryMenu"> <span>
       {{ currentCategory }} <span class="material-symbols-outlined text-sm ml-1 "> expand_more</span>
       <!-- expand_less  -->
@@ -39,10 +39,10 @@ export default {
     @click="toggleCategoryMenu">
     <!--  -->
     <!-- fixed bottom-0  -->
-    <ul class="w-full font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-white lg:bg-transparent " ref="categoryList">
+    <ul class="w-full font-medium flex flex-col p-4 md:p-0 mt-4 border border-fog-100 rounded-lg bg-white lg:bg-transparent " ref="categoryList">
       <li class="" v-for=" (category, index) in categories" :key="'cat' + category">
         <RouterLink :to="index === 0 ? '/products' : `/products/category/${category}`"
-          class="block py-2 pl-3 pr-4 text-fog-500 rounded hover:bg-gray-100 "> {{ category }}
+          class="block py-2 pl-3 pr-4 text-fog-500 rounded hover:bg-fog-200 "> {{ category }}
         </RouterLink>
       </li>
     </ul>
