@@ -80,7 +80,7 @@ export default {
           <button type="button" class="px-2 py-1 rounded-e-md bg-fog-200 hover:bg-primary hover:text-dark"
             @click="tempQty += 1"> + </button>
           <button type="button"
-            class="bg-secondary py-2 px-4 rounded-md text-white ml-4 hover:bg-primary hover:text-dark" @click="addCart(tempProduct, tempQty)">
+            class="bg-secondary py-2 px-4 rounded-md text-white ml-4 hover:bg-primary hover:text-dark" @click="addCart(product, tempQty)">
             <span class="hidden md:block">加入購物車</span><span class="material-symbols-outlined md:hidden">
               shopping_cart
             </span></button>

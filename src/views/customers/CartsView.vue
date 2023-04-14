@@ -1,17 +1,17 @@
 <script>
 import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
-import NewProductsComponent from '@/components/NewProductsComponent.vue';
+import ProductListComponent from '@/components/ProductListComponent.vue';
 import CartsComponent from '@/components/CartsComponent.vue';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
   components: {
-    NewProductsComponent,
+    ProductListComponent,
     CartsComponent,
   },
   computed: {
-    ...mapState(frontStore, ['carts', 'cartTotal', 'loginStatus']),
+    ...mapState(frontStore, ['carts', 'cartTotal', 'loginStatus', 'getNewProducts']),
   },
   methods: {
     ...mapActions(frontStore, ['getCarts', 'alertMessage']),
@@ -59,7 +59,7 @@ export default {
       <p
         class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">
         繼續選購產品</p>
-      <NewProductsComponent></NewProductsComponent>
+      <ProductListComponent :products="getNewProducts"></ProductListComponent>
     </div>
   </div>
 </template>

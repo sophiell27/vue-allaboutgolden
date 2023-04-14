@@ -23,7 +23,7 @@ export default {
         </div>
         <p class="text-sm font-extrabold text-center text-highlight">NT$ 350</p>
       </RouterLink>
-      <button type="button" class="material-symbols-outlined mb-1 flex mx-auto" @click="addCart(product.id)">shopping_cart</button>
+      <button type="button" class="material-symbols-outlined mb-1 flex mx-auto" @click="addCart(product)">shopping_cart</button>
     </li>
   </ul>
   </div>

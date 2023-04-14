@@ -112,6 +112,7 @@ export default defineStore('frontStore', {
         });
     },
     addCart(product, productQty = 1) {
+      console.log(product, productQty);
       if (this.loginStatus) {
         let qty = productQty;
         let method = 'post';
@@ -135,7 +136,7 @@ export default defineStore('frontStore', {
           });
       } else {
         this.alertMessage('請先登入');
-        this.$router.push('/login');
+        this.router.push('/login');
       }
     },
     emptyCart() {

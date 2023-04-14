@@ -112,7 +112,7 @@ export default {
       </div>
     </div>
     <div class="flex items-center justify-between">
-      <RouterLink to="/carts">
+      <RouterLink to="/user/carts">
         <button class="flex items-center text-4.5 ">
           <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
             chevron_left
