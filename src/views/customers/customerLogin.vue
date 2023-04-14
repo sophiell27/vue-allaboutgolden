@@ -1,6 +1,6 @@
 <script>
 import frontStore from '@/stores/frontStore';
-import { mapActions, mapState } from 'pinia';
+import { mapActions } from 'pinia';
 import LoginFormComponent from '@/components/LoginFormComponent.vue';
 
 export default {
@@ -9,9 +9,6 @@ export default {
   },
   components: {
     LoginFormComponent,
-  },
-  computed: {
-    ...mapState(frontStore, ['isLoading', 'fullPage']),
   },
   methods: {
     ...mapActions(frontStore, ['login']),

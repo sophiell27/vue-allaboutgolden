@@ -24,6 +24,7 @@ export default {
 </script>
 
 <template>
+  
   <main class="relative">
     <NavCategoryComponent></NavCategoryComponent>
     <div class="pt-12">

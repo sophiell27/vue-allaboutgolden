@@ -36,26 +36,31 @@ export default defineStore('frontStore', {
   },
   actions: {
     login(value) {
-      const localData = JSON.parse(localStorage.getItem('login'));
-      if (localData) {
-        const { username, password } = localData;
-        const data = {
-          username: value.登入名稱,
-          password: value.登入密碼,
-        };
-        if (username === data.username && password === data.password) {
-          this.loginStatus = true;
-          this.router.go(-1);
-          this.toastMessge('歡迎回來！');
-        }
+      const localData = JSON.parse(localStorage.getItem(value.登入名稱));
+      if (localData === value.登入密碼) {
+        this.loginStatus = true;
+        this.toastMessge('歡迎回來！');
+        this.router.go(-1);
       } else {
-        this.alertMessage('不成功登入');
+        this.alertMessage('登入不成功');
         this.loginStatus = false;
       }
     },
     logout() {
       this.loginStatus = false;
       this.router.replace('/');
+    },
+    register(value) {
+      const login = JSON.parse(localStorage.getItem(value.註冊名稱));
+      if (login) {
+        this.alertMessage('此會員已登記，請登入');
+        this.router.replace('/login');
+      } else {
+        localStorage.setItem(value.註冊名稱, JSON.stringify(value.註冊密碼));
+        this.toastMessge('恭喜！你已成功登記！');
+        this.loginStatus = true;
+        this.router.replace('/');
+      }
     },
     async getProducts(category = '') {
       this.isLoading = true;
