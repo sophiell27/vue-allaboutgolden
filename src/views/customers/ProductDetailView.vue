@@ -3,6 +3,7 @@ import frontStore from '@/stores/frontStore';
 import { mapState, mapActions } from 'pinia';
 import BreadrumbComponent from '@/components/BreadrumbComponent.vue';
 import ProductListComponent from '@/components/ProductListComponent.vue';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
@@ -15,6 +16,7 @@ export default {
   components: {
     BreadrumbComponent,
     ProductListComponent,
+    PillBtnComponent,
   },
   computed: {
     ...mapState(frontStore, ['getFilterCategoryProducts']),
@@ -90,6 +92,11 @@ export default {
     <div class="">
       <h2 class="titleDash after:mx-0 mb-6 ">相關產品</h2>
       <ProductListComponent :products="getFilterCategoryProducts"></ProductListComponent>
+      <div class="flex justify-center">
+      <PillBtnComponent :dynamicPath="'/products'">
+        看更多產品
+      </PillBtnComponent>
+    </div>
     </div>
   </div>
 </template>

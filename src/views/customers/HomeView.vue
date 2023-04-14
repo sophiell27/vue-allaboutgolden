@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import HeroComponent from '@/components/HeroComponent.vue';
 import ProductListComponent from '@/components/ProductListComponent.vue';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 export default {
@@ -16,6 +17,7 @@ export default {
   components: {
     HeroComponent,
     ProductListComponent,
+    PillBtnComponent,
   },
   methods: {
     ...mapActions(frontStore, ['getProducts']),
@@ -99,10 +101,14 @@ export default {
         <img src="@/assets/images/news/news-sm.svg" alt="news image" class="block mb-6 md:mb-12 md:hidden">
       </RouterLink>
       <section class="mb-6 md:mb-12">
-        <h2
-          class="titleDash text-h4 text-center text-dark pb-5 mb-4">
+        <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-4">
           最新上架</h2>
         <ProductListComponent :products="getNewProducts"></ProductListComponent>
+        <div class="flex justify-center">
+          <PillBtnComponent :dynamicPath="'/products'">
+            看更多產品
+          </PillBtnComponent>
+        </div>
       </section>
     </div>
     <!-- 全寬圖 -->
@@ -111,8 +117,7 @@ export default {
     <div class="container">
       <!-- 我們願意承諾您 -->
       <section class="mb-12">
-        <h2
-          class="titleDash text-h4 text-center text-dark pb-5 mb-4">
+        <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-4">
           我們願意承諾您</h2>
         <ul class="rounded-lg2 shadow-lg2 bg-white pt-8 pb-11 px-13 grid grid-cols-12 gap-y-9 md:gap-x-9 lg:gap-x-4">
           <li class="col-span-12 md:col-start-2 md:col-span-5 xl:col-start-0 xl:col-span-3">
@@ -136,8 +141,7 @@ export default {
       </section>
       <!-- 顧客好評推薦 -->
       <section class="">
-        <h2
-          class="titleDash text-h4 text-center text-dark pb-5 mb-7">
+        <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-7">
           顧客好評推薦</h2>
         <ul class="grid grid-cols-2 gap-4 md:gap-6">
           <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70">
@@ -227,7 +231,8 @@ export default {
               </div>
             </RouterLink>
           </li>
-      </ul>
-    </section>
-  </div>
-</main></template>
+        </ul>
+      </section>
+    </div>
+  </main>
+</template>

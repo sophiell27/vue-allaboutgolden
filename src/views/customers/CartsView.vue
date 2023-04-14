@@ -3,12 +3,14 @@ import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
 import ProductListComponent from '@/components/ProductListComponent.vue';
 import CartsComponent from '@/components/CartsComponent.vue';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
   components: {
     ProductListComponent,
     CartsComponent,
+    PillBtnComponent,
   },
   computed: {
     ...mapState(frontStore, ['carts', 'cartTotal', 'loginStatus', 'getNewProducts']),
@@ -56,10 +58,13 @@ export default {
       <CartsComponent></CartsComponent>
     </template>
     <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
-      <p
-        class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">
-        繼續選購產品</p>
+      <h2 class="titleDash text-center mb-6" :class="{' after:mx-0 text-start': carts.length}">繼續選購產品</h2>
       <ProductListComponent :products="getNewProducts"></ProductListComponent>
+      <div class="flex justify-center">
+          <PillBtnComponent :dynamicPath="'/products'">
+            看更多產品
+          </PillBtnComponent>
+        </div>
     </div>
   </div>
 </template>
