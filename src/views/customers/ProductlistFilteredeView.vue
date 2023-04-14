@@ -11,22 +11,22 @@ export default {
     ProductListComponent,
   },
   computed: {
-    ...mapState(frontStore, ['products', 'filterProducts']),
+    ...mapState(frontStore, ['products', 'filteredProducts']),
   },
   methods: {
-    ...mapActions(frontStore, ['getProducts', 'filterProductList', 'fetchData']),
+    ...mapActions(frontStore, ['getProducts']),
   },
   watch: {
     $route(n) {
-      this.filterProductList(n.params.category);
+      this.getProducts(n.params.category);
     },
   },
   mounted() {
-    this.filterProductList(this.$route.params.category);
+    this.getProducts(this.$route.params.category);
   },
 };
 </script>
 
 <template>
-  <ProductListComponent :products="filterProducts"></ProductListComponent>
+  <ProductListComponent :products="filteredProducts"></ProductListComponent>
 </template>

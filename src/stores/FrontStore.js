@@ -18,7 +18,7 @@ export default defineStore('frontStore', {
     products: [],
     tempProduct: {},
     carts: [],
-    filterProducts: [],
+    filteredProducts: [],
     isLoading: false,
     fullPage: true,
     loginStatus: false,
@@ -28,11 +28,8 @@ export default defineStore('frontStore', {
     cartlength: ({ carts }) => carts.length,
     getNewProducts: ({ products }) => products.slice(-3),
     /* eslint-disable implicit-arrow-linebreak */
-    getFilterCategoryProducts: ({ filteredProducts }) => {
-      if (filteredProducts.length) {
-        filteredProducts.slice(-3);
-      }
-    },
+    getFilterCategoryProducts: ({ filteredProducts }) =>
+      filteredProducts?.slice(-3),
   },
   actions: {
     login(value) {
@@ -157,7 +154,7 @@ export default defineStore('frontStore', {
       const filterItems = this.products.filter(
         (item) => item.category === category,
       );
-      this.filterProducts = filterItems;
+      this.filteredProducts = filterItems;
     },
     alertMessage(msg) {
       Swal.fire({

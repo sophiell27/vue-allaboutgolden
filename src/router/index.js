@@ -35,7 +35,7 @@ const router = createRouter({
         // single product page
         {
           path: '/products/category/:category/product/:productid',
-          component: () => import('../views/customers/SingleProductView.vue'),
+          component: () => import('../views/customers/ProductDetailView.vue'),
         },
         {
           path: 'aboutUs',
