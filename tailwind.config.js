@@ -31,8 +31,9 @@ module.exports = {
         "13": "54px",
         "15": "60px",
         "21": "84px"
-      },
+      }, 
       backgroundImage: {
+        'logo': 'url("/src/assets/images/Logo.svg")',
         'hero-pattern-sm': "url('/src/assets/images/layout/mainBanner-sm.svg')",
         'hero-pattern-lg': "url('/src/assets/images/layout/mainBanner-lg.svg')",
         'footerCtaBg-sm': "url('/src/assets/images/layout/joinMemberImg-sm.svg')",

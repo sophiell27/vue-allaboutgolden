@@ -22,13 +22,22 @@ export default {
   },
   methods: {
     ...mapActions(frontStore, ['getCarts', 'getProducts', 'logout']),
-    toggleMenu() {
-      if (this.$route.path === '/products') {
-        document.getElementById('expandMenu').classList.add('hidden');
+    // toggleMenu() {
+    //   if (this.$route.path === '/products') {
+    //     document.getElementById('expandMenu').classList.add('hidden');
+    //   }
+    //   const nav = this.$refs.mainNav;
+    //   const attr = '-translate-x-[200%]';
+    //   nav.classList.toggle(attr);
+    // },
+    toggleBurger() {
+      const el = this.$refs.mainOverlay;
+      el.classList.toggle('hidden');
+    },
+    clickMainOverlay(e) {
+      if (e.target === this.$refs.mainOverlay) {
+        this.toggleBurger();
       }
-      const nav = this.$refs.mainNav;
-      const attr = '-translate-x-[200%]';
-      nav.classList.toggle(attr);
     },
     changeNavbg() {
       const {
@@ -72,17 +81,17 @@ export default {
     this.getCarts();
     window.addEventListener('scroll', this.changeNavbg);
     this.innerWidth = window.innerWidth;
-    window.addEventListener('click', this.toggleSearchBox);
+    window.addEventListener('click', this.clickMainOverlay);
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.changeNavbg);
-    window.removeEventListener('click', this.toggleSearchBox);
+    window.removeEventListener('click', this.clickMainOverlay);
   },
 };
 </script>
 <template>
-  <LoadingComponent  v-model:active="isLoading" :can-cancel="true" :is-full-page="fullPage" />
-  <SearchModal ref="searchModal"/>
+  <LoadingComponent v-model:active="isLoading" :can-cancel="true" :is-full-page="fullPage" />
+  <SearchModal ref="searchModal" />
   <div class="relative ">
     <!-- top news  -->
     <RouterLink to="/products" class="bg-primary py-1 fixed top-0 left-0 right-0 z-30 hover:opacity-60">
@@ -104,68 +113,56 @@ export default {
           <header class="flex justify-between items-center px-6  md:px-0 ">
             <div class="flex items-center">
               <!-- burger -->
-              <button type="button" class="mr-4 hover:opacity-70 md:hidden " @click="toggleMenu">
+              <button type="button" class="mr-4 hover:opacity-70 md:hidden " @click="toggleBurger">
                 <span class="material-symbols-sharp h-3 w-4.5">
                   menu
                 </span>
               </button>
               <!-- logo  -->
-              <a href="#" class="hover:opacity-70">
-                <img src="../assets/images/Logo.svg" alt="遍地黃金logo" class=" my-3 w-auto h-12 md:h-21 lg:mr-7 "
-                  ref="mainLogo">
-              </a>
-              <!-- menu  -->
-              <nav
-                class="absolute z-10  pt-3 shadow-lg2 top-0 left-0 bg-white w-[320px] min-h-screen -translate-x-[200%]  md:static md:translate-x-0 md:w-auto md:px-0 md:pt-0 md:bg-transparent md:min-h-0 md:shadow-none "
-                ref="mainNav">
-                <div class="pl-4.5 pr-7 flex justify-between items-center  md:hidden">
-                  <h1 class="w-[140px] h-12 whitespace-nowrap overflow-hidden text-transparent">
-                    <a href="#"
-                      class="block   w-full h-full bg-[url('../assets/images/Logo.svg')] bg-cover bg-no-repeat ">All
-                      aboute Golden Retrievers</a>
-                  </h1>
-                  <a href="#" @click.prevent="toggleMenu" class="hover:text-highlight">
-                    <span class="material-symbols-sharp">
+              <!-- <a href="#" class="hover:opacity-70">
+                  <img src="../assets/images/Logo.svg" alt="遍地黃金logo" class=" my-3 w-auto h-12 md:h-21 lg:mr-7 "
+                   >
+                </a> -->
+              <h1 class="">
+                <a href="#"
+                  class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain my-3 text-transparent"
+                  ref="mainLogo">遍地黃金</a>
+              </h1>
+              <div class="hidden absolute top-0 bottom-0 left-0 right-0 z-50 bg-dark/10 w-full h-screen "
+                ref="mainOverlay">
+                <nav class="top-7 left-0 text-lg font-bold text-fog-500 bg-white pl-4 pr-6 pt-3 w-3/4 h-screen" id="nav"
+                  ref="nav">
+                  <div class="flex justify-between items-center mb-2">
+                    <img src="@/assets/images/Logo.svg" alt="logo" class="h-12 w-[130px]">
+                    <button type="button" class="material-symbols-outlined" @click="toggleBurger">
                       close
-                    </span>
-                  </a>
-                </div>
-                <ul class="text-fog-500 text-4.5 font-bold flex flex-col items-center md:flex-row md:gap-0  md:text-base">
-                  <!-- dot  -->
-                  <li
-                    class="md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full md:px-4 lg:px-9">
-                    <RouterLink to="/products" class=" block hover:opacity-70 py-8  md:py-2" @click="toggleMenu">
-                      產品一覽
-                    </RouterLink>
-                  </li>
-                  <!-- <li
-                    class="md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full  md:px-4 lg:px-9">
-                    <a href="#" class="block  hover:opacity-70 pt-6 pb-8 md:py-2">
-                      黃金專欄
-                    </a>
-                  </li> -->
-                  <li class="md:px-4 lg:px-9" v-if="loginStatus">
-                    <RouterLink to="/user/orders/1" class="block over:opacity-70 py-8 md:py-2" @click="toggleMenu">
-                      查詢訂單
-                    </RouterLink>
-                  </li>
-                  <li class="md:hidden">
-                    <RouterLink to="/" class="block over:opacity-70 py-8 md:py-2" v-if="loginStatus" @click="{logout();toggleMenu()}">登出</RouterLink>
-                    <RouterLink to="/login" class="block  hover:opacity-70 py-8  md:py-2" @click="toggleMenu" v-else>
-                      登入/註冊
-                    </RouterLink>
-                  </li>
-                </ul>
-              </nav>
+                    </button>
+                  </div>
+                  <ul class="flex flex-col items-center">
+                    <li class="group hover:opacity-70">
+                      <RouterLink to="/products" class="block py-4" @click="toggleBurger">產品一覽</RouterLink>
+                    </li>
+                    <li class="block py-4 hover:opacity-70"><a href="" @click.prevent="toggleBurger">黃金專欄</a></li>
+                    <li class="block py-4 hover:opacity-70">
+                      <RouterLink to="/orders/1" @click.prevent="toggleBurger">查詢訂單</RouterLink>
+                    </li>
+                    <li class="block py-4 hover:opacity-70">
+                      <RouterLink to="/login" @click.prevent="toggleBurger" v-if="!loginStatus">登入 / 註冊</RouterLink>
+                      <RouterLink to="/login" @click.prevent="toggleBurger" @click="logout" v-else>登出</RouterLink>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
             </div>
             <ul class="flex items-start">
               <li class="relative pr-4">
-                <button type="button" class="md:px-2 hover:opacity-70 material-symbols-outlined" ref="searchButton" @click="showSearchModal">
-                    search
+                <button type="button" class=" hover:opacity-70 material-symbols-outlined hover:scale-110"
+                  ref="searchButton" @click="showSearchModal">
+                  search
                 </button>
               </li>
-              <li class="hidden md:block ">
-                <RouterLink to="/" class="flex items-center md:px-2  hover:opacity-70" v-if="loginStatus" @click="logout">
+              <li class="hidden md:block md:pr-4">
+                <RouterLink to="/" class="flex items-center hover:opacity-70" v-if="loginStatus" @click="logout">
                   <span class="material-symbols-outlined leading-none">
                     person
                   </span>
@@ -178,12 +175,13 @@ export default {
                   <span class="font-bold texx-9xl">登入／註冊</span>
                 </RouterLink>
               </li>
-              <li class="">
-                <RouterLink to="/user/carts" class="md:pl-2  hover:opacity-70">
+              <li class="hover:-rotate-12">
+                <RouterLink to="/user/carts" class="md:pl-2  hover:opacity-70 ">
                   <span class="material-symbols-outlined leading-none relative">
                     shopping_cart
                     <div
-                      class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/2 w-6 h-6 bg-dark rounded-full text-white flex justify-center items-center" v-if="loginStatus">
+                      class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/2 w-6 h-6 bg-dark rounded-full text-white flex justify-center items-center"
+                      v-if="loginStatus">
                       <p class="text-[8px] font-inter">
                         {{ cartlength }}
                       </p>
@@ -205,8 +203,7 @@ export default {
   <!-- footer  -->
   <footer class="mt-10 md:mt-20">
     <!-- 立即加入會員 -->
-    <div
-      class="py-6 px-13 bg-footerCtaBg-sm bg-100 bg-center bg-dark flex flex-col items-center">
+    <div class="py-6 px-13 bg-footerCtaBg-sm bg-100 bg-center bg-dark flex flex-col items-center">
       <div class="relative z-20">
         <h2 class="text-4.5 font-bold mb-6 text-white md:text-h2">
           超過<span class="text-primary text-h2 px-1 align-middle md:text-h1">90%</span>的顧客都選擇我們
@@ -215,8 +212,8 @@ export default {
         </h2>
         <div class="flex justify-center">
           <PillBtnComponent :dynamicPath="'/register'">
-          立即加入會員
-        </PillBtnComponent>
+            立即加入會員
+          </PillBtnComponent>
         </div>
       </div>
     </div>
@@ -228,19 +225,21 @@ export default {
             <RouterLink to="/aboutUs" class="md:pr-6 md:border-r-2 md:border-r-fog-300 hover:opacity-70">關於我們</RouterLink>
           </li>
           <li>
-            <RouterLink to="/contactUs" class="md:px-6 md:border-r-2 md:border-r-fog-300 hover:opacity-70">聯絡我們</RouterLink>
+            <RouterLink to="/contactUs" class="md:px-6 md:border-r-2 md:border-r-fog-300 hover:opacity-70">聯絡我們
+            </RouterLink>
           </li>
           <li>
             <RouterLink to="/freight&refund" class="md:px-6 md:border-r-2 md:border-r-fog-300 hover:opacity-70">運費 / 退貨說明
             </RouterLink>
           </li>
-          <li><RouterLink to="/privacy" class="md:pl-6 hover:opacity-70">私隱條款</RouterLink></li>
+          <li>
+            <RouterLink to="/privacy" class="md:pl-6 hover:opacity-70">私隱條款</RouterLink>
+          </li>
         </ul>
         <p class="text-fog-500 text-sm text-center">此網站僅做為前端 <span class="text-xs">Side
             Project</span> 作品練習，
           <br>不做商業用途，謝謝。
         </p>
-      </div>
-    </section>
-  </footer>
-</template>
+    </div>
+  </section>
+</footer></template>
