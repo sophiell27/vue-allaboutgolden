@@ -1,9 +1,26 @@
 <script>
-import NewProductsComponent from '@/components/NewProductsComponent.vue';
+import frontStore from '@/stores/frontStore';
+import { mapActions, mapState } from 'pinia';
+import ProductListComponent from '@/components/ProductListComponent.vue';
+import PillBtnComponent from '@/components/PillBtnComponent.vue';
 
 export default {
   components: {
-    NewProductsComponent,
+    ProductListComponent,
+    PillBtnComponent,
+  },
+  methods: {
+    ...mapActions(frontStore, ['getProducts', 'toastMessge']),
+    submitForm() {
+      this.$refs.contactForm.reset();
+      this.toastMessge('留言已送出！');
+    },
+  },
+  computed: {
+    ...mapState(frontStore, ['getNewProducts']),
+  },
+  mounted() {
+    this.getProducts();
   },
 };
 </script>
@@ -28,17 +45,24 @@ export default {
           </span></p>
       </div>
       <div class="col-span-3 md:col-span-2 ">
-        <div class="flex flex-col">
+        <div class="">
           <p class="mb-4">內容 : </p>
+         <form class="flex flex-col " @submit="submitForm" ref="contactForm">
           <textarea cols="60" rows="10"
             class="mb-4 rounded-lg2 bg-transparent border-fog-300  focus:ring-secondary focus:border-primary"></textarea>
-          <button type="button" class="py-2 px-12 bg-secondary rounded-lg2 text-white self-end">送出</button>
+          <button class="py-2 px-12 bg-secondary rounded-lg2 text-white ml-auto">送出</button>
+         </form>
         </div>
       </div>
     </div>
     <div class=" mt-14 lg:mt-20 ">
-      <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">猜你喜歡的產品</p>
-      <NewProductsComponent></NewProductsComponent>
+      <h2 class="titleDash after:mx-0 mb-6">猜你喜歡的產品</h2>
+      <ProductListComponent :products="getNewProducts"></ProductListComponent>
+        <div class="flex justify-center">
+          <PillBtnComponent>
+            看更多產品
+          </PillBtnComponent>
+        </div>
     </div>
   </div>
 </template>
