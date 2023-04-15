@@ -22,7 +22,7 @@ export default {
           <div class="r">
            <div class="relative">
             <button type="button" class="absolute bottom-0 right-2 material-symbols-outlined mb-1 flex mx-auto text-primary hover:animate-bounce"
-          @click="addCart(product)">shopping_cart</button>
+          @click.prevent="addCart(product)">shopping_cart</button>
             <img :src="product.imageUrl" alt="product image"
               class="block rounded-t-lg2 w-full h-[360px] object-cover object-top mb-2 ">
            </div>
