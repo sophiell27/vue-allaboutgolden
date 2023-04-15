@@ -25,5 +25,10 @@ export default {
 };
 </script>
 <template>
-  <LoginFormComponent :status="'註冊'" @submit-form="register"></LoginFormComponent>
+  <LoginFormComponent :status="'註冊'" @submit-form="register">
+    <template #msg>
+      <RouterLink to="/login" class="mt-5">
+        已是會員？<span class="text-highlight">按此登入</span> </RouterLink>
+    </template>
+  </LoginFormComponent>
 </template>
