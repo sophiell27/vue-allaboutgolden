@@ -7,12 +7,7 @@ import SearchModal from '@/components/SearchModal.vue';
 
 export default {
   data() {
-    return {
-      currentRoute: '',
-      innerWidth: Number,
-      searchValue: '',
-      filteredValue: [],
-    };
+    return {};
   },
   components: {
     PillBtnComponent,
@@ -20,18 +15,10 @@ export default {
     CategoryMenuCompoent,
   },
   computed: {
-    ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage', 'loginStatus']),
+    ...mapState(frontStore, ['cartlength', 'products', 'isLoading', 'fullPage', 'loginStatus']),
   },
   methods: {
     ...mapActions(frontStore, ['getCarts', 'getProducts', 'logout']),
-    // toggleMenu() {
-    //   if (this.$route.path === '/products') {
-    //     document.getElementById('expandMenu').classList.add('hidden');
-    //   }
-    //   const nav = this.$refs.mainNav;
-    //   const attr = '-translate-x-[200%]';
-    //   nav.classList.toggle(attr);
-    // },
     toggleBurger() {
       const el = this.$refs.mainOverlay;
       el.classList.toggle('hidden');
@@ -66,23 +53,9 @@ export default {
       this.$refs.searchModal.showSearchModal();
     },
   },
-  watch: {
-    $route(n) {
-      this.$router.push(n.fullPath);
-      if (n.fullPath !== '/') {
-        this.$refs.mainNav.classList.add('-translate-x-[200%]');
-      }
-    },
-  },
-  provide() {
-    return {
-      getMainNavRef: () => this.$refs.mainNav,
-    };
-  },
   mounted() {
     this.getCarts();
     window.addEventListener('scroll', this.changeNavbg);
-    this.innerWidth = window.innerWidth;
     window.addEventListener('click', this.clickMainOverlay);
   },
   beforeUnmount() {
@@ -120,11 +93,6 @@ export default {
                   menu
                 </span>
               </button>
-              <!-- logo  -->
-              <!-- <a href="#" class="hover:opacity-70">
-                    <img src="../assets/images/Logo.svg" alt="遍地黃金logo" class=" my-3 w-auto h-12 md:h-21 lg:mr-7 "
-                     >
-                  </a> -->
               <h1 class="">
                 <a href="#"
                   class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain my-3 text-transparent"
@@ -133,7 +101,7 @@ export default {
               <div class="hidden absolute top-0 bottom-0 left-0 right-0 z-50 bg-dark/10 w-full h-screen "
                 ref="mainOverlay">
                 <nav class="top-7 left-0 text-lg font-bold text-fog-500 bg-white pl-4 pr-6 pt-3 w-3/4 h-screen" id="nav"
-                  ref="nav">
+                  ref="burgerNav">
                   <div class="flex justify-between items-center mb-2">
                     <img src="@/assets/images/Logo.svg" alt="logo" class="h-12 w-[130px]">
                     <button type="button" class="material-symbols-outlined" @click="toggleBurger">
