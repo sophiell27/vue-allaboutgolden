@@ -46,25 +46,25 @@ export default {
               class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/配件配飾">
                 <img src="@/assets/images/category-img/cat-asseccary.svg" alt="category icon" class="categoryImg"
-                  data-aos="fade-up">
+                data-aos="fade-down" data-aos-delay="300" >
                 <!-- data-aos="fade-up" -->
-                <h3 class="text-4.5">配件配飾</h3>
+                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">配件配飾</h3>
               </RouterLink>
             </li>
             <li
               class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/居家配件">
                 <img src="@/assets/images/category-img/cat-homeDecro.svg" alt="category icon" class="categoryImg"
-                  data-aos="fade-up">
-                <h3 class="text-4.5">居家配件</h3>
+                data-aos="fade-down" data-aos-delay="300" >
+                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">居家配件</h3>
               </RouterLink>
             </li>
             <li
               class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/床上用品">
                 <img src="@/assets/images/category-img/cat-bedding.svg" alt="category icon" class="categoryImg"
-                  data-aos="fade-up">
-                <h3 class="text-4.5">床上用品</h3>
+                data-aos="fade-down" data-aos-delay="300" >
+                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">床上用品</h3>
               </RouterLink>
             </li>
             <li
@@ -72,33 +72,33 @@ export default {
               <RouterLink to="products/category/科技配件">
 
                 <img src="@/assets/images/category-img/cat-tech.svg" alt="category icon" class="categoryImg"
-                  data-aos="fade-up">
-                <h3 class="text-4.5">科技配件</h3>
+                data-aos="fade-down" data-aos-delay="300" >
+                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">科技配件</h3>
               </RouterLink>
             </li>
             <li
               class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/衣物大全">
                 <img src="@/assets/images/category-img/cat-clothing.svg" alt="category icon" class="categoryImg"
-                  data-aos="fade-up">
-                <h3 class="text-4.5">衣物大全</h3>
+                data-aos="fade-down" data-aos-delay="300" >
+                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">衣物大全</h3>
               </RouterLink>
             </li>
             <li
               class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/有狗亂入">
                 <img src="@/assets/images/category-img/cat-petstuff.svg" alt="category icon" class="categoryImg"
-                  data-aos="fade-up">
-                <h3 class="tesx-4.5">有狗亂入</h3>
+                data-aos="fade-down" data-aos-delay="300" >
+                <h3 class="tesx-4.5"  data-aos="fade-up" data-aos-delay="300">有狗亂入</h3>
               </RouterLink>
             </li>
           </ul>
         </div>
       </section>
       <!-- 最新消息 -->
-      <RouterLink to="/products">
-        <img src="@/assets/images/news/news-lg.svg" alt="news image" class="hidden mb-6 md:mb-12  md:block">
-        <img src="@/assets/images/news/news-sm.svg" alt="news image" class="block mb-6 md:mb-12 md:hidden">
+      <RouterLink to="/products" class="relative" >
+          <img src="@/assets/images/news/news-lg.svg" alt="news image" class="hidden mb-6 md:mb-12  md:block" data-aos="fade-right" data-aos-delay="300" >
+          <img src="@/assets/images/news/news-sm.svg" alt="news image" class="block mb-6 md:mb-12 md:hidden" data-aos="fade-right" data-aos-delay="300">
       </RouterLink>
       <section class="mb-6 md:mb-12">
         <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-4">
@@ -113,27 +113,28 @@ export default {
     </div>
     <!-- 全寬圖 -->
     <img src="@/assets/images/layout/dogAndHumanImg-sm.jpg" alt="dog image" class="md:hidden mb-14 w-full">
-    <img src="@/assets/images/layout/dogAndHumanImg-lg.jpg" alt="ball image" class="hidden md:block mb-14 w-full">
+    <img src="@/assets/images/layout/dogAndHumanImg-lg.jpg" alt="human and dog image"
+      class="hidden md:block mb-14 w-full">
     <div class="container">
       <!-- 我們願意承諾您 -->
       <section class="mb-12">
         <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-4">
           我們願意承諾您</h2>
         <ul class="rounded-lg2 shadow-lg2 bg-white pt-8 pb-11 px-13 grid grid-cols-12 gap-y-9 md:gap-x-9 lg:gap-x-4">
-          <li class="col-span-12 md:col-start-2 md:col-span-5 xl:col-start-0 xl:col-span-3">
+          <li class="col-span-12 md:col-start-2 md:col-span-5 xl:col-start-0 xl:col-span-3"  data-aos="fade-up-right" data-aos-delay="100">
             <img src="@/assets/images/promise-img/proImg1.svg" alt="dog image" class="mx-auto">
             <h4 class="-translate-y-2/3 text-center bg-secondary text-white text-lg py-2 px-10 rounded-lg2"> 分享生活實用好物</h4>
           </li>
-          <li class="col-span-12 md:col-span-5 xl:col-span-3">
+          <li class="col-span-12 md:col-span-5 xl:col-span-3" data-aos="fade-up-left" data-aos-delay="100">
             <img src="@/assets/images/promise-img/proImg2.svg" alt="dog image" class="mx-auto">
             <h4 class="-translate-y-2/3 text-center bg-secondary text-white text-lg py-2 px-10 rounded-lg2"> 商品如實描述</h4>
           </li>
-          <li class="col-span-12 md:col-start-2 md:col-span-5 xl:col-start-0 xl:col-span-3">
+          <li class="col-span-12 md:col-start-2 md:col-span-5 xl:col-start-0 xl:col-span-3" data-aos="fade-up-right" >
             <img src="@/assets/images/promise-img/proImg3.svg" alt="dog image" class="mx-auto">
             <h4 class="-translate-y-2/3 text-center bg-secondary text-white text-lg py-2 px-10 rounded-lg2"> 滿 NT$ 900 免運
             </h4>
           </li>
-          <li class="col-span-12 md:col-span-5 xl:col-span-3">
+          <li class="col-span-12 md:col-span-5 xl:col-span-3" data-aos="fade-up-left" >
             <img src="@/assets/images/promise-img/proImg4.svg" alt="dog image" class="mx-auto">
             <h4 class="-translate-y-2/3 text-center bg-secondary text-white text-lg py-2 px-10 rounded-lg2"> 售後無憂有保障</h4>
           </li>
@@ -144,7 +145,7 @@ export default {
         <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-7">
           顧客好評推薦</h2>
         <ul class="grid grid-cols-2 gap-4 md:gap-6">
-          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70">
+          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70" data-aos="flip-up">
             <RouterLink to="/products/category/居家配件/product/-NR4OVodQaSel9f3YUEz" class="md:flex md:justify-start">
               <img src="@/assets/images/recommend-img/recomImg1.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
@@ -159,7 +160,7 @@ export default {
             </RouterLink>
           </li>
           <li
-            class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70 md:flex md:justify-start">
+            class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70 md:flex md:justify-start" data-aos="flip-up">
             <RouterLink to="/products/category/科技配件/product/-NR3OicxXxWeJSTesceW" class="md:flex md:justify-start">
               <img src="@/assets/images/recommend-img/recomImg2.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
@@ -174,7 +175,7 @@ export default {
               </div>
             </RouterLink>
           </li>
-          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70">
+          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70" data-aos="flip-up">
             <RouterLink to="/products/category/居家配件/product/-NR3nAQiL9wk2cxJuPOs" class="md:flex md:justify-start">
               <img src="@/assets/images/recommend-img/recomImg3.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
@@ -188,7 +189,7 @@ export default {
               </div>
             </RouterLink>
           </li>
-          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70">
+          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70" data-aos="flip-up">
             <RouterLink to="/products/category/配件配飾/product/-NPgGEI44BIK6eUHna2C" class="md:flex md:justify-start">
               <img src="@/assets/images/recommend-img/recomImg4.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
@@ -202,7 +203,7 @@ export default {
               </div>
             </RouterLink>
           </li>
-          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70">
+          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70" data-aos="flip-up">
             <RouterLink to="/products/category/科技配件/product/-NR3nntTFRjRIB61p5Xm" class="md:flex md:justify-start">
               <img src="@/assets/images/recommend-img/recomImg5.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
@@ -217,7 +218,7 @@ export default {
               </div>
             </RouterLink>
           </li>
-          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70">
+          <li class="col-span-2 bg-white rounded-2.5xl pt-4 pb-6 px-3 shadow-lg2 lg:col-span-1 md:px-4 hover:opacity-70" data-aos="flip-up">
             <RouterLink to="/products/category/衣物大全/product/-NR3pf06yXUiGU34qnwp" class="md:flex md:justify-start">
               <img src="@/assets/images/recommend-img/recomImg6.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">

@@ -16,7 +16,7 @@ export default {
   <ul class="grid grid-cols-6 gap-4 mb-4" v-if="products?.length">
       <li
         class="col-span-6 rounded-lg2 mb-4 group hover:shadow-lg2 hover:rounded-lg2 hover:bg-primary hover:text-dark md:col-span-3 lg:col-span-2"
-        :class="{ 'md:last:hidden lg:last:block': products.length === 3 }" v-for="product,index in products" :key="product.id" :data-aos="index % 2 === 0 ? 'fade-down' : 'fade-left'" >
+        :class="{ 'md:last:hidden lg:last:block': products.length === 3 }" v-for="product,index in products" :key="product.id" :data-aos="index % 2 === 0 ? 'fade-down' : 'fade-left'" data-aos-delay="500">
         <RouterLink :to="`/products/category/${product.category}/product/${product.id}`"
           class="flex flex-col justify-between mb-1" >
           <div class="r">

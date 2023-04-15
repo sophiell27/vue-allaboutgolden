@@ -183,9 +183,9 @@ export default {
           <br>
           您也值得擁有最優質的購物體驗！
         </h2>
-        <div class="flex justify-center">
-          <PillBtnComponent :dynamicPath="'/register'">
-            立即加入會員
+        <div class="flex justify-center" >
+          <PillBtnComponent :dynamicPath="'/register'" >
+            <span data-aos="flip-down" data-aos-delay="300">立即加入會員</span>
           </PillBtnComponent>
         </div>
       </div>
