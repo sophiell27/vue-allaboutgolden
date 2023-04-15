@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <div class="container flex flex-col items-center">
+  <div class="container flex flex-col items-center pt-10 md:pt-16">
     <h2
       class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
       私隱條款
