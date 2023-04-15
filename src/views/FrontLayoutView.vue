@@ -2,6 +2,7 @@
 import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
 import PillBtnComponent from '@/components/PillBtnComponent.vue';
+import CategoryMenuCompoent from '@/components/CategoryMenuCompoent.vue';
 import SearchModal from '@/components/SearchModal.vue';
 
 export default {
@@ -16,6 +17,7 @@ export default {
   components: {
     PillBtnComponent,
     SearchModal,
+    CategoryMenuCompoent,
   },
   computed: {
     ...mapState(frontStore, ['carts', 'cartlength', 'products', 'isLoading', 'fullPage', 'loginStatus']),
@@ -120,9 +122,9 @@ export default {
               </button>
               <!-- logo  -->
               <!-- <a href="#" class="hover:opacity-70">
-                  <img src="../assets/images/Logo.svg" alt="遍地黃金logo" class=" my-3 w-auto h-12 md:h-21 lg:mr-7 "
-                   >
-                </a> -->
+                    <img src="../assets/images/Logo.svg" alt="遍地黃金logo" class=" my-3 w-auto h-12 md:h-21 lg:mr-7 "
+                     >
+                  </a> -->
               <h1 class="">
                 <a href="#"
                   class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain my-3 text-transparent"
@@ -141,6 +143,9 @@ export default {
                   <ul class="flex flex-col items-center">
                     <li class="group hover:opacity-70">
                       <RouterLink to="/products" class="block py-4" @click="toggleBurger">產品一覽</RouterLink>
+                      <div class="hidden group-hover:block">
+                        <CategoryMenuCompoent @toggle-menu="toggleBurger"></CategoryMenuCompoent>
+                      </div>
                     </li>
                     <li class="block py-4 hover:opacity-70"><a href="" @click.prevent="toggleBurger">黃金專欄</a></li>
                     <li class="block py-4 hover:opacity-70">
@@ -240,6 +245,7 @@ export default {
             Project</span> 作品練習，
           <br>不做商業用途，謝謝。
         </p>
-    </div>
-  </section>
-</footer></template>
+      </div>
+    </section>
+  </footer>
+</template>
