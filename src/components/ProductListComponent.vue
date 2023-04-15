@@ -19,15 +19,17 @@ export default {
         :class="{ 'md:last:hidden lg:last:block': products.length === 3 }" v-for="product in products" :key="product.id">
         <RouterLink :to="`/products/category/${product.category}/product/${product.id}`"
           class="flex flex-col justify-between mb-1">
-          <div>
+          <div class="r">
+           <div class="relative">
+            <button type="button" class="absolute bottom-0 right-2 material-symbols-outlined mb-1 flex mx-auto text-primary hover:animate-bounce"
+          @click="addCart(product)">shopping_cart</button>
             <img :src="product.imageUrl" alt="product image"
               class="block rounded-t-lg2 w-full h-[360px] object-cover object-top mb-2 ">
+           </div>
             <h4 class="text-lg text-center mb-1">{{ product.title }}</h4>
           </div>
           <p class="text-sm font-extrabold text-center text-highlight">NT$ 350</p>
         </RouterLink>
-        <button type="button" class="material-symbols-outlined mb-1 flex mx-auto"
-          @click="addCart(product)">shopping_cart</button>
       </li>
     </ul>
 </template>
