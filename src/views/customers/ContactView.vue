@@ -47,22 +47,20 @@ export default {
       <div class="col-span-3 md:col-span-2 ">
         <div class="">
           <p class="mb-4">內容 : </p>
-         <form class="flex flex-col " @submit="submitForm" ref="contactForm">
-          <textarea cols="60" rows="10"
-            class="mb-4 rounded-lg2 bg-transparent border-fog-300  focus:ring-secondary focus:border-primary"></textarea>
-          <button class="py-2 px-12 bg-secondary rounded-lg2 text-white ml-auto">送出</button>
-         </form>
+          <form class="flex flex-col " @submit="submitForm" ref="contactForm">
+            <textarea cols="60" rows="10"
+              class="mb-4 rounded-lg2 bg-transparent border-fog-300  focus:ring-secondary focus:border-primary"></textarea>
+            <button class="py-2 px-12 bg-secondary rounded-lg2 text-white ml-auto">送出</button>
+          </form>
         </div>
       </div>
+      <h2 class="titleDash after:mx-0 mb-6 mt-14 lg:mt-20 ">猜你喜歡的產品</h2>
     </div>
-    <div class=" mt-14 lg:mt-20 ">
-      <h2 class="titleDash after:mx-0 mb-6">猜你喜歡的產品</h2>
-      <ProductListComponent :products="getNewProducts"></ProductListComponent>
-        <div class="flex justify-center">
-          <PillBtnComponent>
-            看更多產品
-          </PillBtnComponent>
-        </div>
-    </div>
+  </div>
+  <ProductListComponent :products="getNewProducts"></ProductListComponent>
+  <div class="flex justify-center">
+    <PillBtnComponent>
+      看更多產品
+    </PillBtnComponent>
   </div>
 </template>
