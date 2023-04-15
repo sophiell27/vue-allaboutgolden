@@ -30,7 +30,9 @@ module.exports = {
         "4.5": "18px",
         "13": "54px",
         "15": "60px",
-        "21": "84px"
+        "21": "84px",
+        "27": "108px",
+        "38": "152px",
       }, 
       backgroundImage: {
         'logo': 'url("/src/assets/images/Logo.svg")',

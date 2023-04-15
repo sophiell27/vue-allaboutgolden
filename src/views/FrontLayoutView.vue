@@ -44,10 +44,10 @@ export default {
       }
       headerTop.classList[addClass]('bg-fog-100');
       header.classList[removeClass]('bg-transparent');
-      header.classList[addClass]('h-9', '-mt-1', 'md:h-12', 'md:-mt-3');
+      header.classList[addClass]('h-12', '-mt-1', 'md:h-14', 'md:-mt-5');
       header.classList[removeClass]('md:h-auto', 'md:-mt-0');
-      mainLogo.classList[addClass]('h-10', 'md:h-14', 'flex', 'mt-auto');
-      mainLogo.classList[removeClass]('h-12', 'md:h-21', 'flex-none');
+      mainLogo.classList[addClass]('h-10', 'md:h-14', 'flex', 'mt-auto', 'md:w-38');
+      mainLogo.classList[removeClass]('h-12', 'md:h-21', 'flex-none', 'md:w-60');
     },
     showSearchModal() {
       this.$refs.searchModal.showSearchModal();
@@ -93,35 +93,37 @@ export default {
                   menu
                 </span>
               </button>
-              <h1 class="">
+              <h1 class="my-3 ">
                 <a href="#"
-                  class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain my-3 text-transparent"
+                  class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain text-transparent md:w-60 md:h-21 flex-none"
                   ref="mainLogo">遍地黃金</a>
               </h1>
-              <div class="hidden absolute top-0 bottom-0 left-0 right-0 z-50 bg-dark/10 w-full h-screen "
+              <!-- nav  -->
+              <div class="hidden absolute top-0 bottom-0 left-0 right-0 z-50 bg-dark/10 w-full h-screen md:static md:bg-transparent md:block md:h-auto md:w-auto"
                 ref="mainOverlay">
-                <nav class="top-7 left-0 text-lg font-bold text-fog-500 bg-white pl-4 pr-6 pt-3 w-3/4 h-screen" id="nav"
+                <nav class="top-7 left-0 text-lg font-bold text-fog-500 bg-white pl-4 pr-6 pt-3 w-3/4 h-screen md:block md:w-auto md:h-auto md:pt-0 md:bg-transparent" id="nav"
                   ref="burgerNav">
-                  <div class="flex justify-between items-center mb-2">
+                  <div class="flex justify-between items-center mb-2 md:hidden">
                     <img src="@/assets/images/Logo.svg" alt="logo" class="h-12 w-[130px]">
                     <button type="button" class="material-symbols-outlined" @click="toggleBurger">
                       close
                     </button>
                   </div>
-                  <ul class="flex flex-col items-center">
-                    <li class="group hover:opacity-70">
-                      <RouterLink to="/products" class="block py-4" @click="toggleBurger">產品一覽</RouterLink>
-                      <div class="hidden group-hover:block">
+                  <ul class="flex flex-col items-center md:flex-row">
+                    <li class="group hover:opacity-70  md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full md:px-4 lg:px-9">
+                      <RouterLink to="/products" class="block py-4 md:py-1" @click="toggleBurger">產品一覽</RouterLink>
+                      <div class="hidden group-hover:block md:absolute">
                         <CategoryMenuCompoent @toggle-menu="toggleBurger"></CategoryMenuCompoent>
                       </div>
                     </li>
-                    <li class="block py-4 hover:opacity-70"><a href="" @click.prevent="toggleBurger">黃金專欄</a></li>
-                    <li class="block py-4 hover:opacity-70">
-                      <RouterLink to="/orders/1" @click.prevent="toggleBurger">查詢訂單</RouterLink>
+                    <!-- <li class="block py-4  md:py-1 hover:opacity-70 md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full
+                     md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
+                    <li class="block py-4  md:py-1 hover:opacity-70 px-4 lg:px-9" v-if="loginStatus">
+                      <RouterLink to="/user/orders/1" @click.prevent="toggleBurger">查詢訂單</RouterLink>
                     </li>
-                    <li class="block py-4 hover:opacity-70">
+                    <li class="block py-4  md:py-1 hover:opacity-70 md:hidden">
                       <RouterLink to="/login" @click.prevent="toggleBurger" v-if="!loginStatus">登入 / 註冊</RouterLink>
-                      <RouterLink to="/login" @click.prevent="toggleBurger" @click="logout" v-else>登出</RouterLink>
+                      <a  href="#" @click.prevent="toggleBurger" @click="logout" v-else>登出</a>
                     </li>
                   </ul>
                 </nav>
