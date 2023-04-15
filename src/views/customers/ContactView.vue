@@ -54,13 +54,15 @@ export default {
           </form>
         </div>
       </div>
-      <h2 class="titleDash after:mx-0 mb-6 mt-14 lg:mt-20 ">猜你喜歡的產品</h2>
     </div>
-  </div>
-  <ProductListComponent :products="getNewProducts"></ProductListComponent>
-  <div class="flex justify-center">
-    <PillBtnComponent>
-      看更多產品
-    </PillBtnComponent>
+    <div class="">
+      <h2 class="titleDash after:mx-0 mb-6 mt-14 lg:mt-20 ">猜你喜歡的產品</h2>
+      <ProductListComponent :products="getNewProducts"></ProductListComponent>
+      <div class="flex justify-center">
+        <PillBtnComponent>
+          看更多產品
+        </PillBtnComponent>
+      </div>
+    </div>
   </div>
 </template>

@@ -13,8 +13,7 @@ export default {
 };
 </script>
 <template>
-  <div class="container">
-    <ul class="grid grid-cols-6 gap-4 mb-4" v-if="products?.length">
+  <ul class="grid grid-cols-6 gap-4 mb-4" v-if="products?.length">
       <li
         class="col-span-6 rounded-lg2 mb-4 group hover:shadow-lg2 hover:rounded-lg2 hover:bg-primary hover:text-dark md:col-span-3 lg:col-span-2"
         :class="{ 'md:last:hidden lg:last:block': products.length === 3 }" v-for="product in products" :key="product.id">
@@ -31,5 +30,4 @@ export default {
           @click="addCart(product)">shopping_cart</button>
       </li>
     </ul>
-  </div>
 </template>
