@@ -29,6 +29,7 @@ export default {
       this.$swal.fire({
         text: '是否確定刪除訂單 ?',
         confirmButtonText: '確定',
+        confirmButtonColor: '#ED8408',
       }).then((result) => {
         if (result.isConfirmed) {
           this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
@@ -50,47 +51,69 @@ export default {
 </script>
 
 <template>
-  <div class="container flex flex-col h-full" v-if="orders">
-    <OrderComponent ref="orderModal"></OrderComponent>
-    <h1 class="text-h4 text-center mb-8">訂單列表</h1>
-    <table class="w-full mb-auto" v-if="orders">
-      <thead class="border-b border-b-secondary">
-        <tr>
-          <th>日期</th>
-          <th>訂單編號</th>
-          <th>訂單內容</th>
-          <th>總計</th>
-          <th>是否付款</th>
-          <th>編輯</th>
-        </tr>
-      </thead>
-      <tbody class="text-center mb-2">
-        <tr v-for="order in orders" :key="order.create_at">
-          <td>{{ getFormatDate(order.create_at) }}</td>
-          <td>{{ order.id }}</td>
-          <td>
-            <template v-for="item in order.products " :key="`item${item.id}`">
-              <p> {{ `${item.product.title} x ${item.qty}` }}</p>
-
-            </template>
-          </td>
-          <td>NT$ {{ order.total }}</td>
-          <td :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
-            {{ order.is_paid ? "已付款" : "未付款" }}
-          </td>
-          <td class="py-2">
-            <button type="button" class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight"
-              @click="openOrderModal(order)">
+  <div class="container pt-10 md:pt-16">
+    <OrderComponent ref="orderModal" />
+    <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-7">訂單列表</h2>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-fog-500 ">
+        <thead class="font-extrabold text-4.5 text-fog-500 bg-fog-200 whitespace-nowrap">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              日期
+            </th>
+            <th scope="col" class="px-6 py-3">
+              訂單編號
+            </th>
+            <th scope="col" class="px-6 py-3">
+              訂單內容
+            </th>
+            <th scope="col" class="px-6 py-3">
+              總計
+            </th>
+            <th scope="col" class="px-6 py-3">
+              是否付款
+            </th>
+            <th scope="col" class="px-6 py-3">
               編輯
-            </button> /
-            <button type="button" class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight"
-              @click="delOrder(order.id)">
-              刪除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <PaginationComponent :pagination="orderPagination" @getpage="getOrders"></PaginationComponent>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b hover:bg-fog-100 " v-for="order in orders" :key="order.create_at">
+            <td class="px-2 py-4 md:px-6">
+              {{ getFormatDate(order.create_at) }}
+            </td>
+            <td class="px-2 py-4 md:px-6  text-xs whitespace-normal">
+              {{ order.id }}
+            </td>
+            <td class="px-2 py-4 text-xs md:px-6 ">
+              <template v-for="item in order.products " :key="`item${item.id}`">
+                <p> {{ `${item.product.title} x ${item.qty}` }}</p>
+              </template>
+            </td>
+            <td class="px-2 py-4 md:px-6 text-xs">
+              NT $ {{ order.total }}
+            </td>
+            <td class="px-2 py-4 md:px-6 whitespace-nowrap"
+              :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
+              {{ order.is_paid ? "已付款" : "未付款" }}
+            </td>
+            <td class="px-2 py-4 md:px-6">
+              <button type="button"
+                class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight"
+                @click="openOrderModal(order)">
+                編輯
+              </button> /
+              <button type="button"
+                class="pb-px border-b border-b-secondary hover:text-highlight hover:border-b-highlight"
+                @click="delOrder(order.id)">
+                刪除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <PaginationComponent :pagination="orderPagination" @getpage="getOrders" />
+    </div>
   </div>
-</template>
+  <!-- old  --></template>

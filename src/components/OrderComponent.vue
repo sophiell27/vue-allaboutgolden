@@ -15,7 +15,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(adminStore, ['getOrders']),
+    ...mapActions(adminStore, ['getOrders', 'toastMessage', 'alertMessage']),
     openOrderModal(order) {
       this.data = _.cloneDeep(order);
       this.orderModal.show();
@@ -27,17 +27,23 @@ export default {
       };
     },
     changeOrder() {
-      if (window.confirm('是否確定更改訂單資訊？')) {
-        this.$http.put(`${VITE_API}api/${VITE_PATH}/admin/order/${this.data.id}`, { data: this.data })
-          .then(() => {
-            // alert('已成功更改訂單資料')
-            this.closeOrderModal();
-            this.getOrders();
-          })
-          .catch(() => {
-            // alert('更改訂單資料發生錯誤！')
-          });
-      }
+      this.$swal.fire({
+        text: '是否確定更改訂單資訊？',
+        confirmButtonText: '確定',
+        confirmButtonColor: '#ED8408',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$http.put(`${VITE_API}api/${VITE_PATH}/admin/order/${this.data.id}`, { data: this.data })
+            .then(() => {
+              this.closeOrderModal();
+              this.getOrders();
+              this.toastMessage('已成功更改訂單資料');
+            })
+            .catch(() => {
+              this.alertMessage('更改訂單資料發生錯誤！');
+            });
+        }
+      });
     },
   },
   mounted() {
@@ -101,7 +107,7 @@ export default {
                     <v-error-message name="收貨人地址" class="text-highlight"></v-error-message>
                     <!-- <input type="text" class="w-full" rows="2"> -->
                   </div>
-                  <div class="col-span-2">
+                  <div class="col-span-2 md:col-span-1">
                     <label for="receipientMail" class="mb-2 block">電郵：</label>
                     <v-field type="email" id='receipientMail'
                       class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
@@ -117,12 +123,6 @@ export default {
                       <option value="銀行轉賬" selected>銀行轉賬</option>
                       <option value="貨到付款">貨到付款</option>
                     </select>
-                  </div>
-                  <div class="col-span-2 md:col-span-1">
-                    <label for="couponNum" class="mb-2 block">優惠碼：</label>
-                    <input type="text" id='couponNum'
-                      class="w-full rounded-lg px-4 py-2 border-primary focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-primary bg-transparent"
-                      placeholder="請輸入優惠碼" />
                   </div>
                   <div class="mb-3 flex items-center">
                     <input type="checkbox" id='orderPaid'
