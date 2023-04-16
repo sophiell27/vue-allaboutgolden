@@ -33,21 +33,33 @@ export default defineStore('frontStore', {
   },
   actions: {
     login(value) {
+      this.isLoading = true;
       const localData = JSON.parse(localStorage.getItem(value.登入名稱));
       if (localData === value.登入密碼) {
         this.loginStatus = true;
         this.toastMessge('歡迎回來！');
-        this.router.go(-1);
+        if (
+          window.history.state.back === '/login'
+          || window.history.state.back === '/register'
+        ) {
+          this.router.replace('/');
+        } else {
+          this.router.go(-1);
+        }
       } else {
-        this.alertMessage('登入不成功');
         this.loginStatus = false;
+        this.alertMessage('登入不成功');
       }
+      this.isLoading = false;
     },
     logout() {
+      this.isLoading = true;
       this.loginStatus = false;
       this.router.replace('/');
+      this.isLoading = false;
     },
     register(value) {
+      this.loginStatus = true;
       const login = JSON.parse(localStorage.getItem(value.註冊名稱));
       if (login) {
         this.alertMessage('此會員已登記，請登入');
@@ -58,6 +70,7 @@ export default defineStore('frontStore', {
         this.loginStatus = true;
         this.router.replace('/');
       }
+      this.isLoading = false;
     },
     async getProducts(category = '') {
       this.isLoading = true;
@@ -100,6 +113,7 @@ export default defineStore('frontStore', {
         });
     },
     getCarts() {
+      this.isLoading = true;
       axios
         .get(`${VITE_API}api/${VITE_PATH}/cart`)
         .then((res) => {
@@ -112,6 +126,10 @@ export default defineStore('frontStore', {
         });
     },
     addCart(product, productQty = 1) {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
       if (this.loginStatus) {
         let qty = productQty;
         let method = 'post';
@@ -138,28 +156,12 @@ export default defineStore('frontStore', {
         this.router.push('/login');
       }
     },
-    emptyCart() {
-      axios
-        .delete(`${VITE_API}api/${VITE_PATH}/carts`)
-        .then(() => {
-          this.toastMessge('已加入購物車！');
-          this.getCarts();
-        })
-        .catch(() => {
-          this.this.alertMessage('無法清空購物車');
-        });
-    },
-    async filterProductList(category = '') {
-      await this.getProducts();
-      const filterItems = this.products.filter(
-        (item) => item.category === category,
-      );
-      this.filteredProducts = filterItems;
-    },
     alertMessage(msg) {
       Swal.fire({
         text: msg,
-        timer: 1000,
+        confirmButtonColor: '#ED8408',
+        showConfirmButton: true,
+        confirmButtonText: '確定',
       });
     },
     toastMessge(msg) {
