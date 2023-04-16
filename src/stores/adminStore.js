@@ -11,29 +11,48 @@ export default defineStore('adminStore', {
     orderPagination: {},
     isLoading: false,
     fullPage: true,
+    loginStatus: false,
   }),
   actions: {
     changeLoading(status) {
       this.isLoading = status;
     },
-    async checkLogin(path = '/admin') {
+    async checkLogin() {
+      console.log();
       /* eslint-disable */
       const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)goldenToken\s*\=\s*([^;]*).*$)|^.*$/,
-        '$1', 
-      ); 
+        '$1',
+      );
       axios.defaults.headers.common['Authorization'] = token;
-      const result = async () => {
-        try {
-          const res = await axios.post(`${VITE_API}api/user/check`);
-          this.router.push(path);
-          return true;
-        } catch (res_1) {
+      this.isLoading = true;
+      return await axios
+        .post(`${VITE_API}api/user/check`)
+        .then((res) => {
+          this.isLoading = false;
+          this.loginStatus = true;
+          this.router.push('/admin/orders/1');
+          return res;
+        })
+        .catch(() => {
+          this.isLoading = false;
+          if (this.router.currentRoute.value.fullPath !== '/admin/login') {
+            this.router.push('/admin/login');
+          }
+        });
+    },
+    logOut() {
+      axios
+        .post(`${VITE_API}logout`)
+        .then(() => {
+          this.loginStatus = false;
           this.router.push('/admin/login');
-          return false;
-        }
-      };
-      return await result();
+          this.toastMessage('成功登出', 'center');
+        })
+        .catch((err) => {
+          console.dir(err);
+          this.alertMessage('無法登出');
+        });
     },
     async getProducts(page = 1) {
       this.isLoading = true;
@@ -49,7 +68,7 @@ export default defineStore('adminStore', {
         })
         .catch((err) => {
           this.isLoading = false;
-          alert('取得產品列表發生錯誤');
+          this.alertMessage('取得產品列表發生錯誤');
         });
     },
     getOrders(page = 1) {
@@ -64,7 +83,7 @@ export default defineStore('adminStore', {
         })
         .catch((err) => {
           this.isLoading = false;
-          alertMessage('無法取得訂單列表');
+          this.alertMessage('無法取得訂單列表');
         });
     },
     async confirmMessage(msg) {
@@ -76,10 +95,12 @@ export default defineStore('adminStore', {
     alertMessage(msg) {
       Swal.fire({
         text: msg,
-        timer: 1000,
+        confirmButtonColor: '#ED8408',
+        showConfirmButton: true,
+        confirmButtonText: '確定',
       });
     },
-    toastMessge(msg, position = 'top-end') {
+    toastMessage(msg, position = 'top-end') {
       Swal.fire({
         toast: true,
         position,

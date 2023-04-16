@@ -2,36 +2,25 @@
 import adminStore from '@/stores/adminStore';
 import { mapActions, mapState } from 'pinia';
 
-const { VITE_API } = import.meta.env;
 export default {
   data() {
     return {
-      loginStatus: false,
       isActive: '',
     };
   },
   computed: {
-    ...mapState(adminStore, ['isLoading', 'fullPage']),
+    ...mapState(adminStore, ['isLoading', 'fullPage', 'loginStatus']),
   },
   methods: {
-    ...mapActions(adminStore, ['checkLogin', 'toastMessge', 'alertMessage', 'confirmMessage']),
-    logOut() {
-      this.$http.post(`${VITE_API}logout`)
-        .then(() => {
-          this.toastMessge('成功登出', 'center');
-          this.loginStatus = false;
-          this.$router.push('/admin/login');
-        })
-        .catch(() => {
-          this.alertMessage('無法登出');
-        });
-    },
+    ...mapActions(adminStore, ['checkLogin', 'logOut', 'toastMessage']),
   },
   mounted() {
-    this.checkLogin(this.$route.fullPath).then(() => {
-      this.loginStatus = true;
-      this.toastMessge('Welcome Back!');
-    });
+    (async () => {
+      await this.checkLogin();
+      if (this.loginStatus) {
+        this.toastMessage('歡迎回來');
+      }
+    })();
   },
 };
 </script>

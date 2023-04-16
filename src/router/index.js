@@ -92,10 +92,10 @@ const router = createRouter({
         {
           path: '',
           redirect: '/admin/orders/1',
-          // component: ()=>import("@/views/admin/AdminOrderView.vue"),
+          // component: () => import('@/views/admin/AdminOrderView.vue'),
         },
         {
-          path: 'orders',
+          path: 'orders/1',
           component: () => import('@/views/admin/AdminOrderView.vue'),
         },
         {

@@ -36,6 +36,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$route.params.orderpage);
     this.getOrders(this.$route.params.orderpage);
   },
 };

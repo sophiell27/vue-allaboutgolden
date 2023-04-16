@@ -24,7 +24,7 @@ export default {
           this.changeLoading(false);
           const { token, expired } = res.data;
           document.cookie = `goldenToken=${token};expires=${new Date(expired)}`;
-          this.$router.push('/admin');
+          this.$router.push('/admin/orders/1');
         })
         .catch(() => {
           this.changeLoading(false);
