@@ -17,7 +17,7 @@ export default {
     OrderComponent,
   },
   methods: {
-    ...mapActions(adminStore, ['getOrders', 'toastMessge']),
+    ...mapActions(adminStore, ['getOrders', 'toastMessage', 'alertMessage']),
     getFormatDate(stamp) {
       const newStamp = new Date(stamp * 1000);
       return `${newStamp.getDate()}/${newStamp.getMonth()}/${newStamp.getFullYear()}`;
@@ -34,10 +34,10 @@ export default {
           this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
             .then(() => {
               this.getOrders();
-              this.toastMessge('已成功刪除一筆訂單');
+              this.toastMessage('成功刪除一筆訂單');
             })
             .catch(() => {
-              this.toastMessge('無法刪除一筆訂單');
+              this.alertMessage('無法刪除一筆訂單');
             });
         }
       });
