@@ -91,26 +91,26 @@ const router = createRouter({
       children: [
         {
           path: '',
-          redirect: '/admin/orders/1',
-          // component: () => import('@/views/admin/AdminOrderView.vue'),
+          component: () => import('@/views/admin/AdminOrderView.vue'),
         },
         {
           path: 'orders/1',
           component: () => import('@/views/admin/AdminOrderView.vue'),
         },
         {
+          path: 'orders',
+          redirect: '/admin/orders/1',
+        },
+        {
           path: 'orders/:orderpage',
           component: () => import('@/views/admin/AdminOrderView.vue'),
-          // children: [
-          //   {
-          //     path: ":pathMatch(.*)*",
-          //     component:()=>("@/views/NotFound.vue")
-          //   },
-          // ]
         },
         {
           path: 'products',
           redirect: '/admin/products/1',
+        },
+        {
+          path: 'products/1',
           component: () => import('@/views/admin/AdminPorductsView.vue'),
         },
         {

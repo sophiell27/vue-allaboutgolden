@@ -17,7 +17,7 @@ export default defineStore('adminStore', {
     changeLoading(status) {
       this.isLoading = status;
     },
-    async checkLogin() {
+    async checkLogin(path = '/admin/orders/1') {
       console.log();
       /* eslint-disable */
       const token = document.cookie.replace(
@@ -31,7 +31,7 @@ export default defineStore('adminStore', {
         .then((res) => {
           this.isLoading = false;
           this.loginStatus = true;
-          this.router.push('/admin/orders/1');
+          this.router.push(path);
           return res;
         })
         .catch(() => {
@@ -93,7 +93,7 @@ export default defineStore('adminStore', {
       });
     },
     alertMessage(msg) {
-      Swal.fire({
+      return Swal.fire({
         text: msg,
         confirmButtonColor: '#ED8408',
         showConfirmButton: true,

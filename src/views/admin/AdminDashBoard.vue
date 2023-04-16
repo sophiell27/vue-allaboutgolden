@@ -16,7 +16,7 @@ export default {
   },
   mounted() {
     (async () => {
-      await this.checkLogin();
+      await this.checkLogin(this.$route.fullPath);
       if (this.loginStatus) {
         this.toastMessage('歡迎回來');
       }
@@ -32,13 +32,13 @@ export default {
         <nav class="flex justify-between items-center text-dark font-bold text-4.5 ">
           <ul class="flex items-center gap-x-6 py-6">
             <li class="origin-center hover:scale-y-110">
-              <RouterLink to="/admin/orders"
+              <RouterLink to="/admin/orders/1"
                 class="py-2 md:py-4 border-b border-b-transparent hover:border-b hover:border-b-dark ">所有訂單
               </RouterLink>
             </li>
             <li>
-              <RouterLink to="/admin/products"
-                class="py-2 md:py-4 border-b border-b-transparent hover:border-b hover:border-b-dark  ">產品管理
+              <RouterLink to="/admin/products/1"
+                class="py-2 md:py-4 border-b border-b-transparent hover:border-b hover:border-b-dark">產品管理
               </RouterLink>
             </li>
             <li><a href="" class="py-2 md:py-4 border-b border-b-transparent hover:border-b hover:border-b-dark "></a>

@@ -26,22 +26,19 @@ export default {
       this.$refs.orderModal.openOrderModal(order);
     },
     delOrder(orderId) {
-      this.$swal.fire({
-        text: '是否確定刪除訂單 ?',
-        confirmButtonText: '確定',
-        confirmButtonColor: '#ED8408',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
-            .then(() => {
-              this.getOrders();
-              this.toastMessage('成功刪除一筆訂單');
-            })
-            .catch(() => {
-              this.alertMessage('無法刪除一筆訂單');
-            });
-        }
-      });
+      this.alertMessage('是否確定刪除訂單?')
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
+              .then(() => {
+                this.getOrders();
+                this.toastMessage('成功刪除一筆訂單');
+              })
+              .catch(() => {
+                this.alertMessage('無法刪除一筆訂單');
+              });
+          }
+        });
     },
   },
   mounted() {
@@ -113,7 +110,7 @@ export default {
           </tr>
         </tbody>
       </table>
-    <PaginationComponent :pagination="orderPagination" @getpage="getOrders" />
+      <PaginationComponent :pagination="orderPagination" @getpage="getOrders" />
     </div>
   </div>
-  <!-- old  --></template>
+</template>

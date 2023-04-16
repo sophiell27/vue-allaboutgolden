@@ -15,7 +15,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(adminStore, ['getProducts', 'alertMessage']),
+    ...mapActions(adminStore, ['getProducts', 'alertMessage', 'toastMessage']),
     openProductModal(product = {
       imagesUrl: [''],
     }) {
@@ -29,9 +29,12 @@ export default {
       };
     },
     delImg() {
-      if (window.confirm('是否確定刪除圖片？')) {
-        this.temp.imageUrl = '';
-      }
+      this.alertMessage('是否確定刪除圖片？')
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.temp.imageUrl = '';
+          }
+        });
     },
     uploadFile(refindex) {
       const [file] = refindex === 'filtINput'
@@ -39,26 +42,23 @@ export default {
         : this.$refs[refindex][0].files;
       const formData = new FormData();
       formData.append('file-to-upload', file);
-
-      this.$swal.fire({
-        text: '是否確定上傳檔案？',
-        confirmButtonText: '確定',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.$http
-            .post(`${VITE_API}api/${VITE_PATH}/admin/upload`, formData)
-            .then((res) => {
-              if ((refindex === 'filtINput')) {
-                this.temp.imageUrl = res.data.imageUrl;
-              } else {
-                this.temp.imagesUrl[this.temp.imagesUrl.length - 1] = res.data.imageUrl;
-              }
-            })
-            .catch(() => {
-              this.alertMessage('更新圖片發生錯誤！');
-            });
-        }
-      });
+      this.alertMessage('是否確定上傳檔案？')
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.$http
+              .post(`${VITE_API}api/${VITE_PATH}/admin/upload`, formData)
+              .then((res) => {
+                if ((refindex === 'filtINput')) {
+                  this.temp.imageUrl = res.data.imageUrl;
+                } else {
+                  this.temp.imagesUrl[this.temp.imagesUrl.length - 1] = res.data.imageUrl;
+                }
+              })
+              .catch(() => {
+                this.alertMessage('更新圖片發生錯誤！');
+              });
+          }
+        });
     },
     editProduct() {
       let method = 'post';
@@ -71,10 +71,10 @@ export default {
         .then(() => {
           this.getProducts();
           this.closeProductModal();
-          // this.toastMessge('成功編輯產品資料');
+          this.toastMessage('成功編輯產品資料');
         })
         .catch(() => {
-          // this.alertMessage('無法編輯商品！');
+          this.alertMessage('無法編輯商品！');
           this.closeProductModal();
         });
     },
