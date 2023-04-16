@@ -66,7 +66,7 @@ export default {
 
 <template>
   <div class="container">
-    <BreadrumbComponent :tempProduct="product"></BreadrumbComponent>
+    <BreadrumbComponent :tempProduct="product" />
     <div class="flex mb-12 sm:flex-row">
       <img :src="product.imageUrl" alt="product photo" class="object-cover mb-6 w-1/2 h-full md:h-auto md:object-contain">
       <article class="px-4">
@@ -91,7 +91,7 @@ export default {
     </div>
     <div class="">
       <h2 class="titleDash after:mx-0 mb-6 ">相關產品</h2>
-      <ProductListComponent :products="getFilterCategoryProducts"></ProductListComponent>
+      <ProductListComponent :products="getFilterCategoryProducts" />
       <div class="flex justify-center">
       <PillBtnComponent :dynamicPath="'/products'">
         看更多產品

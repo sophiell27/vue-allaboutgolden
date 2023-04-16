@@ -17,7 +17,7 @@ export default {
     OrderComponent,
   },
   methods: {
-    ...mapActions(adminStore, ['getOrders']),
+    ...mapActions(adminStore, ['getOrders', 'toastMessge']),
     getFormatDate(stamp) {
       const newStamp = new Date(stamp * 1000);
       return `${newStamp.getDate()}/${newStamp.getMonth()}/${newStamp.getFullYear()}`;
@@ -26,16 +26,21 @@ export default {
       this.$refs.orderModal.openOrderModal(order);
     },
     delOrder(orderId) {
-      if (window.confirm('是否確定刪除訂單？')) {
-        this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
-          .then(() => {
-            this.getOrders();
-            // alert('已成功刪除一筆訂單');
-          })
-          .catch(() => {
-            // alert('無法刪除一筆訂單');
-          });
-      }
+      this.$swal.fire({
+        text: '是否確定刪除訂單 ?',
+        confirmButtonText: '確定',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/order/${orderId}`)
+            .then(() => {
+              this.getOrders();
+              this.toastMessge('已成功刪除一筆訂單');
+            })
+            .catch(() => {
+              this.toastMessge('無法刪除一筆訂單');
+            });
+        }
+      });
     },
   },
   mounted() {
@@ -47,8 +52,8 @@ export default {
 <template>
   <div class="container flex flex-col h-full" v-if="orders">
     <OrderComponent ref="orderModal"></OrderComponent>
-  <h1 class="text-h4 text-center mb-8">訂單列表</h1>
-  <table class="w-full mb-auto" v-if="orders">
+    <h1 class="text-h4 text-center mb-8">訂單列表</h1>
+    <table class="w-full mb-auto" v-if="orders">
       <thead class="border-b border-b-secondary">
         <tr>
           <th>日期</th>

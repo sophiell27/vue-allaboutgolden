@@ -55,11 +55,11 @@ export default {
     </h2>
     <p class="text-center text-highlight" v-if="!carts.length">購物車沒有內容！</p>
     <template v-else>
-      <CartsComponent></CartsComponent>
+      <CartsComponent />
     </template>
     <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
       <h2 class="titleDash text-center mb-6" :class="{' after:mx-0 text-start': carts.length}">繼續選購產品</h2>
-      <ProductListComponent :products="getNewProducts"></ProductListComponent>
+      <ProductListComponent :products="getNewProducts" />
       <div class="flex justify-center">
           <PillBtnComponent :dynamicPath="'/products'">
             看更多產品

@@ -22,5 +22,5 @@ export default {
 };
 </script>
 <template>
-  <img src="../assets/images/dog.svg" alt="" class="dogImg w-24 md:w-64" ref="dogImg">
+  <img src="@/assets/images/dog.svg" alt="" class="dogImg w-24 md:w-64" ref="dogImg">
 </template>

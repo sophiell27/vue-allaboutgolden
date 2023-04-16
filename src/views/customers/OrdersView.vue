@@ -90,5 +90,5 @@ export default {
     </div>
   </div>
 
-  <PaginationComponent :pagination="orderPagination" @getpage="getOrders"></PaginationComponent>
+  <PaginationComponent :pagination="orderPagination" @getpage="getOrders" />
 </template>

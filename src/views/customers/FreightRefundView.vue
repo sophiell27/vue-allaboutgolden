@@ -32,6 +32,6 @@ export default {
 
       </ol>
     </div>
-    <DogComponent></DogComponent>
+    <DogComponent />
   </div>
 </template>

@@ -57,7 +57,7 @@ export default {
     </div>
     <div class="">
       <h2 class="titleDash after:mx-0 mb-6 mt-14 lg:mt-20 ">猜你喜歡的產品</h2>
-      <ProductListComponent :products="getNewProducts"></ProductListComponent>
+      <ProductListComponent :products="getNewProducts" />
       <div class="flex justify-center">
         <PillBtnComponent>
           看更多產品

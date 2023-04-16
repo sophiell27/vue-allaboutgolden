@@ -30,5 +30,5 @@ export default {
 };
 </script>
 <template>
-    <ProductListComponent :products="products"></ProductListComponent>
+    <ProductListComponent :products="products" />
 </template>

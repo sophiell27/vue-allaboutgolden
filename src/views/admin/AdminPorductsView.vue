@@ -14,20 +14,26 @@ export default {
     ProductModalComponent,
   },
   methods: {
-    ...mapActions(adminStore, ['getProducts']),
+    ...mapActions(adminStore, ['getProducts', 'alertMessage']),
     openProductModal(product) {
       this.$refs.productModal.openProductModal(product);
     },
     delProduct(productId) {
-      if (window.confirm('是否確定刪除商品？')) {
-        this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/product/${productId}`)
-          .then(() => {
-            this.getProducts();
-          })
-          .catch(() => {
-            // alert('無法刪除商品')
-          });
-      }
+      this.$swal.fire({
+        text: '是否確定刪除商品？',
+        confirmButtonText: '確定',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$http.delete(`${VITE_API}api/${VITE_PATH}/admin/product/${productId}`)
+            .then(() => {
+              this.getProducts();
+              this.toastMessge('已成功刪除一筆產品資料');
+            })
+            .catch(() => {
+              this.alertMessage('無法刪除商品');
+            });
+        }
+      });
     },
   },
   computed: {

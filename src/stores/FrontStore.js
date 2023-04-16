@@ -112,7 +112,6 @@ export default defineStore('frontStore', {
         });
     },
     addCart(product, productQty = 1) {
-      console.log(product, productQty);
       if (this.loginStatus) {
         let qty = productQty;
         let method = 'post';

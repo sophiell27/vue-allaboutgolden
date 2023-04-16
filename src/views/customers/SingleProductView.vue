@@ -40,7 +40,7 @@ export default {
 
 <template>
   <div class="container" data-aos="zoom-in">
-    <BreadrumbComponent :tempProduct="tempProduct"></BreadrumbComponent>
+    <BreadrumbComponent :tempProduct="tempProduct" />
     <div class="grid grid-cols-12 gap-x-6">
       <img :src="tempProduct.imageUrl" :alt="tempProduct.title"
         class="col-span-12  mb-6 rounded-lg2 shadow-lg2 md:col-span-4 md:mb-0">
@@ -76,7 +76,7 @@ export default {
     </div>
     <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
       <p class="text-4.5 text-center mb-6 md:text-start relative after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:after:right-auto">相關產品</p>
-      <ProductListComponent :products="getFilterCategoryProducts"></ProductListComponent>
+      <ProductListComponent :products="getFilterCategoryProducts" />
     </div>
   </div>
 </template>

@@ -39,20 +39,26 @@ export default {
         : this.$refs[refindex][0].files;
       const formData = new FormData();
       formData.append('file-to-upload', file);
-      if (window.confirm('是否確定上傳檔案？')) {
-        this.$http
-          .post(`${VITE_API}api/${VITE_PATH}/admin/upload`, formData)
-          .then((res) => {
-            if ((refindex === 'filtINput')) {
-              this.temp.imageUrl = res.data.imageUrl;
-            } else {
-              this.temp.imagesUrl[this.temp.imagesUrl.length - 1] = res.data.imageUrl;
-            }
-          })
-          .catch(() => {
-            this.alertMessage('更新圖片發生錯誤！');
-          });
-      }
+
+      this.$swal.fire({
+        text: '是否確定上傳檔案？',
+        confirmButtonText: '確定',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$http
+            .post(`${VITE_API}api/${VITE_PATH}/admin/upload`, formData)
+            .then((res) => {
+              if ((refindex === 'filtINput')) {
+                this.temp.imageUrl = res.data.imageUrl;
+              } else {
+                this.temp.imagesUrl[this.temp.imagesUrl.length - 1] = res.data.imageUrl;
+              }
+            })
+            .catch(() => {
+              this.alertMessage('更新圖片發生錯誤！');
+            });
+        }
+      });
     },
     editProduct() {
       let method = 'post';
@@ -63,11 +69,12 @@ export default {
       }
       this.$http[method](url, { data: this.temp })
         .then(() => {
-          this.closeProductModal();
           this.getProducts();
+          this.closeProductModal();
+          // this.toastMessge('成功編輯產品資料');
         })
         .catch(() => {
-          // alert('無法編輯商品！');
+          // this.alertMessage('無法編輯商品！');
           this.closeProductModal();
         });
     },

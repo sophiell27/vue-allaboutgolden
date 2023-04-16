@@ -77,6 +77,6 @@ export default {
         </li>
       </ol>
     </div>
-    <DogComponent></DogComponent>
+    <DogComponent />
   </div>
 </template>

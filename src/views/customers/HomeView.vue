@@ -103,7 +103,7 @@ export default {
       <section class="mb-6 md:mb-12">
         <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-4">
           最新上架</h2>
-        <ProductListComponent :products="getNewProducts"></ProductListComponent>
+        <ProductListComponent :products="getNewProducts" />
         <div class="flex justify-center">
           <PillBtnComponent :dynamicPath="'/products'">
             看更多產品

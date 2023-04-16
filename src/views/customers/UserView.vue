@@ -10,14 +10,13 @@ export default {
     ...mapActions(frontStore, ['alertMessage']),
   },
   mounted() {
-    // if (!this.loginStatus) {
-    //   this.alertMessage('請先登入！');
-    //   this.$router.push('/login');
-    // }
+    if (!this.loginStatus) {
+      this.alertMessage('請先登入！');
+      this.$router.push('/login');
+    }
   },
 };
 </script>
 <template>
-   <!-- v-if="loginStatus"-->
-  <RouterView />
+  <RouterView v-if="loginStatus" />
 </template>

@@ -83,7 +83,7 @@ export default {
               placeholder="請輸入收貨人地址" name="收貨人地址" rules="required" v-model="data.user.address"></v-field>
             <v-error-message name="收貨人地址" class="text-highlight"></v-error-message>
           </div>
-          <div class="col-span-2">
+          <div class="col-span-2 md:col-span-1">
             <label for="receipientMail" class="mb-2 block">電郵：</label>
             <v-field type="email" id='receipientMail'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
@@ -99,19 +99,17 @@ export default {
               <option value="貨到付款">貨到付款</option>
             </select>
           </div>
-          <div class="col-span-2 md:col-span-1">
+          <!-- <div class="col-span-2 md:col-span-1">
             <label for="couponNum" class="mb-2 block">優惠碼：</label>
             <input type="text" id='couponNum'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
               placeholder="請輸入優惠碼（非必填）" />
-          </div>
+          </div> -->
         </div>
       </div>
-      <div class="col-span-12 md:col-start-2 md:col-span-9 py-8 mb-8  md:pb-11 md:mb-10" v-if="carts">
-        <CartsComponent></CartsComponent>
-      </div>
-    </div>
-    <div class="flex items-center justify-between">
+      <div class="col-span-12 md:col-start-2 md:col-span-9 py-8" v-if="carts">
+        <CartsComponent />
+        <div class="flex items-center justify-between  mt-8  md:pt-11 md:mt-10">
       <RouterLink to="/user/carts">
         <button class="flex items-center text-4.5 ">
           <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
@@ -120,13 +118,15 @@ export default {
           <span class="pl-1 lg:pl-2">回到購物車</span>
         </button>
       </RouterLink>
-      <button class="btn flex items-center text-sm md:text-h6 lg:btn-md xl:btn-lg"
+      <button class="pillBtn flex items-center text-sm md:text-h6 lg:pillBtn-lg"
         :class="{ 'disabled opacity-50 cursor-default': !carts.length }">
         <span class="pl-1 xl:pl-2">碓認送出訂單</span>
         <span class="material-symbols-outlined ml-3 text-base lg:text-2xl">
           chevron_right
         </span>
       </button>
+    </div>
+      </div>
     </div>
   </v-form>
 </template>
