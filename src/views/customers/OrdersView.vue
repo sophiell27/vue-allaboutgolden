@@ -70,7 +70,7 @@ export default {
             <td class="px-2 py-4 md:px-6">
               {{ getFormatDate(order.create_at) }}
             </td>
-            <td class="px-2 py-4 md:px-6  text-xs">
+            <td class="px-2 py-4 md:px-6  text-xs whitespace-normal">
               {{ order.id }}
             </td>
             <td class="px-2 py-4 text-xs md:px-6 ">
@@ -81,7 +81,7 @@ export default {
             <td class="px-2 py-4 md:px-6 text-xs">
               NT $ {{ order.total }}
             </td>
-            <td class="px-2 py-4 md:px-6" :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
+            <td class="px-2 py-4 md:px-6 whitespace-nowrap" :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
               {{ order.is_paid ? "已付款" : "未付款" }}
             </td>
           </tr>
