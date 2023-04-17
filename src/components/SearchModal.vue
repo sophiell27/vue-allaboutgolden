@@ -39,25 +39,24 @@ export default {
 <template>
   <!-- Main modal -->
   <div tabindex="-1" aria-hidden="true"
-    class="fixed top-0 left-0 right-0 z-[100] hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-    ref="searchModal">
-    <div class="relative w-full max-w-md max-h-full">
+    class="fixed top-0 left-0 right-0 z-[100] hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full !items-start" ref="searchModal">
+    <div class="relative w-full md:max-w-2xl max-h-full top-24" >
       <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="relative bg-white rounded-lg shadow" >
         <!-- Modal header -->
-        <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+        <div class="px-6 py-4 border-b rounded-t mb-auto">
           <div class="relative w-full bg-fog-100 rounded-lg2 flex items-center p-2">
             <span class="material-symbols-outlined ">
               search
             </span>
             <input type="search" id="search-dropdown"
-              class="block p-2.5 w-full z-20 text-sm text-fog-500 rounded-r-lg border-0 bg-transparent focus:ring-0"
+              class="block p-2.5 w-full z-20 text-sm text-fog-500 rounded-r-lg border-0 bg-transparent focus:ring-0 lg:text-lg"
               placeholder="油畫、T shirt、手機殼 ... " v-model="searchValue" @keyup="searchFilter" required>
           </div>
         </div>
         <!-- Modal body -->
         <div class="p-6">
-          <ul class="my-4 space-y-3">
+          <ul class="my-4 space-y-3 lg:text-lg">
             <li v-for="value in filteredValue" :key="value.id">
               <RouterLink :to="`/products/category/${value.category}/product/${value.id}`"
                 class="flex items-center p-3 text-base  text-fog-500 rounded-lg bg-gray-50 hover:bg-fog-200 group hover:shadow " @click="searchModal.hide()">

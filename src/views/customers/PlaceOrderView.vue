@@ -9,6 +9,7 @@ export default {
     return {
       data: {
         user: {},
+        message: '銀行轉賬',
       },
     };
   },

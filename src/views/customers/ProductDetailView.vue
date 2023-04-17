@@ -90,7 +90,7 @@ export default {
       </article>
     </div>
     <div class="">
-      <h2 class="titleDash after:mx-0 mb-6 ">相關產品</h2>
+      <h2 class="text-lg titleDash after:mx-0 mb-6 md:text-2xl">相關產品</h2>
       <ProductListComponent :products="getFilterCategoryProducts" />
       <div class="flex justify-center">
       <PillBtnComponent :dynamicPath="'/products'">

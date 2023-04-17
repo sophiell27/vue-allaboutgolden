@@ -45,14 +45,15 @@ export default defineStore('frontStore', {
         } else {
           this.router.go(-1);
         }
+        this.isLoading = false;
+        setTimeout(() => {
+          this.toastMessge('歡迎回來！');
+        }, 500);
       } else {
         this.loginStatus = false;
+        this.isLoading = false;
         this.alertMessage('登入不成功');
       }
-      this.isLoading = false;
-      setTimeout(() => {
-        this.toastMessge('歡迎回來！');
-      }, 500);
     },
     logout() {
       this.isLoading = true;

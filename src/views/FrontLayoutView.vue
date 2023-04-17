@@ -65,8 +65,8 @@ export default {
 };
 </script>
 <template>
-  <div class="min-h-screen flex flex-col">
-    <LoadingComponent v-model:active="isLoading" :can-cancel="true" :is-full-page="fullPage" />
+  <LoadingComponent v-model:active="isLoading" :can-cancel="true" :is-full-page="fullPage" />
+  <div class="min-h-screen flex flex-col justify-start">
     <SearchModal ref="searchModal" />
     <div class="relative ">
       <!-- top news  -->
@@ -89,14 +89,14 @@ export default {
             <header class="flex justify-between items-center px-6  md:px-0 ">
               <div class="flex items-center">
                 <!-- burger -->
-                <button type="button" class="mr-4 hover:opacity-70 md:hidden " @click="toggleBurger">
+                <button type="button" class="mr-4 hover:text-highlight md:hidden " @click="toggleBurger">
                   <span class="material-symbols-sharp h-3 w-4.5">
                     menu
                   </span>
                 </button>
                 <h1 class="my-3 ">
                   <a href="#"
-                    class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain text-transparent md:w-60 md:h-21 flex-none"
+                    class="block w-[130px] h-12 whitespace-nowrap overflow-hidden indent-[101%] bg-logo bg-no-repeat bg-contain text-transparent md:w-60 md:h-21 flex-none hover:opacity-70"
                     ref="mainLogo">遍地黃金</a>
                 </h1>
                 <!-- nav  -->
@@ -114,18 +114,18 @@ export default {
                     </div>
                     <ul class="flex flex-col items-center md:flex-row">
                       <li
-                        class="group hover:highlight  md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full md:px-4 lg:px-9">
+                        class="group hover:text-highlight  md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full md:px-4 lg:px-9">
                         <RouterLink to="/products" class="block py-4 md:py-1" @click="toggleBurger">產品一覽</RouterLink>
-                        <div class="hidden group-hover:block group-hover:opacity-100 md:absolute md:bg-white/100 md:rounded-md">
+                        <div class="hidden group-hover:block md:absolute">
                           <CategoryMenuCompoent @toggle-menu="toggleBurger" />
                         </div>
                       </li>
                       <!-- <li class="block py-4  md:py-1 hover:opacity-70 md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full
-                       md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
-                      <li class="block py-4  md:py-1 hover:text-highlight px-4 lg:px-9" v-if="loginStatus">
+                         md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
+                      <li class="block py-4  md:py-1 hover:text-highlight  px-4 lg:px-9" v-if="loginStatus">
                         <RouterLink to="/user/orders/1" @click.prevent="toggleBurger">查詢訂單</RouterLink>
                       </li>
-                      <li class="block py-4  md:py-1 hover:opacity-70 md:hidden">
+                      <li class="block py-4  md:py-1 hover:text-highlight md:hidden">
                         <RouterLink to="/login" @click.prevent="toggleBurger" v-if="!loginStatus">登入 / 註冊</RouterLink>
                         <a href="#" @click.prevent="toggleBurger" @click="logout" v-else>登出</a>
                       </li>
@@ -140,8 +140,8 @@ export default {
                     search
                   </button>
                 </li>
-                <li class="hidden md:block md:pr-4">
-                  <RouterLink to="/" class="flex items-center hover:text-highlight" v-if="loginStatus" @click="logout">
+                <li class="hidden md:block md:pr-4 hover:text-highlight ">
+                  <RouterLink to="/" class="flex items-center " v-if="loginStatus" @click="logout">
                     <span class="material-symbols-outlined leading-none">
                       person
                     </span>
@@ -154,8 +154,8 @@ export default {
                     <span class="font-bold texx-9xl">登入／註冊</span>
                   </RouterLink>
                 </li>
-                <li class="hover:-rotate-12">
-                  <RouterLink to="/user/carts" class="md:pl-2 hover:text-highlight">
+                <li class="hover:-rotate-12 hover:text-highlight ">
+                  <RouterLink to="/user/carts" class="md:pl-2  hover:opacity-70 ">
                     <span class="material-symbols-outlined leading-none relative">
                       shopping_cart
                       <div
@@ -223,5 +223,6 @@ export default {
           </p>
         </div>
       </section>
-  </footer>
-</div></template>
+    </footer>
+  </div>
+</template>

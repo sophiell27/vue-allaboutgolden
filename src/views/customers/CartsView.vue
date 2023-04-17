@@ -50,7 +50,7 @@ export default {
 <template>
   <div class="container pt-10 md:pt-16">
     <h2
-      class="text-h4 text-center pb-4 mb-20 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary">
+      class="text-h4 titleDash pb-4 mb-20 md:text-2xl text-center">
       購物車
     </h2>
     <p class="text-center text-highlight" v-if="!carts.length">購物車沒有內容！</p>
@@ -58,7 +58,7 @@ export default {
       <CartsComponent />
     </template>
     <div class=" mt-14 lg:mt-20" v-if="$route.fullPath != '/place-order'">
-      <h2 class="titleDash text-center mb-6" :class="{' after:mx-0 text-start': carts.length}">繼續選購產品</h2>
+      <h2 class="text-lg titleDash after:mx-0 mb-6 md:text-xl" :class="{' after:mx-0 text-start': carts.length}">繼續選購產品</h2>
       <ProductListComponent :products="getNewProducts" />
       <div class="flex justify-center">
           <PillBtnComponent :dynamicPath="'/products'">

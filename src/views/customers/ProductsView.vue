@@ -26,7 +26,7 @@ export default {
 <template>
   <main class="pt-10 md:pt-16 relative">
     <NavCategoryComponent />
-    <div class="container pt-12 md:mx-auto">
+    <div class="container pt-12 lg:pl-44">
       <RouterView />
     </div>
   </main>

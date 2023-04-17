@@ -97,8 +97,8 @@ export default {
       </section>
       <!-- 最新消息 -->
       <RouterLink to="/products" class="relative" >
-          <img src="@/assets/images/news/news-lg.svg" alt="news image" class="hidden mb-6 md:mb-12  md:block" data-aos="fade-right" data-aos-delay="300" >
-          <img src="@/assets/images/news/news-sm.svg" alt="news image" class="block mb-6 md:mb-12 md:hidden" data-aos="fade-right" data-aos-delay="300">
+          <img src="@/assets/images/news/news-lg.svg" alt="news image" class="hidden w-full h-auto mb-6 md:mb-12  md:block" data-aos="fade-right" data-aos-delay="300" >
+          <img src="@/assets/images/news/news-sm.svg" alt="news image" class="block w-full h-auto mb-6 md:mb-12 md:hidden" data-aos="fade-right" data-aos-delay="300">
       </RouterLink>
       <section class="mb-6 md:mb-12">
         <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-4">

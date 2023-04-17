@@ -27,7 +27,7 @@ export default {
 <template>
   <LoginFormComponent :status="'註冊'" @submit-form="register">
     <template #msg>
-      <RouterLink to="/login" class="mt-5">
+      <RouterLink to="/login" class="mt-5 text-center block lg:text-lg">
         已是會員？<span class="text-highlight">按此登入</span> </RouterLink>
     </template>
   </LoginFormComponent>
