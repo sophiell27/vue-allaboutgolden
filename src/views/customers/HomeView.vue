@@ -41,14 +41,14 @@ export default {
           產品類別</h2>
         <!--path: "products/category/:category" -->
         <div class="px-6">
-          <ul class="catList grid grid-cols-6 md:mb-15 " ref="catList">
+          <ul class=" grid grid-cols-6 md:mb-15">
             <li
               class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/配件配飾">
                 <img src="@/assets/images/category-img/cat-asseccary.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
                 <!-- data-aos="fade-up" -->
-                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">配件配飾</h3>
+                <h3 class="text-lg whitespace-nowrap" data-aos="fade-up" data-aos-delay="300">配件配飾</h3>
               </RouterLink>
             </li>
             <li
@@ -56,7 +56,7 @@ export default {
               <RouterLink to="products/category/居家配件">
                 <img src="@/assets/images/category-img/cat-homeDecro.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
-                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">居家配件</h3>
+                <h3 class="text-lg whitespace-nowrap" data-aos="fade-up" data-aos-delay="300">居家配件</h3>
               </RouterLink>
             </li>
             <li
@@ -64,7 +64,7 @@ export default {
               <RouterLink to="products/category/床上用品">
                 <img src="@/assets/images/category-img/cat-bedding.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
-                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">床上用品</h3>
+                <h3 class="text-lg whitespace-nowrap" data-aos="fade-up" data-aos-delay="300">床上用品</h3>
               </RouterLink>
             </li>
             <li
@@ -73,7 +73,7 @@ export default {
 
                 <img src="@/assets/images/category-img/cat-tech.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
-                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">科技配件</h3>
+                <h3 class="text-lg whitespace-nowrap" data-aos="fade-up" data-aos-delay="300">科技配件</h3>
               </RouterLink>
             </li>
             <li
@@ -81,7 +81,7 @@ export default {
               <RouterLink to="products/category/衣物大全">
                 <img src="@/assets/images/category-img/cat-clothing.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
-                <h3 class="text-4.5" data-aos="fade-up" data-aos-delay="300">衣物大全</h3>
+                <h3 class="text-lg whitespace-nowrap" data-aos="fade-up" data-aos-delay="300">衣物大全</h3>
               </RouterLink>
             </li>
             <li
@@ -89,7 +89,7 @@ export default {
               <RouterLink to="products/category/有狗亂入">
                 <img src="@/assets/images/category-img/cat-petstuff.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
-                <h3 class="tesx-4.5"  data-aos="fade-up" data-aos-delay="300">有狗亂入</h3>
+                <h3 class="text-lg whitespace-nowrap"  data-aos="fade-up" data-aos-delay="300">有狗亂入</h3>
               </RouterLink>
             </li>
           </ul>
@@ -150,7 +150,7 @@ export default {
               <img src="@/assets/images/recommend-img/recomImg1.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
               <div>
-                <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                <h2 class="text-lg flex items-center justify-center mb-2 md:justify-start"><span
                     class="pr-4 border-r-2 border-r-fog-200 font-bold">阿金</span> <span
                     class="text-fog-400 text-h6 ml-4">柚木底座黃金頭像刻畫</span></h2>
                 <p class="text-sm text-dark">
@@ -165,7 +165,7 @@ export default {
               <img src="@/assets/images/recommend-img/recomImg2.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
               <div>
-                <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                <h2 class="text-lg flex items-center justify-center mb-2 md:justify-start"><span
                     class="pr-4 border-r-2 border-r-fog-200 font-bold">旺財媽媽</span> <span
                     class="text-fog-400 text-h6 ml-4">藝術風
                     iPhone 14 pro 手機殼</span></h2>
@@ -180,7 +180,7 @@ export default {
               <img src="@/assets/images/recommend-img/recomImg3.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
               <div>
-                <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                <h2 class="text-lg flex items-center justify-center mb-2 md:justify-start"><span
                     class="pr-4 border-r-2 border-r-fog-200 font-bold">麻糬爸爸</span> <span
                     class="text-fog-400 text-h6 ml-4">全人手繪畫黃金油畫</span></h2>
                 <p class="text-sm text-dark">
@@ -194,7 +194,7 @@ export default {
               <img src="@/assets/images/recommend-img/recomImg4.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
               <div>
-                <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                <h2 class="text-lg flex items-center justify-center mb-2 md:justify-start"><span
                     class="pr-4 border-r-2 border-r-fog-200 font-bold">QQQ</span> <span
                     class="text-fog-400 text-h6 ml-4">簡約水彩黃金圖案購物袋</span></h2>
                 <p class="text-sm text-dark">
@@ -208,7 +208,7 @@ export default {
               <img src="@/assets/images/recommend-img/recomImg5.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
               <div>
-                <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                <h2 class="text-lg flex items-center justify-center mb-2 md:justify-start"><span
                     class="pr-4 border-r-2 border-r-fog-200 font-bold">索菲亞</span> <span
                     class="text-fog-400 text-h6 ml-4">華麗風格
                     iPhone 14 pro 手機殼</span></h2>
@@ -223,7 +223,7 @@ export default {
               <img src="@/assets/images/recommend-img/recomImg6.svg" alt="customer pic"
                 class="w-24 h-24 rounded-full mx-auto mb-6 md:mr-6 md:mb-0 md:ml-0">
               <div>
-                <h2 class="text-4.5 flex items-center justify-center mb-2 md:justify-start"><span
+                <h2 class="text-lg flex items-center justify-center mb-2 md:justify-start"><span
                     class="pr-4 border-r-2 border-r-fog-200 font-bold">胖子</span> <span
                     class="text-fog-400 text-h6 ml-4">單一尺吋簡潔黃金全身T shirt</span></h2>
                 <p class="text-sm text-dark">
