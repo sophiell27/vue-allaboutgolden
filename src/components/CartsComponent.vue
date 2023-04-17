@@ -1,6 +1,7 @@
 <script>
 import frontStore from '@/stores/frontStore';
 import { mapActions, mapState } from 'pinia';
+import _ from 'lodash';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
@@ -9,7 +10,7 @@ export default {
   },
   methods: {
     ...mapActions(frontStore, ['getCarts']),
-    changeQty(productId, evt) {
+    changeQty: _.debounce(function changeQuantity(productId, evt) {
       const data = {
         // eslint-disable camelcase
         product_id: productId,
@@ -23,7 +24,9 @@ export default {
         .catch(() => {
           // alert('無法更改數量')
         });
-    },
+    }, 500),
+    // changeQty(productId, evt) {
+    // },
     delCartItem(productId) {
       this.$http.delete(`${VITE_API}api/${VITE_PATH}/cart/${productId}`)
         .then(() => {
