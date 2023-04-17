@@ -43,7 +43,7 @@ export default {
         <div class="px-6">
           <ul class=" grid grid-cols-6 md:mb-15">
             <li
-              class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+              class="col-span-2 py-3 px-4  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/配件配飾">
                 <img src="@/assets/images/category-img/cat-asseccary.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
@@ -52,7 +52,7 @@ export default {
               </RouterLink>
             </li>
             <li
-              class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+              class="col-span-2 py-3 px-4  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/居家配件">
                 <img src="@/assets/images/category-img/cat-homeDecro.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
@@ -60,7 +60,7 @@ export default {
               </RouterLink>
             </li>
             <li
-              class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+              class="col-span-2 py-3 px-4  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/床上用品">
                 <img src="@/assets/images/category-img/cat-bedding.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
@@ -68,7 +68,7 @@ export default {
               </RouterLink>
             </li>
             <li
-              class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+              class="col-span-2 py-3 px-4  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/科技配件">
 
                 <img src="@/assets/images/category-img/cat-tech.svg" alt="category icon" class="categoryImg"
@@ -77,7 +77,7 @@ export default {
               </RouterLink>
             </li>
             <li
-              class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+              class="col-span-2 py-3 px-4  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/衣物大全">
                 <img src="@/assets/images/category-img/cat-clothing.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
@@ -85,7 +85,7 @@ export default {
               </RouterLink>
             </li>
             <li
-              class="col-span-2 py-3 px-7  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
+              class="col-span-2 py-3 px-4  rounded-2.5xl hover:bg-primary hover:text-dark md:px-15 xl:col-span-1 mx-auto">
               <RouterLink to="products/category/有狗亂入">
                 <img src="@/assets/images/category-img/cat-petstuff.svg" alt="category icon" class="categoryImg"
                 data-aos="fade-down" data-aos-delay="300" >
