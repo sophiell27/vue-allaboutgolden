@@ -37,7 +37,6 @@ export default defineStore('frontStore', {
       const localData = JSON.parse(localStorage.getItem(value.登入名稱));
       if (localData === value.登入密碼) {
         this.loginStatus = true;
-        this.toastMessge('歡迎回來！');
         if (
           window.history.state.back === '/login'
           || window.history.state.back === '/register'
@@ -51,12 +50,18 @@ export default defineStore('frontStore', {
         this.alertMessage('登入不成功');
       }
       this.isLoading = false;
+      setTimeout(() => {
+        this.toastMessge('歡迎回來！');
+      }, 500);
     },
     logout() {
       this.isLoading = true;
       this.loginStatus = false;
       this.router.replace('/');
       this.isLoading = false;
+      setTimeout(() => {
+        this.toastMessge('你已經登出了');
+      }, 500);
     },
     register(value) {
       this.loginStatus = true;

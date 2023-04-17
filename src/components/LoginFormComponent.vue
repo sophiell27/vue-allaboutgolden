@@ -21,7 +21,7 @@ export default {
       <div class="mb-4">
         <label for="loginName" class="block mb-2">{{ status }}名稱</label>
         <v-field :name="`${status}名稱`" type="email" id="loginName"
-          class="px-4 py-2 border border-primary rounded-lg bg-transparent mb-1 w-full" placeholder="請輸入帳戶名稱"
+          class="px-4 py-2 border border-primary rounded-lg bg-transparent mb-1" placeholder="請輸入帳戶名稱"
           rules="required|email">
         </v-field>
         <v-error-message :name="`${status}名稱`" class="text-highlight"></v-error-message>

@@ -35,11 +35,11 @@ export default {
       <!-- expand_less  -->
     </span>
   </button>
-  <nav class="hidden absolute top-6 bottom-0 left-0 right-0 z-50 lg:block lg:right-auto lg:fixed lg:top-1/2 lg:-translate-y-1/2 lg:bg-transparent" ref="catergoryOveray"
+  <nav class="hidden absolute top-6 bottom-0 left-0 right-0 z-50 lg:block lg:right-auto lg:fixed lg:top-1/2 lg:-translate-y-1/2 lg:hidden" ref="catergoryOveray"
     @click="toggleCategoryMenu">
     <!--  -->
     <!-- fixed bottom-0  -->
-    <ul class="w-full font-medium flex flex-col p-4 md:p-0 mt-4 border border-fog-100 rounded-lg bg-white lg:bg-transparent " ref="categoryList">
+    <ul class="w-full font-medium flex flex-col p-4 md:p-0 mt-4 border border-fog-100 rounded-lg bg-white xl:text-lg lg:bg-transparent" ref="categoryList">
       <li class="" v-for=" (category, index) in categories" :key="'cat' + category">
         <RouterLink :to="index === 0 ? '/products' : `/products/category/${category}`"
           class="block py-2 pl-3 pr-4 text-fog-500 rounded hover:bg-fog-200 "> {{ category }}
