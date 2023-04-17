@@ -127,7 +127,7 @@ export default {
                       </li>
                       <li class="block py-4  md:py-1 hover:text-highlight md:hidden">
                         <RouterLink to="/login" @click.prevent="toggleBurger" v-if="!loginStatus">登入 / 註冊</RouterLink>
-                        <a href="#" @click.prevent="toggleBurger" @click="logout" v-else>登出</a>
+                        <a href="#" @click.prevent="toggleBurger" @click="logout" class="text-secondary" v-else>登出</a>
                       </li>
                     </ul>
                   </nav>
@@ -141,17 +141,17 @@ export default {
                   </button>
                 </li>
                 <li class="hidden md:block md:pr-4 hover:text-highlight ">
-                  <RouterLink to="/" class="flex items-center " v-if="loginStatus" @click="logout">
+                  <RouterLink to="/" class="flex items-center text-secondary" v-if="loginStatus" @click="logout">
                     <span class="material-symbols-outlined leading-none">
                       person
                     </span>
-                    <span class="font-bold texx-9xl">登出</span>
+                    <span class="font-bold">登出</span>
                   </RouterLink>
                   <RouterLink to="/login" class="flex items-center md:px-2  hover:opacity-70" v-else>
                     <span class="material-symbols-outlined leading-none">
                       person
                     </span>
-                    <span class="font-bold texx-9xl">登入／註冊</span>
+                    <span class="font-bold">登入／註冊</span>
                   </RouterLink>
                 </li>
                 <li class="hover:-rotate-12 hover:text-highlight ">
