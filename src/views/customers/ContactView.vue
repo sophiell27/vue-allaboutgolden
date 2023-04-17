@@ -39,9 +39,9 @@ export default {
     <div class="grid grid-cols-3 md:gap-x-6">
       <div class="col-span-3 mb-8 md:col-span-1 md:mb-0">
         <p class="mb-2">電郵： <span class="pb-px border-b border-b-secondary hover:border-0 hover:text-highlight"> <a
-              href="mailto:gg@gmai.com" class="">gg@gmai.com</a></span></p>
+              href="mailto:gg@gmai.com" class="">allAboutGolden@allaboutgolden.com</a></span></p>
         <p>電話： <span class="pb-px border-b border-b-secondary hover:border-0 hover:text-highlight">
-            <a href="mailto:124343534534">124343534534</a>
+            <a href="tel:+4312342234">431-2342-234</a>
           </span></p>
       </div>
       <div class="col-span-3 md:col-span-2 ">
@@ -56,7 +56,7 @@ export default {
       </div>
     </div>
     <div class="">
-      <h2 class="titleDash after:mx-0 mb-6 mt-14 lg:mt-20 ">猜你喜歡的產品</h2>
+      <h2 class="titleDash after:mx-0 mb-6 mt-14 lg:mt-20 md:text-xl">猜你喜歡的產品</h2>
       <ProductListComponent :products="getNewProducts" />
       <div class="flex justify-center">
         <PillBtnComponent>
