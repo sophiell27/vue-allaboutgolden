@@ -1,6 +1,6 @@
 <script>
 import frontStore from '@/stores/frontStore';
-import { mapState, mapActions } from 'pinia';
+import { mapActions } from 'pinia';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
@@ -10,9 +10,6 @@ export default {
       orders: [],
       orderPagination: {},
     };
-  },
-  computed: {
-    ...mapState(frontStore, ['loginStatus']),
   },
   components: {
     PaginationComponent,
@@ -27,16 +24,15 @@ export default {
           this.$router.push(`/user/orders/${page}`);
         })
         .catch(() => {
-          // alert("無法取得訂單列表");
+          this.alertMessage('無法取得訂單列表');
         });
     },
     getFormatDate(stamp) {
       const newStamp = new Date(stamp * 1000);
-      return `${newStamp.getDate()}/${newStamp.getMonth()}/${newStamp.getFullYear()}`;
+      return `${newStamp.getDate()}/${newStamp.getMonth() + 1}/${newStamp.getFullYear()}`;
     },
   },
   mounted() {
-    console.log(this.$route.params.orderpage);
     this.getOrders(this.$route.params.orderpage);
   },
 };
@@ -82,7 +78,8 @@ export default {
             <td class="px-2 py-4 md:px-6 text-xs">
               NT $ {{ order.total }}
             </td>
-            <td class="px-2 py-4 md:px-6 whitespace-nowrap" :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
+            <td class="px-2 py-4 md:px-6 whitespace-nowrap"
+              :class="{ 'text-highlight border-b-highlight': !order.is_paid }">
               {{ order.is_paid ? "已付款" : "未付款" }}
             </td>
           </tr>
