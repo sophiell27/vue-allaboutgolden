@@ -55,6 +55,9 @@ export default {
           return err;
         });
     },
+    zoomImg(e) {
+      e.target.classList.toggle('scale-150');
+    },
   },
   mounted() {
     const { productid, category } = this.$route.params;
@@ -68,7 +71,7 @@ export default {
   <div class="container">
     <BreadrumbComponent :tempProduct="product" />
     <div class="flex flex-col mb-12 sm:flex-row" v-if="product">
-      <img :src="product.imageUrl" alt="product photo" class="object-cover mb-6 w-full md:w-1/2 md:h-auto md:object-contain">
+      <img :src="product.imageUrl" alt="product photo" class="object-cover mb-6 w-full md:h-auto md:object-contain md:w-1/2 " @click="(e) => zoomImg(e)">
       <article class="px-4 md:mt-2 md:px-8">
         <h2 class="mb-2 flex flex-col text-lg  text-center md:text-h4 md:mb-6 md:text-start">{{ product.title }} <span
             class="text-base text-highlight md:mt-6">NT${{ product.price }}</span></h2>
