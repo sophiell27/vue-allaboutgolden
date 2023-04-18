@@ -66,7 +66,7 @@ export default {
 </script>
 <template>
   <LoadingComponent v-model:active="isLoading" :can-cancel="true" :is-full-page="fullPage" />
-  <div class="min-h-screen flex flex-col justify-start">
+  <div class="min-h-screen flex flex-col justify-start overflow-x-hidden">
     <SearchModal ref="searchModal" />
     <div class="relative ">
       <!-- top news  -->
@@ -176,7 +176,7 @@ export default {
     </div>
     <!-- banner  -->
     <!--fixed top : 36+72 md:36+108  -->
-    <div class="mt-[92px] md:mt-[144px] overflow-hidden">
+    <div class="mt-[92px] md:mt-[144px]">
       <RouterView></RouterView>
     </div>
     <!-- footer  -->
