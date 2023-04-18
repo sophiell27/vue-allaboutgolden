@@ -101,32 +101,32 @@ export default {
             </select>
           </div>
           <!-- <div class="col-span-2 md:col-span-1">
-            <label for="couponNum" class="mb-2 block">優惠碼：</label>
-            <input type="text" id='couponNum'
-              class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
-              placeholder="請輸入優惠碼（非必填）" />
-          </div> -->
+              <label for="couponNum" class="mb-2 block">優惠碼：</label>
+              <input type="text" id='couponNum'
+                class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
+                placeholder="請輸入優惠碼（非必填）" />
+            </div> -->
         </div>
       </div>
       <div class="col-span-12 md:col-start-2 md:col-span-9 py-8" v-if="carts">
         <CartsComponent />
-        <div class="flex items-center justify-between  mt-8  md:pt-11 md:mt-10">
-      <RouterLink to="/user/carts">
-        <button class="flex items-center text-4.5 ">
-          <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
-            chevron_left
-          </span>
-          <span class="pl-1 lg:pl-2">回到購物車</span>
-        </button>
-      </RouterLink>
-      <button class="pillBtn flex items-center text-sm md:text-h6 lg:pillBtn-lg"
-        :class="{ 'disabled opacity-50 cursor-default': !carts.length }">
-        <span class="pl-1 xl:pl-2">碓認送出訂單</span>
-        <span class="material-symbols-outlined ml-3 text-base lg:text-2xl">
-          chevron_right
-        </span>
-      </button>
-    </div>
+        <div class="flex items-center justify-between   mt-8  md:pt-11 md:mt-10">
+          <RouterLink to="/user/carts">
+            <button type="button" class="flex items-center text-4.5 ">
+              <span class="material-symbols-outlined pl-3 text-base lg:text-2xl">
+                chevron_left
+              </span>
+              <span class="pl-1 lg:pl-2">回到購物車</span>
+            </button>
+          </RouterLink>
+          <button class="pillBtn flex items-center text-sm md:text-h6 lg:pillBtn-lg"
+            :class="{ 'disabled opacity-50 cursor-default': !carts.length }">
+            <span class="pl-1 xl:pl-2">碓認送出訂單</span>
+            <span class="material-symbols-outlined ml-3 text-base lg:text-2xl">
+              chevron_right
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </v-form>
