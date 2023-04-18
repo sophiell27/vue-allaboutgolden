@@ -15,7 +15,7 @@ export default {
     PaginationComponent,
   },
   methods: {
-    ...mapActions(frontStore, ['alertMessage']),
+    ...mapActions(frontStore, ['alertMessage', 'getFormatDate']),
     getOrders(page = 1) {
       this.$http.get(`${VITE_API}api/${VITE_PATH}/orders?page=${page}`)
         .then((res) => {
@@ -26,10 +26,6 @@ export default {
         .catch(() => {
           this.alertMessage('無法取得訂單列表');
         });
-    },
-    getFormatDate(stamp) {
-      const newStamp = new Date(stamp * 1000);
-      return `${newStamp.getDate()}/${newStamp.getMonth() + 1}/${newStamp.getFullYear()}`;
     },
   },
   mounted() {

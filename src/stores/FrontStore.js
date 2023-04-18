@@ -38,8 +38,9 @@ export default defineStore('frontStore', {
       if (localData === value.登入密碼) {
         this.loginStatus = true;
         if (
-          window.history.state.back === '/login'
-          || window.history.state.back === '/register'
+          // eslint-disable-next-line
+          window.history.state.back === '/login' ||
+          window.history.state.back === '/register'
         ) {
           this.router.replace('/');
         } else {
@@ -163,7 +164,7 @@ export default defineStore('frontStore', {
       }
     },
     alertMessage(msg) {
-      Swal.fire({
+      return Swal.fire({
         text: msg,
         confirmButtonColor: '#ED8408',
         showConfirmButton: true,
@@ -179,6 +180,12 @@ export default defineStore('frontStore', {
         showConfirmButton: false,
         timer: 1000,
       });
+    },
+    getFormatDate(stamp) {
+      const newStamp = new Date(stamp * 1000);
+      return `${newStamp.getDate()}/${
+        newStamp.getMonth() + 1
+      }/${newStamp.getFullYear()}`;
     },
   },
 });

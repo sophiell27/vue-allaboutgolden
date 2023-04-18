@@ -23,22 +23,20 @@ export default {
     ...mapActions(frontStore, ['getCarts', 'alertMessage', 'toastMessge']),
     placeOrder() {
       if (!this.carts.length) {
-        this.alertMessage('購物車沒有內容，無法送出訂單')
-          .then((result) => {
-            console.log(result);
-            if (result.isConfirmed) {
-              this.$router.push('/products');
-            }
-          });
+        this.$swal.fire({
+          text: '購物車沒有內容，無法送出訂單',
+          confirmButtonText: '確定',
+        }).then((result) => result.isConfirmed);
+        return;
       }
       this.$http.post(`${VITE_API}api/${VITE_PATH}/order`, { data: this.data })
         .then((res) => {
           this.toastMessge('已送出訂單');
           this.data = {
             user: {},
+            message: '銀行轉賬',
           };
           this.getCarts();
-          console.log(res.data.orderId);
           this.$router.push(`/user/order/${res.data.orderId}`);
         })
         .catch(() => {
@@ -47,18 +45,16 @@ export default {
     },
     checkCart() {
       if (this.carts.length === 0) {
-        this.alertMessage('購物車沒有內容，請先選擇商品')
-          .then((result) => {
-            console.log(result);
-            if (result.isConfirmed) {
-              this.$router.push('/products');
-            }
-          });
+        this.$swal.fire({
+          text: '購物車沒有內容，請先選擇商品',
+          confirmButtonText: '確定',
+        }).then(() => this.$router.push('/products'));
       }
     },
   },
 };
 </script>
+
 <template>
   <v-form class="container" @submit="placeOrder" @click="checkCart">
     <h2
@@ -107,11 +103,11 @@ export default {
             </select>
           </div>
           <!-- <div class="col-span-2 md:col-span-1">
-                  <label for="couponNum" class="mb-2 block">優惠碼：</label>
-                  <input type="text" id='couponNum'
-                    class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
-                    placeholder="請輸入優惠碼（非必填）" />
-                </div> -->
+              <label for="couponNum" class="mb-2 block">優惠碼：</label>
+              <input type="text" id='couponNum'
+                class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
+                placeholder="請輸入優惠碼（非必填）" />
+            </div> -->
         </div>
       </div>
       <div class="col-span-12 md:col-start-2 md:col-span-10 py-8" v-if="carts">
