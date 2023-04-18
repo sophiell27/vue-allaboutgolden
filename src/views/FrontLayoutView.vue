@@ -114,9 +114,9 @@ export default {
                     </div>
                     <ul class="flex flex-col items-center md:flex-row">
                       <li
-                        class="group hover:text-highlight  md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full md:px-4 lg:px-9">
+                        class="group hover:text-highlight md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y-1/2 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full md:px-4 lg:px-9">
                         <RouterLink to="/products" class="block py-4 md:py-1" @click="toggleBurger">產品一覽</RouterLink>
-                        <div class="hidden group-hover:block md:absolute">
+                        <div class="hidden group-hover:block md:absolute md:left-0 md:right-0">
                           <CategoryMenuCompoent @toggle-menu="toggleBurger" />
                         </div>
                       </li>
