@@ -16,7 +16,7 @@ export default {
     ...mapState(frontStore, ['carts', 'cartTotal', 'loginStatus', 'getNewProducts']),
   },
   methods: {
-    ...mapActions(frontStore, ['getCarts', 'alertMessage']),
+    ...mapActions(frontStore, ['getCarts', 'getProducts', 'alertMessage']),
     changeQty(productId, evt) {
       const data = {
         // eslint-disable camelcase
@@ -44,6 +44,7 @@ export default {
   },
   mounted() {
     this.getCarts();
+    this.getProducts();
   },
 };
 </script>

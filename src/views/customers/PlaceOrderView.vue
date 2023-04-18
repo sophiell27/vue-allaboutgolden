@@ -60,7 +60,7 @@ export default {
       結賬
     </h2>
     <div class="grid grid-cols-12 ">
-      <div class="col-span-12 md:col-start-2 md:col-span-9 mb-8 md:mb-10">
+      <div class="col-span-12 md:col-start-2 md:col-span-10 mb-8 md:mb-10">
         <h3 class="text-4.5 mb-6"> 請填寫訂單資料</h3>
         <div class="text-fog-500 grid grid-cols-2 gap-y-4 md:gap-x-4 md:gap-y-8">
           <div class=" col-span-2 md:col-span-1">
@@ -108,7 +108,7 @@ export default {
             </div> -->
         </div>
       </div>
-      <div class="col-span-12 md:col-start-2 md:col-span-9 py-8" v-if="carts">
+      <div class="col-span-12 md:col-start-2 md:col-span-10 py-8" v-if="carts">
         <CartsComponent />
         <div class="flex items-center justify-between   mt-8  md:pt-11 md:mt-10">
           <RouterLink to="/user/carts">

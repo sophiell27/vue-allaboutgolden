@@ -9,7 +9,7 @@ export default {
     ...mapState(frontStore, ['carts', 'cartTotal']),
   },
   methods: {
-    ...mapActions(frontStore, ['getCarts']),
+    ...mapActions(frontStore, ['getCarts', 'toastMessge', 'alertMessage']),
     changeQty: _.debounce(function changeQuantity(productId, evt) {
       const data = {
         // eslint-disable camelcase
@@ -18,22 +18,23 @@ export default {
       };
       this.$http.put(`${VITE_API}api/${VITE_PATH}/cart/${productId}`, { data })
         .then(() => {
-          // alert('已更改數量')
+          this.toastMessge('已更改數量');
           this.getCarts();
         })
         .catch(() => {
-          // alert('無法更改數量')
+          this.alertMessage('無法更改數量');
         });
     }, 500),
-    // changeQty(productId, evt) {
-    // },
     delCartItem(productId) {
       this.$http.delete(`${VITE_API}api/${VITE_PATH}/cart/${productId}`)
         .then(() => {
           this.getCarts();
+          setTimeout(() => {
+            this.toastMessge('成功刪除購物車內容');
+          });
         })
         .catch(() => {
-          // alert('無法刪除購物車內容');
+          this.alertMessage('無法刪除購物車內容');
         });
     },
   },
@@ -45,7 +46,7 @@ export default {
 <template>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-fog-500 ">
-      <thead class="font-extrabold text-4.5 text-fog-500 bg-fog-200 whitespace-nowrap">
+      <thead class="font-extrabold text-4.5 text-center text-fog-500 bg-fog-200 whitespace-nowrap">
         <tr>
           <th scope="col" class="px-6 py-3 hidden md:block">
           </th>
@@ -67,7 +68,7 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b hover:bg-fog-100 " v-for="item in carts" :key="item.id">
+        <tr class="bg-white border-b hover:bg-fog-100 text-center" v-for="item in carts" :key="item.id">
           <td class="px-2 py-4 md:px-6 hidden md:block">
             <img :src="item.product.imageUrl" :alt="item.product.title" class="w-20">
           </td>
@@ -92,7 +93,7 @@ export default {
             </button>
           </td>
         </tr>
-        <tr class="bg-white border-b hover:bg-fog-100" v-if="cartTotal < 900">
+        <tr class="bg-white border-b hover:bg-fog-100 text-center" v-if="cartTotal < 900 && cartTotal > 0">
           <td class="px-2 py-4 md:px-6 hidden md:block"></td>
           <td class="px-2 py-4 md:px-6 hidden md:block"></td>
           <td class="px-2 py-4 md:px-6">運費</td>
@@ -103,12 +104,12 @@ export default {
         </tr>
       </tbody>
       <tfoot>
-        <tr class="font-semibold text-dark dark:text-white">
+        <tr class="font-semibold text-dark dark:text-white text-center">
           <td class="px-2 py-4 md:px-6 hidden md:block"></td>
           <td colspan="2"><span v-if="cartTotal >= 900">已達免運費門檻</span> <span v-else>未達免運費門檻</span></td>
           <!-- <td></td> -->
-          <td class="px-2 py-3 text-base whitespace-nowrap">總計:</td>
-          <td class="px-2 py-3 text-xs whitespace-nowrap md:px-6">NT $ {{ cartTotal >= 900 ? cartTotal : cartTotal + 500
+          <td class="px-2 py-3 text-base whitespace-nowrap">總計：</td>
+          <td class="px-2 py-3 text-xs whitespace-nowrap md:px-6" v-if="cartTotal">NT $ {{ cartTotal >= 900 ? cartTotal : cartTotal + 500
           }}</td>
         </tr>
       </tfoot>
