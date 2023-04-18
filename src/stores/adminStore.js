@@ -18,7 +18,6 @@ export default defineStore('adminStore', {
       this.isLoading = status;
     },
     async checkLogin(path = '/admin/orders/1') {
-      console.log();
       /* eslint-disable */
       const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)goldenToken\s*\=\s*([^;]*).*$)|^.*$/,
@@ -50,7 +49,6 @@ export default defineStore('adminStore', {
           this.toastMessage('成功登出', 'center');
         })
         .catch((err) => {
-          console.dir(err);
           this.alertMessage('無法登出');
         });
     },

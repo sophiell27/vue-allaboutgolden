@@ -25,7 +25,6 @@ export default {
       if (!this.carts.length) {
         this.alertMessage('購物車沒有內容，無法送出訂單')
           .then((result) => {
-            console.log(result);
             if (result.isConfirmed) {
               this.$router.push('/products');
             }
@@ -38,7 +37,6 @@ export default {
             user: {},
           };
           this.getCarts();
-          console.log(res.data.orderId);
           this.$router.push(`/user/order/${res.data.orderId}`);
         })
         .catch(() => {
@@ -49,7 +47,6 @@ export default {
       if (this.carts.length === 0) {
         this.alertMessage('購物車沒有內容，請先選擇商品')
           .then((result) => {
-            console.log(result);
             if (result.isConfirmed) {
               this.$router.push('/products');
             }

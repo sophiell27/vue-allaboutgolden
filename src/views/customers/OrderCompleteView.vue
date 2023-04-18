@@ -23,7 +23,6 @@ export default {
     getOrder(orderId) {
       this.$http(`${VITE_API}api/${VITE_PATH}/order/${orderId}`)
         .then((res) => {
-          console.log(res);
           this.newOrder = res.data.order;
         })
         .catch(() => {
@@ -32,7 +31,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.params.orderid);
     this.getOrder(this.$route.params.orderid);
     this.getProducts();
   },
@@ -127,19 +125,6 @@ export default {
               {{ newOrder.is_paid ? "已付款" : "未付款" }}
             </td>
           </tr>
-          <tr class="border-b border-gray-200 dark:border-gray-700">
-            <th scope="row"
-              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-              購買內容：
-            </th>
-            <td class="px-6 py-4" v-for="item in newOrder.products" :key="item">
-              {{ item.qty }} <span>x</span>
-              <template v-for="product in item" :key="product.id">
-                <span>{{ product.title }} </span>
-                <span> {{ product.qty }}</span>
-              </template>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -151,10 +136,10 @@ export default {
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
           <tr>
             <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-              商品名稱
+              商品
             </th>
-            <th scope="col" class="px-6 py-3">
-              購買數量
+            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+              數量
             </th>
             <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
               小計
@@ -164,13 +149,13 @@ export default {
         <tbody>
           <tr class="border-b border-gray-200 dark:border-gray-700" v-for="item in newOrder.products" :key="item">
             <th scope="row"
-              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+              class="px-6 py-4 font-medium text-gray-900  bg-gray-50 dark:text-white dark:bg-gray-800 ">
               {{ item.product.title }}
             </th>
             <td class="px-6 py-4 ">
               {{ item.qty }}
             </td>
-            <td class="px-6 py-4 text-xs md:text-sm">
+            <td class="px-6 py-4 text-xs md:text-sm whitespace-nowrap">
               NT $ {{ item.total }}
             </td>
           </tr>
