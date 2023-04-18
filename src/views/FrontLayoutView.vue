@@ -160,7 +160,7 @@ export default {
                       shopping_cart
                       <div
                         class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/2 w-6 h-6 bg-dark rounded-full text-white flex justify-center items-center"
-                        v-if="loginStatus">
+                        v-if="loginStatus && cartlength">
                         <p class="text-[8px] font-inter">
                           {{ cartlength }}
                         </p>
