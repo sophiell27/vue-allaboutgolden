@@ -67,14 +67,14 @@ export default {
 <template>
   <div class="container">
     <BreadrumbComponent :tempProduct="product" />
-    <div class="flex mb-12 sm:flex-row">
-      <img :src="product.imageUrl" alt="product photo" class="object-cover mb-6 w-1/2 h-full md:h-auto md:object-contain">
-      <article class="px-4">
-        <h2 class="mb-2 flex flex-col md:text-h4 md:mb-6">{{ product.title }} <span
+    <div class="flex flex-col mb-12 sm:flex-row" v-if="product">
+      <img :src="product.imageUrl" alt="product photo" class="object-cover mb-6 w-full md:w-1/2 md:h-auto md:object-contain">
+      <article class="px-4 md:mt-2 md:px-8">
+        <h2 class="mb-2 flex flex-col text-lg  text-center md:text-h4 md:mb-6 md:text-start">{{ product.title }} <span
             class="text-base text-highlight md:mt-6">NT${{ product.price }}</span></h2>
-        <p class="mb-4">{{ product.description }}</p>
-        <p class="text-sm mb-4">{{ product.content }}</p>
-        <div class="flex ">
+        <p class="mb-4 text-sm">{{ product.description }}</p>
+        <p class="text-sm mb-4 md:mb-8">{{ product.content }}</p>
+        <div class="flex justify-center md:justify-start">
           <button type="button" class="px-2 py-1 rounded-s-md bg-fog-200 hover:bg-primary hover:text-dark"
             @click="tempQty -= 1"> - </button>
           <button type="button" class="text-fog-400 px-4 py-1 bg-fog-200 border-x border-x-fog-300"> {{ tempQty
@@ -82,7 +82,7 @@ export default {
           <button type="button" class="px-2 py-1 rounded-e-md bg-fog-200 hover:bg-primary hover:text-dark"
             @click="tempQty += 1"> + </button>
           <button type="button"
-            class="bg-secondary py-2 px-4 rounded-md text-white ml-4 hover:bg-primary hover:text-dark" @click="addCart(product, tempQty)">
+            class="bg-secondary py-1 px-4 rounded-md text-white ml-4 flex items-center  hover:bg-primary hover:text-dark" @click.prevent="addCart(product, tempQty)">
             <span class="hidden md:block">加入購物車</span><span class="material-symbols-outlined md:hidden">
               shopping_cart
             </span></button>
