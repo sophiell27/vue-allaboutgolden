@@ -1,1 +1,0 @@
-import{_ as o}from"./Logo-990baef8.js";import{_ as s,o as t,c,f as e}from"./index-80710afd.js";const n={},r={class:"flex flex-col justify-center items-center h-screen"},_=e("a",{href:"/",class:"mb-8"},[e("img",{src:o,alt:"logo"})],-1),a=e("p",null,"404 Not Found",-1),i=[_,a];function l(f,d){return t(),c("div",r,i)}const p=s(n,[["render",l]]);export{p as default};
