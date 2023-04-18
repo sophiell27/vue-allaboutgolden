@@ -11,11 +11,11 @@ export default {
 <template>
   <div class="container flex flex-col items-center pt-10 md:pt-16">
     <h2
-      class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
+      class="titleDash text-h4 text-center pb-4 mb-8 md:mb-10">
       運費 /退貨說明
     </h2>
 
-    <div class="px-20 text-start md:px-40 mb-20">
+    <article class="text-sm px-4 text-start md:px-40 mb-20 md:text-base">
       <p>宅配(國內及離島地區)：</p>
       <p class="mb-6">本島地區標準宅配寄送：單筆訂單滿900即可免運 ，未滿額將酌收100元運費
         貨到付款需另支付30元的宅配處理手續費用</p>
@@ -31,7 +31,7 @@ export default {
         </li>
 
       </ol>
-    </div>
+    </article>
     <DogComponent />
   </div>
 </template>

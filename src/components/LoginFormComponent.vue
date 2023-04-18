@@ -20,7 +20,7 @@ export default {
     <v-form class="mx-10" @submit="(value) => $emit('submit-form', value)">
       <h2 class="text-2xl mb-4 text-center lg:text-4xl">用戶{{ status }}</h2>
       <div class="mb-4 lg:text-lg">
-        <label for="loginName" class="block mb-2">{{ status }}名稱</label>
+        <label for="loginName" class="block mb-2">{{ status }}名稱<span class="ml-1 text-highlight">*</span></label>
         <v-field :name="`${status}名稱`" type="email" id="loginName"
           class="px-4 py-2 border border-primary rounded-lg bg-transparent mb-1 w-full" placeholder="請輸入帳戶名稱"
           rules="required|email">
@@ -28,7 +28,7 @@ export default {
         <v-error-message :name="`${status}名稱`" class="text-highlight"></v-error-message>
       </div>
       <div class="mb-4 lg:text-lg">
-        <label for="loginPw" class="block mb-2">{{ status }}密碼</label>
+        <label for="loginPw" class="block mb-2">{{ status }}密碼<span class="ml-1 text-highlight">*</span></label>
         <v-field :name="`${status}密碼`" type="password" id="loginPw"
           class="px-4 py-2 border border-primary rounded-lg bg-transparent mb-1 w-full" placeholder="請輸入密碼"
           rules="required|min:8">

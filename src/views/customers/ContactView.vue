@@ -28,16 +28,16 @@ export default {
 <template>
   <div class="container pt-10 md:pt-16">
     <h2
-      class="text-h4 text-center pb-4 mb-8 relative after:content-[''] after:absolute after:-bottom-1  after:left-0 after:right-0 after:mx-auto after:w-8 after:h-1 after:bg-primary md:mb-10">
+      class="titleDash text-h4 text-center pb-4 mb-8 md:mb-10">
       聯絡我們
     </h2>
-    <h3 class="text-4.5 font-bold mb-6">
+    <h3 class="md:text-lg font-bold mb-6">
       遍地黃金 All About Golden Retrievers
       <br>
       黃金獵犬周邊產品專賣
     </h3>
-    <div class="grid grid-cols-3 md:gap-x-6">
-      <div class="col-span-3 mb-8 md:col-span-1 md:mb-0">
+    <div class="grid grid-cols-3 md:gap-x-6 text-sm md:text-base">
+      <div class="col-span-3 mb-8 md:col-span-1 md:mb-0 ">
         <p class="mb-2">電郵： <span class="pb-px border-b border-b-secondary hover:border-0 hover:text-highlight"> <a
               href="mailto:gg@gmai.com" class="">allAboutGolden@allaboutgolden.com</a></span></p>
         <p>電話： <span class="pb-px border-b border-b-secondary hover:border-0 hover:text-highlight">

@@ -64,35 +64,35 @@ export default {
         <h3 class="text-4.5 mb-6"> 請填寫訂單資料</h3>
         <div class="text-fog-500 grid grid-cols-2 gap-y-4 md:gap-x-4 md:gap-y-8">
           <div class=" col-span-2 md:col-span-1">
-            <label for="recipient" class="mb-2 block">收貨人：</label>
+            <label for="recipient" class="mb-2 block">收貨人：<span class="ml-1 text-highlight">*</span></label>
             <v-field type="text" id='recipient'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
               placeholder="請輸入收貨人姓名" name="收貨人姓名" rules="required" v-model="data.user.name"></v-field>
             <v-error-message name="收貨人姓名" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2 md:col-span-1">
-            <label for="recipientPhone" class="mb-2 block">收貨人電話：</label>
+            <label for="recipientPhone" class="mb-2 block">收貨人電話：<span class="ml-1 text-highlight">*</span></label>
             <v-field type="tel" id='recipientPhone'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
               placeholder="請輸入收貨人電話" name="收貨人電話" rules="required" v-model="data.user.tel"></v-field>
             <v-error-message name="收貨人電話" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2">
-            <label for="receipientAddr" class="mb-2 block">收貨人地址：</label>
+            <label for="receipientAddr" class="mb-2 block">收貨人地址：<span class="ml-1 text-highlight">*</span></label>
             <v-field type="text" id='receipientAddr'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
               placeholder="請輸入收貨人地址" name="收貨人地址" rules="required" v-model="data.user.address"></v-field>
             <v-error-message name="收貨人地址" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2 md:col-span-1">
-            <label for="receipientMail" class="mb-2 block">電郵：</label>
+            <label for="receipientMail" class="mb-2 block">電郵：<span class="ml-1 text-highlight">*</span></label>
             <v-field type="email" id='receipientMail'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
               placeholder="請輸入電郵" name="電郵" rules="required" v-model="data.user.email"></v-field>
             <v-error-message name="電郵" class="text-highlight"></v-error-message>
           </div>
           <div class="col-span-2 md:col-span-1">
-            <label for="payment" class="mb-2 block">付款方法：</label>
+            <label for="payment" class="mb-2 block">付款方法：<span class="ml-1 text-highlight">*</span></label>
             <select id='payment'
               class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
               v-model="data.message">
