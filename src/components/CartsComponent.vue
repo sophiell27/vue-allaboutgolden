@@ -48,28 +48,28 @@ export default {
     <table class="w-full text-sm text-left text-fog-500 ">
       <thead class="font-extrabold text-4.5 text-center text-fog-500 bg-fog-200 whitespace-nowrap">
         <tr>
-          <th scope="col" class="px-6 py-3 hidden md:block">
+          <th scope="col" class="md:px-6 py-3 hidden md:block">
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="md:px-6 py-3">
             產品
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="md:px-6 py-3">
             價錢
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="md:px-6 py-3">
             數量
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="md:px-6 py-3">
             小計
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="md:px-6 py-3">
             <span class="hidden md:block">刪除</span>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr class="bg-white border-b hover:bg-fog-100 text-center" v-for="item in carts" :key="item.id">
-          <td class="px-2 py-4 md:px-6 hidden md:block">
+          <td class="px-2 py-4 md:md:px-6 hidden md:block">
             <img :src="item.product.imageUrl" :alt="item.product.title" class="w-20">
           </td>
           <td class="px-2 py-4 md:px-6">
@@ -80,14 +80,14 @@ export default {
           </td>
           <td class="px-2 py-4 md:px-6">
             <span>
-              <input type="number" min="1" :value="item.qty" class="text-xs border-none w-20 text-center"
+              <input type="number" min="1" max="30" :value="item.qty" class="text-xs border-none md:w-20 text-center"
                 @change="(evt) => changeQty(item.id, evt)">
             </span>
           </td>
           <td class="px-2 py-4 md:px-6 whitespace-nowrap text-xs">
             NT $ {{ item.final_total }}
           </td>
-          <td class="px-2 py-4 md:px-6">
+          <td class="px-2 mpy-4 md:px-6">
             <button type="button" class="px-2 hover:text-highlight" @click="delCartItem(item.id)">
               x
             </button>
