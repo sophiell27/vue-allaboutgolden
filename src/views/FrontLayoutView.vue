@@ -121,7 +121,7 @@ export default {
                         </div>
                       </li>
                       <!-- <li class="block py-4  md:py-1 hover:opacity-70 md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full
-                         md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
+                               md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
                       <li class="block py-4  md:py-1 hover:text-highlight  px-4 lg:px-9" v-if="loginStatus">
                         <RouterLink to="/user/orders/1" @click.prevent="toggleBurger">查詢訂單</RouterLink>
                       </li>
@@ -154,7 +154,7 @@ export default {
                     <span class="font-bold">登入／註冊</span>
                   </RouterLink>
                 </li>
-                <li class="hover:-rotate-12 hover:text-highlight ">
+                <li class="hover:-rotate-12 hover:text-highlight pr-3">
                   <RouterLink to="/user/carts" class="md:pl-2  hover:opacity-70 ">
                     <span class="material-symbols-outlined leading-none relative">
                       shopping_cart
