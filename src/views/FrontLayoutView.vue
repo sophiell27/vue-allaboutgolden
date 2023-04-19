@@ -121,7 +121,7 @@ export default {
                         </div>
                       </li>
                       <!-- <li class="block py-4  md:py-1 hover:opacity-70 md:relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y/12 md:after:right-0 md:after:w-1 md:after:h-1 md:after:bg-secondary md:after:rounded-full
-                               md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
+                                   md:px-4 lg:px-9" ><a href="" @click.prevent="toggleBurger">黃金專欄</a></li> -->
                       <li class="block py-4  md:py-1 hover:text-highlight  px-4 lg:px-9" v-if="loginStatus">
                         <RouterLink to="/user/orders/1" @click.prevent="toggleBurger">查詢訂單</RouterLink>
                       </li>
@@ -140,14 +140,15 @@ export default {
                     search
                   </button>
                 </li>
-                <li class="hidden md:block md:pr-4 hover:text-highlight ">
-                  <RouterLink to="/" class="flex items-center text-secondary" v-if="loginStatus" @click="logout">
+                <li class="hidden md:block md:pr-4  ">
+                  <RouterLink to="/" class="flex items-center text-secondary hover:text-highlight" v-if="loginStatus"
+                    @click="logout">
                     <span class="material-symbols-outlined leading-none">
                       person
                     </span>
                     <span class="font-bold">登出</span>
                   </RouterLink>
-                  <RouterLink to="/login" class="flex items-center md:px-2  hover:opacity-70" v-else>
+                  <RouterLink to="/login" class="flex items-center md:px-2  hover:text-highlight" v-else>
                     <span class="material-symbols-outlined leading-none">
                       person
                     </span>

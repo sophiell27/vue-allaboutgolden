@@ -104,11 +104,11 @@ export default {
             </select>
           </div>
           <!-- <div class="col-span-2 md:col-span-1">
-                  <label for="couponNum" class="mb-2 block">優惠碼：</label>
-                  <input type="text" id='couponNum'
-                    class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
-                    placeholder="請輸入優惠碼（非必填）" />
-                </div> -->
+                      <label for="couponNum" class="mb-2 block">優惠碼：</label>
+                      <input type="text" id='couponNum'
+                        class="w-full rounded-lg px-4 py-2 border-fog-500 focus:outline-none focus:ring focus:ring-primary focus:border-primary placeholder:text-fog-500 bg-transparent"
+                        placeholder="請輸入優惠碼（非必填）" />
+                    </div> -->
         </div>
       </div>
       <div class="col-span-12 md:col-start-2 md:col-span-10 py-8" v-if="carts">

@@ -75,7 +75,7 @@ export default {
           <td class="px-2 py-4 md:px-6">
             {{ item.product.title }}
           </td>
-          <td class="px-2 py-4 text-xs md:px-6 ">
+          <td class="px-2 py-4 text-xs md:px-6  whitespace-nowrap">
             NT $ {{ item.product.price }}
           </td>
           <td class="px-2 py-4 md:px-6">
@@ -109,7 +109,8 @@ export default {
           <td colspan="2"><span v-if="cartTotal >= 900">已達免運費門檻</span> <span v-else>未達免運費門檻</span></td>
           <!-- <td></td> -->
           <td class="px-2 py-3 text-base whitespace-nowrap">總計：</td>
-          <td class="px-2 py-3 text-xs whitespace-nowrap md:px-6" v-if="cartTotal">NT $ {{ cartTotal >= 900 ? cartTotal : cartTotal + 500
+          <td class="px-2 py-3 text-xs whitespace-nowrap md:px-6" v-if="cartTotal">NT $ {{ cartTotal >= 900 ? cartTotal :
+            cartTotal + 500
           }}</td>
         </tr>
       </tfoot>
@@ -118,7 +119,6 @@ export default {
   </div>
   <RouterLink to="/user/placeorder" v-if="$route.fullPath === '/user/carts'">
     <button type="button"
-      class="py-2 px-12 bg-secondary rounded-lg2 text-white flex ml-auto mt-4 hover:bg-primary hover:text-dark"
-      >結帳</button>
+      class="py-2 px-12 bg-secondary rounded-lg2 text-white flex ml-auto mt-4 hover:bg-primary hover:text-dark">結帳</button>
   </RouterLink>
 </template>

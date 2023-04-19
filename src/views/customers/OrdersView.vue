@@ -38,7 +38,7 @@ export default {
   <div class="container pt-10 md:pt-16">
     <h2 class="titleDash text-h4 text-center text-dark pb-5 mb-7">訂單列表</h2>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left text-fog-500 ">
+      <table class="w-full text-sm text-center text-fog-500 ">
         <thead class="font-extrabold text-4.5 text-fog-500 bg-fog-200 whitespace-nowrap">
           <tr>
             <th scope="col" class="px-6 py-3">
@@ -63,7 +63,7 @@ export default {
             <td class="px-2 py-4 md:px-6">
               {{ getFormatDate(order.create_at) }}
             </td>
-            <td class="px-2 py-4 md:px-6  text-xs whitespace-normal">
+            <td class="px-2 py-4 md:px-6  text-xs">
               {{ order.id }}
             </td>
             <td class="px-2 py-4 text-xs md:px-6 ">
@@ -71,7 +71,7 @@ export default {
                 <p> {{ `${item.product.title} x ${item.qty}` }}</p>
               </template>
             </td>
-            <td class="px-2 py-4 md:px-6 text-xs">
+            <td class="px-2 py-4 md:px-6 text-xs whitespace-nowrap">
               NT $ {{ order.total }}
             </td>
             <td class="px-2 py-4 md:px-6 whitespace-nowrap"
