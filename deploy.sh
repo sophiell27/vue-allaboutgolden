@@ -21,7 +21,7 @@ git add -A
 git commit -m 'deploy'
 
 
-# if you are deploying to https://sophiell27.github.io/vue-live-final/
-git push -f https://github.com/sophiell27/vue-live-final.git main:gh-pages
+# if you are deploying to https://sophiell27.github.io/vue-allaboutgolden/
+git push -f https://github.com/sophiell27/vue-allaboutgolden.git main:gh-pages
 
 cd -

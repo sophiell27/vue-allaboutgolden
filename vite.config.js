@@ -12,7 +12,7 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
     }),
   ],
-  base: process.env.NODE_ENV === 'production' ? '/vue-live-final/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/vue-allaboutgolden/' : '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
