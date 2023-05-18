@@ -1,0 +1,1 @@
+import{_ as o}from"./Logo-cc046694.js";import{_ as s,o as t,c,f as e}from"./index-eeac8972.js";const r={},_={class:"flex flex-col justify-center items-center h-screen"},n=e("h2",{class:"mb-8"},"404 Not Found",-1),a=e("a",{href:"/"},[e("img",{src:o,alt:"logo"})],-1),i=[n,a];function f(d,l){return t(),c("div",_,i)}const p=s(r,[["render",f]]);export{p as default};
